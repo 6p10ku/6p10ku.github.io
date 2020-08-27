@@ -70,9 +70,19 @@ var android_af_dp = encodeURIComponent(android_dp);
 // iOS Deeplink для AppsFlyer
 var ios_af_dp = encodeURIComponent(ios_dp);
 
+// Если нужен редирект в WEB при отсутствии установленного приложения
+
+// https://www.sberbank.ru/ru/person/dist_services/inner_apps
 var af_all_url = '';
 
-var af_all_url = '&af_ios_url=';
+if (af_all_url !=''){
+var af_android_url = '&af_android_url=' + af_all_url;
+var af_ios_url = '&af_ios_url=' + af_all_url;
+} else {
+var af_android_url = '';
+var af_ios_url = '';
+}
+
 
 
 // Логика получения и передачи меток
@@ -156,7 +166,7 @@ var web_utm_term = utm_content_sm ? '&utm_term='+utm_term_sm : '';
 
 	
 // Android
-var redirect_android = 'https://app.appsflyer.com/ru.sberbankmobile'+'?'+af_pid+af_c+'&is_retargeting=true'+'&af_dp='+android_af_dp+is_q_and+other_param+external_source+af_utm_source+af_utm_medium+af_utm_campaign+af_utm_content_plus+af_ga_uid_sm;
+var redirect_android = 'https://app.appsflyer.com/ru.sberbankmobile'+'?'+af_pid+af_c+'&is_retargeting=true'+'&af_dp='+android_af_dp+is_q_and+other_param+external_source+af_android_url+af_utm_source+af_utm_medium+af_utm_campaign+af_utm_content_plus+af_ga_uid_sm;
 
 
 // iOS
@@ -281,6 +291,3 @@ var redirect_unknown=other_link+other_param_web;
 </body>
 
 </html>
-
-
-
