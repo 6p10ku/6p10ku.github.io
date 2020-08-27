@@ -41,14 +41,15 @@
 // Android - Настриваем deeplink
 
 // Media Source из Appsflyer
-var af_media_source = 'sberkids';
+var af_media_source = 'kidscardorder';
 
 // Deeplink encode
-var android_dp = 'https://online.sberbank.ru/app/sberkids/kidscardorder';
+var android_dp = 'android-app://ru.sberbankmobile/android-app/ru.sberbankmobile/sberkids/kidscardorder';
+
 
 // iOS - Настриваем deeplink
 // Пока не работает логика используем короткую ссылку из AppsFlyer
- var ios_dp = 'https://online.sberbank.ru/app/sberkids/kidscardorder';
+ var ios_dp = 'sberbankonline://sberkids/kidscardorder';
 //var iphone_link = 'https://sberbankonline.onelink.me/46WQ/9fb7ad50';
 
 
@@ -80,12 +81,10 @@ var af_c = '&c='+ af_media_source;
 //var af_c = '&c='+ 'XXX';
 
 // Android Deeplink для AppsFlyer
-var android_af_dp = ios_dp;
-    //encodeURIComponent(android_dp);
+var android_af_dp = encodeURIComponent(android_dp);
 
 // iOS Deeplink для AppsFlyer
-var ios_af_dp = ios_dp;
-    //encodeURIComponent(ios_dp);
+var ios_af_dp = encodeURIComponent(ios_dp);
 
 
 
