@@ -53,7 +53,7 @@ var ios_dp = 'sberbankonline://sberkids/kidscardorder';
 
 
 // WEB - Настриваем deeplink
-var other_link = 'https://www.sberbank.ru/ru/person/dist_services/inner_apps';
+var other_link = 'https://www.sberbank.ru/ru/person/sberkids';
 
 // Media Source из Appsflyer
 var af_pid = 'pid='+ af_media_source;
@@ -74,7 +74,7 @@ var ios_af_dp = encodeURIComponent(ios_dp);
 // https://www.sberbank.ru/ru/person/dist_services/inner_apps
 
 
-var af_web_url = 'https://www.sberbank.ru/ru/person/dist_services/inner_apps';
+var af_web_url = 'https://www.sberbank.ru/ru/person/sberkids';
 
 if (af_web_url !=''){
 var af_android_url = '&af_android_url=' + encodeURIComponent(af_web_url);
@@ -86,8 +86,8 @@ var af_ios_url = '';
 
 
 
-// Логика получения и передачи меток
-var utm_source_sm='', utm_medium_sm='', utm_campaign_sm='', utm_content_sm='', utm_term_sm='', ga_uid_sm='', other_param = '';
+// Логика получения и передачи меток и параметров
+var utm_source_sm='', utm_medium_sm='', utm_campaign_sm='', utm_content_sm='', utm_term_sm='', ga_uid_sm='', other_param = '', other_param_web = '';
 
 var getCookie = function(name) {
     var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
@@ -111,7 +111,7 @@ if (document.location.href.search(/=/)>0){
     function replaceAll(string, search, replace) {
             return string.split(search).join(replace);
         }
-    var other_param_web = '?' + replaceAll(decodeURIComponent(utm_arr.filter(v => v ).join('&')).replace(/[\+\s]/ig, '__'), '&', '%26');
+    if (other_param) {var other_param_web = '?' + replaceAll(decodeURIComponent(utm_arr.filter(v => v ).join('&')).replace(/[\+\s]/ig, '__'), '&', '%26')};
 } else {
 
 	// Проверяем UTM из куки	
