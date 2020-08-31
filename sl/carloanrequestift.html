@@ -1,4 +1,3 @@
-
 <!doctype html>
 
 <html lang="en">
@@ -39,6 +38,7 @@
 
 <script>
 
+	
 // Android - Настриваем deeplink
 
 // Media Source из Appsflyer
@@ -56,6 +56,10 @@ var android_dp = 'android-app://ru.sberbankmobile_alpha/android-app/ru.sberbankm
 
 // WEB - Настриваем deeplink
 var other_link = 'https://ift-csa.testonline.sberbank.ru:4456/CSAFront/index.do#/service?srvUrl=%2Fsbtsbol%2Fprivate%2Floans%2Fcar%23%2Fdashboard';
+	
+	
+	
+	
 
 // Другие параметры
 //var isNewCarAppIos = '', isNewCarAppAndroid = '', isNewCarWeb = '';
@@ -108,13 +112,13 @@ if (document.location.href.search(/=/)>0){
   if (utm_arr != '' && utm_arr[i].search('utm_term')>=0) {var utm_term_sm = '-_-'+utm_arr[i].split('=').pop(); utm_arr[i] = ''};
 
 	}
-
-	var other_param = encodeURIComponent(utm_arr.filter(v => v ).join('&')+'&');
+    var other_param = encodeURIComponent(utm_arr.filter(v => v ).join('&'));
 
     function replaceAll(string, search, replace) {
             return string.split(search).join(replace);
         }
     var other_param_web = '?' + replaceAll(decodeURIComponent(utm_arr.filter(v => v ).join('&')).replace(/[\+\s]/ig, '__'), '&', '%26');
+    
 
 } else {
 
@@ -171,19 +175,19 @@ var web_utm_term = utm_content_sm ? '&utm_term='+utm_term_sm : '';
 
 	
 // Android
-var redirect_android = 'https://app.appsflyer.com/ru.sberbankmobile_alpha'+'?'+af_pid+af_c+'&is_retargeting=true'+'&af_dp='+android_af_dp+is_q_and+other_param+external_source+af_utm_source+af_utm_medium+af_utm_campaign+af_utm_content_plus+af_ga_uid_sm;
+var redirect_android = 'https://app.appsflyer.com/ru.sberbankmobile_alpha'+'?'+af_pid+af_c+'&is_retargeting=true'+'&af_dp='+android_af_dp+is_q_and+other_param+af_utm_source+af_utm_medium+af_utm_campaign+af_utm_content_plus+af_ga_uid_sm;
 
 
 // iOS
 // C параметром
-var redirect_iphone = 'https://sberbankonline.onelink.me/46WQ'+'?'+'af_force_deeplink=true&'+af_pid+af_c+'&is_retargeting=true'+'&af_dp='+ios_af_dp+is_q_ios+other_param+external_source+af_utm_source+af_utm_medium+af_utm_campaign+af_utm_content_plus+af_ga_uid_sm;
+var redirect_iphone = 'https://sberbankonline.onelink.me/46WQ'+'?'+'af_force_deeplink=true&'+af_pid+af_c+'&is_retargeting=true'+'&af_dp='+ios_af_dp+is_q_ios+other_param+af_utm_source+af_utm_medium+af_utm_campaign+af_utm_content_plus+af_ga_uid_sm;
 // БЕЗ параметров
 //var redirect_iphone = iphone_link+'?af_force_deeplink=true'+af_utm_source+af_utm_medium+af_utm_campaign+af_utm_content_plus+af_ga_uid_sm;
 
 
 // WEB
 // C параметром
-var redirect_unknown=other_link+other_param_web;
+var redirect_unknown=other_link+other_param_web;	
 // БЕЗ парамтров
 //var redirect_unknown=other_link+web_utm_source+web_utm_medium+web_utm_campaign+web_utm_content+web_utm_term;	
 
@@ -296,6 +300,3 @@ var redirect_unknown=other_link+other_param_web;
 </body>
 
 </html>
-
-
-
