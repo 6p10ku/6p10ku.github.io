@@ -104,9 +104,9 @@ if (document.location.href.search(/=/)>0){
   if (utm_arr != '' && utm_arr[i].toLowerCase().search('utm_campaign')>=0) {var utm_campaign_sm = utm_arr[i].split('=').pop(); utm_arr[i] = ''};
   if (utm_arr != '' && utm_arr[i].toLowerCase().search('utm_content')>=0) {var utm_content_sm = utm_arr[i].split('=').pop(); utm_arr[i] = ''};
   if (utm_arr != '' && utm_arr[i].toLowerCase().search('utm_term')>=0) {var utm_term_sm = '-_-'+utm_arr[i].split('=').pop(); utm_arr[i] = ''};
-  if (utm_arr != '' && utm_arr[i].toLowerCase().search('campaign')>=0) {var campaignid = 'campaignid%3D'+utm_arr[i].split('=').pop(); utm_arr[i] = ''};
+  if (utm_arr != '' && utm_arr[i].toLowerCase().search('campaignid')>=0) {var campaignid = 'campaignid%3D'+utm_arr[i].split('=').pop(); utm_arr[i] = ''};
   if (utm_arr != '' && utm_arr[i].toLowerCase().search('creativeid_android')>=0) {var creativeid_android = '%26creativeid%3D'+utm_arr[i].split('=').pop(); utm_arr[i] = ''};
-  if (utm_arr != '' && utm_arr[i].toLowerCase().search('creatived_ios')>=0) {var creativeid_ios = '%26creativeid%3D'+utm_arr[i].split('=').pop(); utm_arr[i] = ''};
+  if (utm_arr != '' && utm_arr[i].toLowerCase().search('creativeid_ios')>=0) {var creativeid_ios = '%26creativeid%3D'+utm_arr[i].split('=').pop(); utm_arr[i] = ''};
 
 	}
 	
