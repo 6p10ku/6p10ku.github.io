@@ -1,0 +1,111 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/sms/img/favicon2.ico" type="image/x-icon">
+    <title>Сбербанк Онлайн</title>
+</head>
+<body>
+<!-- Переход в СБОЛ через deeplink -->
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-NRDX7Z"
+
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NRDX7Z');
+</script>
+<!-- End Google Tag Manager -->
+
+<script>
+    // Android - Настриваем deeplink
+
+        // Media Source из Appsflyer
+      //  var af_media_source = 'carloanrequest';
+
+    // Deeplink encode
+    var android_af_dp = 'android-app://ru.sberbankmobile/android-app/ru.sberbankmobile/carloans/carloanrequest?source=sberbankru';
+
+    // iOS - Настриваем deeplink
+    // Пока не работает логика используем короткую ссылку из AppsFlyer
+    ///var ios_af_dp = 'sberbankonline%3A%2F%2Finsurance%2Fsales%3FproductCode%3Dfamily_ins';
+    var iphone_link = 'sberbankonline://carloans/carloanrequest?source=sberbankru';
+
+    // WEB - Настриваем deeplink
+    var other_link = 'https://online.sberbank.ru/CSAFront/index.do#/service?srvUrl=%2Fsbtsbol%2Fprivate%2Floans%2Fcar%23%2Fdashboard';
+
+
+    // Media Source из Appsflyer
+    //var af_pid = '&pid='+ af_media_source;
+
+    // Campaign из AppsFlyer
+    //var af_c = '&c='+ af_media_source;
+
+    // Если есть isNewCar
+    var isNewCarAppIos = '', isNewCarAppAndroid = '', isNewCarWeb = '';
+    if (document.location.href.search(/\?/)>0){
+        var isNewCar = document.location.href.split('?').pop()
+
+        function replaceAll(string, search, replace) {
+            return string.split(search).join(replace);
+        }
+
+        var isNewCarWeb = '?' + replaceAll(decodeURIComponent(isNewCar).replace(/[\+\s]/ig, '__'), '&', '%26');
+        var isNewCarAppIos = '?' + isNewCar.replace(/[\+\s]|(__)/ig, '%20');
+        var isNewCarAppAndroid = '?' + decodeURIComponent(isNewCar).replace(/[\s]|(__)/ig, '+');
+    }
+
+    var redirect_android=android_af_dp+isNewCarAppAndroid;
+    var redirect_iphone=iphone_link+isNewCarAppIos;
+    var redirect_unknown=other_link+isNewCarWeb;
+
+    // проверка платформы
+
+    function check_platform(ua) {
+        if(/android/gi.test(ua)){
+            return 'android';
+        }
+        if(/iphone|ipod/gi.test(ua)){
+            return 'iPhone';
+        }
+        return  'unknown';
+    }
+
+    // переадресация
+    function redirect_user (address) {
+        setTimeout(function(){window.location.href=address}, 2700);
+        return true;
+    }
+
+    // сообщение пользователю
+    function inform_user (msg) {
+        document.write(msg);
+        return true;
+    }
+
+    // начало
+    var platform=check_platform(navigator.userAgent);
+
+    if (platform=="android") {
+        inform_user('Запрос обрабатывается. Подождите несколько секунд...');
+        redirect_user(redirect_android);
+    }
+    else if (platform=="iPhone") {
+        inform_user('Запрос обрабатывается. Подождите несколько секунд...');
+        redirect_user (redirect_iphone);
+    }
+    else {
+        inform_user('Запрос обрабатывается. Подождите несколько секунд...');
+        redirect_user(redirect_unknown);
+    }
+</script>
+<style>
+    body {font-size: 20px; font-family: Arial;}
+</style>
+</body>
+</html>
