@@ -1,0 +1,168 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+	<meta charset="UTF-8">
+
+	<link rel="icon" href="/sms/img/favicon2.ico" type="image/x-icon">
+
+	<title>Сбербанк Онлайн</title>
+
+</head>
+
+<body>
+	
+	<!-- Переход в СБОЛ через deeplink -->
+
+	<!-- Google Tag Manager -->
+
+	<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-NRDX7Z"
+
+	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+
+	'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+
+	})(window,document,'script','dataLayer','GTM-NRDX7Z');
+
+	</script>
+
+	<!-- End Google Tag Manager -->
+
+<script>
+
+
+	
+// Android
+var redirect_android = 'https://play.google.com/store/apps/details?id=ru.sberbank.sberbankir2020';
+
+
+// iOS
+// C параметром
+var redirect_iphone = 'https://apps.apple.com/ru/app/id1503172226';
+// БЕЗ параметров
+//var redirect_iphone = iphone_link+'?af_force_deeplink=true'+af_utm_source+af_utm_medium+af_utm_campaign+af_utm_content_plus+af_ga_uid_sm;
+
+
+// WEB
+// C параметром
+var redirect_unknown='https://www.sberbank.com/ru/investor-relations/corporate-governance/general-shareholders-meeting/annual-meeting-2020';
+// БЕЗ парамтров
+//var redirect_unknown=other_link;	
+
+
+	// проверка платформы
+
+	function check_platform(ua) {
+
+
+
+        if(/android/gi.test(ua)){
+
+			return 'android';
+
+        }
+
+
+
+        if(/iphone|ipod/gi.test(ua)){
+
+            return 'iPhone';
+
+        }
+
+
+
+		return  'unknown';
+
+
+
+	}
+
+
+
+	// переадресация
+
+	function redirect_user (address) {
+
+		setTimeout(function(){window.location.href=address}, 2100);
+
+		return true;
+
+	}
+
+
+
+	// сообщение пользователю
+
+	function inform_user (msg) {
+
+		document.write(msg);
+
+		return true;
+
+	}
+
+
+
+	// начало
+
+	var platform=check_platform(navigator.userAgent);
+
+
+
+
+	if (platform=="android") {
+
+		inform_user('Запрос обрабатывается. Подождите несколько секунд...');
+
+		redirect_user(redirect_android);
+
+	}
+
+
+
+	else if (platform=="iPhone") {
+
+		inform_user('Запрос обрабатывается. Подождите несколько секунд...');
+
+		redirect_user (redirect_iphone);
+
+	}
+
+
+
+	else {
+
+		inform_user('Запрос обрабатывается. Подождите несколько секунд...');
+
+		redirect_user(redirect_unknown);
+
+	}
+
+
+
+</script>
+
+
+
+	<style>
+
+	 body {font-size: 20px; font-family: Arial;}
+
+	</style>
+
+
+
+
+
+</body>
+
+</html>
