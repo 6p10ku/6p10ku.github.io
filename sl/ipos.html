@@ -1,3 +1,4 @@
+
 <!doctype html>
 
 <html lang="en">
@@ -44,7 +45,7 @@
 var af_media_source = 'ipos';
 
 // Deeplink encode
-var android_dp = 'android-app://ru.sberbankmobile/android-app/ru.sberbankmobile/loan/pos';
+var android_dp = 'android-app://ru.sberbankmobile_alpha/android-app/ru.sberbankmobile_alpha/loan/pos';
 
 // iOS - Настриваем deeplink
 // Пока не работает логика используем короткую ссылку из AppsFlyer
@@ -71,12 +72,12 @@ var ios_af_dp = encodeURIComponent(ios_dp);
 
 // Если нужен редирект в WEB при отсутствии установленного приложения
 
-var af_web_url = 'https://www.6p10ku.github.io/sl/af_web_url';
+var af_web_url = 'https://www.sberbank.ru/sms/af_web_url';
 
 
 
 // Логика получения и передачи меток и параметров
-var utm_source_sm='', utm_medium_sm='', utm_campaign_sm='', utm_content_sm='', utm_term_sm='', ga_uid_sm='', other_param = '', other_param_web = '';
+var utm_source_sm='', utm_medium_sm='', utm_campaign_sm='', utm_content_sm='', utm_term_sm='', ga_uid_sm='', other_param = '', other_param_web = '', other_param_web_url='';
 
 var getCookie = function(name) {
     var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
@@ -101,7 +102,10 @@ if (document.location.href.search(/=/)>0){
     function replaceAll(string, search, replace) {
             return string.split(search).join(replace);
         }
-    if (other_param != '') {var other_param_web = '?' + replaceAll(decodeURIComponent(utm_arr.filter(v => v ).join('&')).replace(/[\+\s]/ig, '__'), '&', '%26')};
+    if (other_param != '') {
+			var other_param_web = '&' + replaceAll(decodeURIComponent(utm_arr.filter(v => v ).join('&')).replace(/[\+\s]/ig, '__'), '&', '%26')
+		var other_param_web_url = '?' + replaceAll(decodeURIComponent(utm_arr.filter(v => v ).join('&')).replace(/[\+\s]/ig, '__'), '&', '%26')
+	};
 } else {
 
 	// Проверяем UTM из куки	
@@ -116,8 +120,8 @@ var utm_source_sm_fc = getCookie('utm_source'), utm_medium_sm_fc = getCookie('ut
 
 
 	if (af_web_url !=''){
-	var af_android_url = '&af_android_url=' + encodeURIComponent(af_web_url+other_param_web);
-	var af_ios_url = '&af_ios_url=' + encodeURIComponent(af_web_url+other_param_web);
+	var af_android_url = '&af_android_url=' + encodeURIComponent(af_web_url+other_param_web_url);
+	var af_ios_url = '&af_ios_url=' + encodeURIComponent(af_web_url+other_param_web_url);
 	} else {
 	var af_android_url = '';
 	var af_ios_url = '';
@@ -167,7 +171,7 @@ var web_utm_term = utm_content_sm ? '&utm_term='+utm_term_sm : '';
 
 	
 // Android
-var redirect_android = 'https://app.appsflyer.com/ru.sberbankmobile'+'?'+af_pid+af_c+'&is_retargeting=true'+'&af_dp='+android_af_dp+is_q_and+other_param+external_source+af_utm_source+af_utm_medium+af_utm_campaign+af_utm_content_plus+af_ga_uid_sm+af_android_url;
+var redirect_android = 'https://app.appsflyer.com/ru.sberbankmobile_alpha'+'?'+af_pid+af_c+'&is_retargeting=true'+'&af_dp='+android_af_dp+is_q_and+other_param+external_source+af_utm_source+af_utm_medium+af_utm_campaign+af_utm_content_plus+af_ga_uid_sm+af_android_url;
 
 
 // iOS
