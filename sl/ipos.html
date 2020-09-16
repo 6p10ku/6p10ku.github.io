@@ -55,7 +55,7 @@ var ios_dp = 'sberbankonline://loan/pos';
 
 
 // WEB - Настриваем deeplink
-var other_link = 'https://online.sberbank.ru/CSAFront/index.do?#/payOrderPaymentLogin?ST=ufs.sberpay.ipos';
+var web_link = 'https://online.sberbank.ru/CSAFront/index.do?#/payOrderPaymentLogin?ST=ufs.sberpay.ipos';
 
 // Media Source из Appsflyer
 var af_pid = 'pid='+ af_media_source;
@@ -121,8 +121,8 @@ var utm_source_sm_fc = getCookie('utm_source'), utm_medium_sm_fc = getCookie('ut
 
 
 	if (af_web_url !=''){
-	var af_android_url = '&af_android_url=' + encodeURIComponent(af_web_url+other_param_web_url);
-	var af_ios_url = '&af_ios_url=' + encodeURIComponent(af_web_url+other_param_web_url);
+	var af_android_url = '&af_android_url=' + encodeURIComponent(af_web_url+other_param_web_url+'&web_link='+web_link);
+	var af_ios_url = '&af_ios_url=' + encodeURIComponent(af_web_url+other_param_web_url+'&web_link='+web_link);
 	} else {
 	var af_android_url = '';
 	var af_ios_url = '';
@@ -172,21 +172,21 @@ var web_utm_term = utm_content_sm ? '&utm_term='+utm_term_sm : '';
 
 	
 // Android
-var redirect_android = 'https://app.appsflyer.com/ru.sberbankmobile'+'?'+af_pid+af_c+'&is_retargeting=true'+'&af_dp='+android_af_dp+is_q_and+other_param+external_source+af_utm_source+af_utm_medium+af_utm_campaign+af_utm_content_plus+af_ga_uid_sm+af_android_url+'&for_no_app='+other_link;
+var redirect_android = 'https://app.appsflyer.com/ru.sberbankmobile'+'?'+af_pid+af_c+'&is_retargeting=true'+'&af_dp='+android_af_dp+is_q_and+other_param+external_source+af_utm_source+af_utm_medium+af_utm_campaign+af_utm_content_plus+af_ga_uid_sm+af_android_url;
 
 
 // iOS
 // C параметром
-var redirect_iphone = 'https://sberbankonline.onelink.me/46WQ'+'?'+'af_force_deeplink=true&'+af_pid+af_c+'&is_retargeting=true'+'&af_dp='+ios_af_dp+is_q_ios+other_param+external_source+af_utm_source+af_utm_medium+af_utm_campaign+af_utm_content_plus+af_ga_uid_sm+af_ios_url+'&for_no_app='+other_link;
+var redirect_iphone = 'https://sberbankonline.onelink.me/46WQ'+'?'+'af_force_deeplink=true&'+af_pid+af_c+'&is_retargeting=true'+'&af_dp='+ios_af_dp+is_q_ios+other_param+external_source+af_utm_source+af_utm_medium+af_utm_campaign+af_utm_content_plus+af_ga_uid_sm+af_ios_url;
 // БЕЗ параметров
 //var redirect_iphone = iphone_link+'?af_force_deeplink=true'+af_utm_source+af_utm_medium+af_utm_campaign+af_utm_content_plus+af_ga_uid_sm;
 
 
 // WEB
 // C параметром
-var redirect_unknown=other_link+other_param_web;
+var redirect_unknown=web_link+other_param_web;
 // БЕЗ парамтров
-//var redirect_unknown=other_link;	
+//var redirect_unknown=web_link;	
 
 
 	// проверка платформы
