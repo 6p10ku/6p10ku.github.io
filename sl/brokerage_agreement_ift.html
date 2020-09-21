@@ -41,10 +41,10 @@
 // Android - Настриваем deeplink
 
 // Media Source из Appsflyer
-var af_media_source = 'brokerage_agreement_ift';
+var af_media_source = 'brokerage_agreement';
 
 // Deeplink encode
-var android_dp = 'android-app://ru.sberbankmobile_alpha/android-app/ru.sberbankmobile_alpha/brokerage/agreement/short?action=create';
+var android_dp = 'android-app://ru.sberbankmobile/android-app/ru.sberbankmobile/brokerage/agreement/short?action=create';
 
 // iOS - Настриваем deeplink
 // Пока не работает логика используем короткую ссылку из AppsFlyer
@@ -53,13 +53,16 @@ var ios_dp = 'sberbankonline://brokerage/agreement/short?action=create';
 
 
 // WEB - Настриваем deeplink
-var other_link = 'https://www.sberbank.ru/ru/person/investments/promobroweb';
+var web_link = 'https://www.sberbank.ru/ru/person/investments/promobroweb';
+
+// Редирект на WEB – TRUE or FALSE
+var need_web = false;
 
 // Media Source из Appsflyer
-var af_pid = 'pid='+ af_media_source;
+var af_pid = 'pid=' + af_media_source;
 
 // Campaign из AppsFlyer
-var af_c = '&c='+ af_media_source;
+var af_c = '&c=' + af_media_source;
 // Отличный Campaign
 //var af_c = '&c='+ 'XXX';
 
@@ -70,24 +73,13 @@ var android_af_dp = encodeURIComponent(android_dp);
 var ios_af_dp = encodeURIComponent(ios_dp);
 
 // Если нужен редирект в WEB при отсутствии установленного приложения
-
-// https://www.sberbank.ru/ru/person/dist_services/inner_apps
-
-
 var af_web_url = '';
 
-if (af_web_url !=''){
-var af_android_url = '&af_android_url=' + encodeURIComponent(af_web_url);
-var af_ios_url = '&af_ios_url=' + encodeURIComponent(af_web_url);
-} else {
-var af_android_url = '';
-var af_ios_url = '';
-}
-
+need_web == true ? af_web_url = 'https://www.sberbank.ru/sms/af_web_url' : need_web;
 
 
 // Логика получения и передачи меток и параметров
-var utm_source_sm='', utm_medium_sm='', utm_campaign_sm='', utm_content_sm='', utm_term_sm='', ga_uid_sm='', other_param = '', other_param_web = '';
+var utm_source_sm='', utm_medium_sm='', utm_campaign_sm='', utm_content_sm='', utm_term_sm='', ga_uid_sm='', other_param = '', other_param_web = '', other_param_web_url='';
 
 var getCookie = function(name) {
     var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
@@ -99,7 +91,7 @@ if (document.location.href.search(/=/)>0){
 	var utm_arr = UTM.split('&');
 	for (i=0; i<utm_arr.length; i++){
 
-		if (utm_arr != '' && utm_arr[i].toLowerCase().search('utm_source')>=0) {var utm_source_sm = utm_arr[i].split('=').pop(); utm_arr[i] = ''};
+  if (utm_arr != '' && utm_arr[i].toLowerCase().search('utm_source')>=0) {var utm_source_sm = utm_arr[i].split('=').pop(); utm_arr[i] = ''};
   if (utm_arr != '' && utm_arr[i].toLowerCase().search('utm_medium')>=0) {var utm_medium_sm = utm_arr[i].split('=').pop(); utm_arr[i] = ''};
   if (utm_arr != '' && utm_arr[i].toLowerCase().search('utm_campaign')>=0) {var utm_campaign_sm = utm_arr[i].split('=').pop(); utm_arr[i] = ''};
   if (utm_arr != '' && utm_arr[i].toLowerCase().search('utm_content')>=0) {var utm_content_sm = utm_arr[i].split('=').pop(); utm_arr[i] = ''};
@@ -112,7 +104,10 @@ if (document.location.href.search(/=/)>0){
     function replaceAll(string, search, replace) {
             return string.split(search).join(replace);
         }
-    if (other_param) {var other_param_web = '?' + replaceAll(decodeURIComponent(utm_arr.filter(v => v ).join('&')).replace(/[\+\s]/ig, '__'), '&', '%26')};
+    if (other_param != '') {
+			var other_param_web = '&' + replaceAll(decodeURIComponent(utm_arr.filter(v => v ).join('&')).replace(/[\+\s]/ig, '__'), '&', '%26')
+		var other_param_web_url = '?' + replaceAll(decodeURIComponent(utm_arr.filter(v => v ).join('&')).replace(/[\+\s]/ig, '__'), '&', '%26')
+	};
 } else {
 
 	// Проверяем UTM из куки	
@@ -124,6 +119,16 @@ var utm_source_sm_fc = getCookie('utm_source'), utm_medium_sm_fc = getCookie('ut
 		if(utm_campaign_sm_fc && utm_campaign_sm_fc != '') {utm_campaign_sm = utm_campaign_sm_fc}
 		if(utm_content_sm_fc && utm_content_sm_fc != '') {utm_content_sm = utm_content_sm_fc}
 	}
+
+
+	if (af_web_url !=''){
+	var af_android_url = '&af_android_url=' + encodeURIComponent(af_web_url+other_param_web_url+'&web_link='+web_link);
+	var af_ios_url = '&af_ios_url=' + encodeURIComponent(af_web_url+other_param_web_url+'&web_link='+web_link);
+	} else {
+	var af_android_url = '';
+	var af_ios_url = '';
+	}
+
 
 	// Получаем куку GA
 	var ga_uid_fc = getCookie('_ga');
@@ -168,21 +173,21 @@ var web_utm_term = utm_content_sm ? '&utm_term='+utm_term_sm : '';
 
 	
 // Android
-var redirect_android = 'https://app.appsflyer.com/ru.sberbankmobile_alpha'+'?'+af_pid+af_c+'&is_retargeting=true'+'&af_dp='+android_af_dp+is_q_and+other_param+external_source+af_android_url+af_utm_source+af_utm_medium+af_utm_campaign+af_utm_content_plus+af_ga_uid_sm;
+var redirect_android = 'https://app.appsflyer.com/ru.sberbankmobile'+'?'+af_pid+af_c+'&is_retargeting=true'+'&af_dp='+android_af_dp+is_q_and+other_param+external_source+af_utm_source+af_utm_medium+af_utm_campaign+af_utm_content_plus+af_ga_uid_sm+af_android_url;
 
 
 // iOS
 // C параметром
-var redirect_iphone = 'https://sberbankonline.onelink.me/46WQ'+'?'+'af_force_deeplink=true&'+af_pid+af_c+'&is_retargeting=true'+'&af_dp='+ios_af_dp+is_q_ios+other_param+external_source+af_ios_url+af_utm_source+af_utm_medium+af_utm_campaign+af_utm_content_plus+af_ga_uid_sm;
+var redirect_iphone = 'https://sberbankonline.onelink.me/46WQ'+'?'+'af_force_deeplink=true&'+af_pid+af_c+'&is_retargeting=true'+'&af_dp='+ios_af_dp+is_q_ios+other_param+external_source+af_utm_source+af_utm_medium+af_utm_campaign+af_utm_content_plus+af_ga_uid_sm+af_ios_url;
 // БЕЗ параметров
 //var redirect_iphone = iphone_link+'?af_force_deeplink=true'+af_utm_source+af_utm_medium+af_utm_campaign+af_utm_content_plus+af_ga_uid_sm;
 
 
 // WEB
 // C параметром
-//var redirect_unknown=other_link+other_param_web;
+var redirect_unknown=web_link+other_param_web;
 // БЕЗ парамтров
-var redirect_unknown=other_link;	
+//var redirect_unknown=web_link;	
 
 
 	// проверка платформы
@@ -219,7 +224,7 @@ var redirect_unknown=other_link;
 
 	function redirect_user (address) {
 
-		setTimeout(function(){window.location.href=address}, 1800);
+		setTimeout(function(){window.location.href=address}, 500);
 
 		return true;
 
