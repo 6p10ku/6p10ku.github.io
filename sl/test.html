@@ -1,3 +1,6 @@
+
+
+
 <!doctype html>
 
 <html lang="en">
@@ -38,22 +41,35 @@
 
 <script>
 
-// Необходимо заполнить
+// Android - Настриваем deeplink
 
 // Media Source из Appsflyer
-var af_media_source = 'test';
+var af_media_source = 'travel_ins_osi';
 
-// Android Deeplink 
-var android_dp = 'android-app://ru.sberbankmobile/android-app/ru.sberbankmobile/marketplace?viewtype=productcardview&viewid=osago_ProductCardView_ANDROID_1';
+// Deeplink encode
+var android_dp = 'android-app://ru.sberbankmobile/android-app/ru.sberbankmobile/welfare/products/efs_insurance?productCode=travel_ins';
 
-// iOS Deeplink 
-var ios_dp = 'sberbankonline://marketplace?viewtype=productcardview&viewid=osago_ProductCardView_iOS_1';
+// iOS - Настриваем deeplink
+// Пока не работает логика используем короткую ссылку из AppsFlyer
+var ios_dp = 'sberbankonline://insurance/sales?productCode=travel_ins';
+//var iphone_link = 'https://sberbankonline.onelink.me/46WQ/9fb7ad50';
 
-// WEB Deeplink 
-var web_link = 'https://online.sberbank.ru/CSAFront/service.do?srvUrl=/sbtsbol/private/insurance/products/claim?product=home_ins2';
+
+// WEB - Настриваем deeplink
+var web_link = 'https://www.sber.ru/new';
+
+
+//если web_link содержит sberbank.ru - то web_utm_param пустой
+//если нет - то передаем 
+
+
 
 // Редирект на WEB при отсутствии приложения – true or false
 var need_web = true;
+
+
+
+//// var af_force_deeplink true or false 
 
 
 
@@ -76,7 +92,8 @@ var ios_af_dp = encodeURIComponent(ios_dp);
 // Если нужен редирект в WEB при отсутствии установленного приложения
 var af_web_url = '';
 
-need_web == true ? af_web_url = 'https://www.sberbank.ru/sms/af_web_url' : need_web;
+
+
 
 
 // Логика получения и передачи меток и параметров
@@ -122,15 +139,6 @@ var utm_source_sm_fc = getCookie('utm_source'), utm_medium_sm_fc = getCookie('ut
 	}
 
 
-	if (af_web_url !=''){
-	var af_android_url = '&af_android_url=' + encodeURIComponent(af_web_url+other_param_web_url+'&web_link='+web_link);
-	var af_ios_url = '&af_ios_url=' + encodeURIComponent(af_web_url+other_param_web_url+'&web_link='+web_link);
-	} else {
-	var af_android_url = '';
-	var af_ios_url = '';
-	}
-
-
 	// Получаем куку GA
 	var ga_uid_fc = getCookie('_ga');
 	if (ga_uid_fc && ga_uid_fc != '') {
@@ -172,6 +180,17 @@ var web_utm_campaign = utm_campaign_sm ? '&utm_campaign='+utm_campaign_sm : '';
 var web_utm_content = utm_content_sm ? '&utm_content='+utm_content_sm : '';
 var web_utm_term = utm_content_sm ? '&utm_term='+utm_term_sm : '';
 
+
+
+need_web == true ? af_web_url = web_link+other_param_web : need_web;
+
+if (af_web_url !=''){
+var af_android_url = '&af_android_url=' + encodeURIComponent(af_web_url);
+var af_ios_url = '&af_ios_url=' + encodeURIComponent(af_web_url);
+} else {
+var af_android_url = '';
+var af_ios_url = '';
+}
 	
 // Android
 var redirect_android = 'https://app.appsflyer.com/ru.sberbankmobile'+'?'+af_pid+af_c+'&is_retargeting=true'+'&af_dp='+android_af_dp+is_q_and+other_param+external_source+af_utm_source+af_utm_medium+af_utm_campaign+af_utm_content_plus+af_ga_uid_sm+af_android_url;
@@ -186,59 +205,9 @@ var redirect_iphone = 'https://sberbankonline.onelink.me/46WQ'+'?'+'af_force_dee
 
 // WEB
 // C параметром
-//var redirect_unknown=web_link+other_param_web;
+var redirect_unknown=web_link+other_param_web;
 // БЕЗ парамтров
-//var redirect_unknown=web_link;	
-if (web_link.lastIndexOf('ST') > 0) {
-a1 = web_link.slice(web_link.lastIndexOf('ST'))
-a = [a1.indexOf('?'),a1.indexOf('&')]
-if (a[0] > a[1]) {
-redirect_unknown = web_link + other_param_web
-} else if (a[0] < a[1]){
-redirect_unknown = web_link + other_param_web
-} else if (a[0] == a[1]){
-redirect_unknown = web_link + '?' + other_param_web.slice(1)
-}
-} else if (web_link.lastIndexOf('srvURL') > 0) {
-b1 = web_link.slice(web_link.lastIndexOf('srvURL'))
-b = [b1.indexOf('?'),b1.indexOf('&')]
-if (b[0] > b[1]) {
-redirect_unknown = web_link + other_param_web
-} else if (b[0] < b[1]){
-redirect_unknown = web_link + other_param_web
-} else if (b[0] == b[1]){
-redirect_unknown = web_link + '?' + other_param_web.slice(1)
-}
-} else if (web_link.lastIndexOf('srvUrl') > 0) {
-b1 = web_link.slice(web_link.lastIndexOf('srvUrl'))
-b = [b1.indexOf('?'),b1.indexOf('&')]
-if (b[0] > b[1]) {
-redirect_unknown = web_link + other_param_web
-} else if (b[0] < b[1]){
-redirect_unknown = web_link + other_param_web
-} else if (b[0] == b[1]){
-redirect_unknown = web_link + '?' + other_param_web.slice(1)
-}
-} else if (web_link.lastIndexOf('#') > 0) {
-b1 = web_link.slice(web_link.lastIndexOf('#'))
-b = [b1.indexOf('?'),b1.indexOf('&')]
-if (b[0] > b[1]) {
-redirect_unknown = web_link + other_param_web
-} else if (b[0] < b[1]){
-redirect_unknown = web_link + other_param_web
-} else if (b[0] == b[1]){
-redirect_unknown = web_link + '?' + other_param_web.slice(1)
-}
-} else {
-c = [web_link.indexOf('?'),web_link.indexOf('&')]
-if (c[0] > c[1]) {
-redirect_unknown = web_link + other_param_web
-} else if (c[0] < c[1]){
-redirect_unknown = web_link + other_param_web
-} else if (c[0] == c[1]){
-redirect_unknown = web_link + '?' + other_param_web.slice(1)
-}
-}
+//var redirect_unknown=other_link;
 
 
 	// проверка платформы
@@ -275,7 +244,7 @@ redirect_unknown = web_link + '?' + other_param_web.slice(1)
 
 	function redirect_user (address) {
 
-		setTimeout(function(){window.location.href=address}, 1700);
+		setTimeout(function(){window.location.href=address}, 2100);
 
 		return true;
 
