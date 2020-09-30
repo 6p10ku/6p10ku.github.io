@@ -13,45 +13,13 @@
 </head>
 
 <body>
-	
-	<!-- Переход в СБОЛ через deeplink -->
-
-	<!-- Google Tag Manager -->
-
-	<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-NRDX7Z"
-
-	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-
-	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-
-	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-
-	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-
-	'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-
-	})(window,document,'script','dataLayer','GTM-NRDX7Z');
-
-	</script>
-
-	<!-- End Google Tag Manager -->
 
 <script>
 
+var a = document.location.href.split('web_link=').pop().split('?af_force_deeplink').shift().split('&pid').shift().split('?pid').shift();
+document.location = a;
 
-if (document.location.href.search(/=/)>0){
-	var UTM = document.location.href.split('?').pop()
-	var utm_arr = UTM.split('&');
-	for (i=0; i<utm_arr.length; i++){
-
-  if (utm_arr != '' && utm_arr[i].toLowerCase().search('reqid=')>=0) {var ReqId = utm_arr[i].split('=').pop(); utm_arr[i] = ''};}}
-
-var redirect_all = 'https://online.sberbank.ru/CSAFront/index.do?#/payOrderPaymentLogin?ST=ufs.sberpay.ipos&ReqId='+ReqId;
-
-
-setTimeout(function(){window.location.href=redirect_all}, 100);
-
-
+    
 </script>
 
 
@@ -62,6 +30,7 @@ setTimeout(function(){window.location.href=redirect_all}, 100);
 
 	</style>
 
+	
 
 
 
