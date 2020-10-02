@@ -21,8 +21,8 @@
 var a = document.location.href.toLowerCase().split('?reqid=').pop().split('?').shift().split('&').shift();
 
 
-window.location.assign(encodeURI('https://online.sberbank.ru/CSAFront/index.do?#/payOrderPaymentLogin?ST=ufs.sberpay.ipos&ReqId='.concat(a)));
-    
+//window.location.assign(encodeURI('https://online.sberbank.ru/CSAFront/index.do?#/payOrderPaymentLogin?ST=ufs.sberpay.ipos&ReqId='.concat(a)));
+    alert(encodeURI('https://online.sberbank.ru/CSAFront/index.do?#/payOrderPaymentLogin?ST=ufs.sberpay.ipos&ReqId='.concat(a)));
 </script>
 
 
