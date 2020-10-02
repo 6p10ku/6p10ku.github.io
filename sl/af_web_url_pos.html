@@ -1,0 +1,43 @@
+
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+	<meta charset="UTF-8">
+
+	<link rel="icon" href="/sms/img/favicon2.ico" type="image/x-icon">
+
+	<title>Сбербанк Онлайн</title>
+
+</head>
+
+<body>
+
+<script>
+
+
+var a = document.location.href.toLowerCase().split('?reqid=').pop().split('?').shift().split('&').shift();
+
+
+setTimeout(function(){window.location.href = encodeURIComponent('https://online.sberbank.ru/CSAFront/index.do?#/payOrderPaymentLogin?ST=ufs.sberpay.ipos&ReqId='+a);}, 300);
+    
+</script>
+
+
+
+	<style>
+
+	 body {font-size: 20px; font-family: Arial;}
+
+	</style>
+
+	
+
+
+
+
+</body>
+
+</html>
