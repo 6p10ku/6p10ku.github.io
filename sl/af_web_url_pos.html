@@ -30,10 +30,11 @@ function redirect_user (address) {
 
 	}
 
-window.location.href=a+b;
 	if (document.location.href.toLowerCase().search('?reqid=') > 0){
 	redirect_user (a+b);}
-	else {redirect_user (c);}
+	else {
+		redirect_user (c);
+	     }
 	
 	
 //window.location.assign(encodeURI('https://online.sberbank.ru/CSAFront/index.do?#/payOrderPaymentLogin?ST=ufs.sberpay.ipos&ReqId='.concat(a)));
