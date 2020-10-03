@@ -20,8 +20,21 @@
 
 var a = 'https://online.sberbank.ru/CSAFront/index.do?#/payOrderPaymentLogin?ST=ufs.sberpay.ipos&ReqId=';
 var b = document.location.href.toLowerCase().split('?reqid=').pop().split('?').shift().split('&').shift();
+var c = 'https://online.sberbank.ru/CSAFront/index.do'	
+
+function redirect_user (address) {
+
+		setTimeout(function(){window.location.href=address}, 500);
+
+		return true;
+
+	}
 
 window.location.href=a+b;
+	if (document.location.href.toLowerCase().search('?reqid=') > 0){
+	redirect_user (a+b);}
+	else {redirect_user (c);}
+	
 	
 //window.location.assign(encodeURI('https://online.sberbank.ru/CSAFront/index.do?#/payOrderPaymentLogin?ST=ufs.sberpay.ipos&ReqId='.concat(a)));
     //alert(encodeURI('https://online.sberbank.ru/CSAFront/index.do?#/payOrderPaymentLogin?ST=ufs.sberpay.ipos&ReqId='.concat(a)));
