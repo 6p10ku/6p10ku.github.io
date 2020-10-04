@@ -30,7 +30,7 @@ function redirect_user (address) {
 
 	}
 
-	if (document.location.href.toLowerCase().search('?reqid=') > 0){
+	if (document.location.href.toLowerCase().search(/\?reqid=/) > 0){
 	redirect_user (a+b);}
 	else {
 		redirect_user (c);
