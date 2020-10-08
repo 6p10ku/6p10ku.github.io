@@ -1,4 +1,3 @@
-
 <!doctype html>
 
 <html lang="en">
@@ -39,25 +38,26 @@
 
 <script>
 
-// Android - Настриваем deeplink
+// НЕОБХОДИМО ЗАПОЛНИТЬ
 
 // Media Source из Appsflyer
 var af_media_source = '';
 
-// Deeplink encode
+// Android Deeplink 
 var android_dp = '';
 
-// iOS - Настриваем deeplink
-// Пока не работает логика используем короткую ссылку из AppsFlyer
+// iOS Deeplink 
 var ios_dp = '';
-//var iphone_link = 'https://sberbankonline.onelink.me/46WQ/9fb7ad50';
+
+// WEB Deeplink 
+var web_link = 'https://www.sberbank.ru/ru/person/dist_services/inner_apps';
+
+// Редирект на WEB при отсутствии приложения – true or false
+var need_web = falce;
 
 
-// WEB - Настриваем deeplink
-var web_link = '';
 
-// Редирект на WEB – TRUE or FALSE
-var need_web = false;
+// ЗАПОЛНЯЕТСЯ АВТОМАТИЧЕСКИ
 
 // Media Source из Appsflyer
 var af_pid = 'pid=' + af_media_source;
@@ -76,7 +76,7 @@ var ios_af_dp = encodeURIComponent(ios_dp);
 // Если нужен редирект в WEB при отсутствии установленного приложения
 var af_web_url = '';
 
-need_web == true ? af_web_url = 'https://www.sberbank.ru/sms/af_web_url' : need_web;
+need_web == true ? af_web_url = web_link : need_web;
 
 
 // Логика получения и передачи меток и параметров
@@ -100,34 +100,26 @@ if (document.location.href.search(/=/)>0){
 
 	}
 	
-	var other_param = encodeURIComponent(utm_arr.filter(v => v ).join('&')+'&');
+	var other_param = encodeURIComponent(utm_arr.filter(v => v ).join('&'));
 
     function replaceAll(string, search, replace) {
             return string.split(search).join(replace);
         }
     if (other_param != '') {
-			var other_param_web = '&' + replaceAll(decodeURIComponent(utm_arr.filter(v => v ).join('&')).replace(/[\+\s]/ig, '__'), '&', '%26')
-		var other_param_web_url = '?' + replaceAll(decodeURIComponent(utm_arr.filter(v => v ).join('&')).replace(/[\+\s]/ig, '__'), '&', '%26')
+			var other_param_web = '&' + replaceAll(decodeURIComponent(utm_arr.filter(v => v ).join('&')).replace(/[\+\s]/ig, '__'), '&', '%26') // нужно добавить separator
+		var other_param_web_url = '&' + replaceAll(decodeURIComponent(utm_arr.filter(v => v ).join('&')).replace(/[\+\s]/ig, '__'), '&', '%26') // нужно добавить separator
 	};
 } else {
 
 	// Проверяем UTM из куки	
 
-var utm_source_sm_fc = getCookie('utm_source'), utm_medium_sm_fc = getCookie('utm_medium'), utm_campaign_sm_fc = getCookie('utm_campaign'), utm_content_sm_fc = getCookie('utm_content');
+var utm_source_sm_fc = getCookie('utm_source'), utm_medium_sm_fc = getCookie('utm_medium'), utm_campaign_sm_fc = getCookie('utm_campaign'), utm_content_sm_fc = getCookie('utm_content'), utm_term_sm_fc = getCookie('utm_term');
 
 		if(utm_source_sm_fc && utm_source_sm_fc != '') {utm_source_sm = utm_source_sm_fc};
 		if(utm_medium_sm_fc && utm_medium_sm_fc != '') {utm_medium_sm = utm_medium_sm_fc};
-		if(utm_campaign_sm_fc && utm_campaign_sm_fc != '') {utm_campaign_sm = utm_campaign_sm_fc}
-		if(utm_content_sm_fc && utm_content_sm_fc != '') {utm_content_sm = utm_content_sm_fc}
-	}
-
-
-	if (af_web_url !=''){
-	var af_android_url = '&af_android_url=' + encodeURIComponent(af_web_url+other_param_web_url+'&web_link='+web_link);
-	var af_ios_url = '&af_ios_url=' + encodeURIComponent(af_web_url+other_param_web_url+'&web_link='+web_link);
-	} else {
-	var af_android_url = '';
-	var af_ios_url = '';
+		if(utm_campaign_sm_fc && utm_campaign_sm_fc != '') {utm_campaign_sm = utm_campaign_sm_fc};
+		if(utm_content_sm_fc && utm_content_sm_fc != '') {utm_content_sm = utm_content_sm_fc};
+		if(utm_term_sm_fc && utm_term_sm_fc != '') {utm_term_sm = utm_term_sm_fc};
 	}
 
 
@@ -166,11 +158,33 @@ var af_ga_uid_sm = ga_uid_sm ? '&af_sub5='+ga_uid_sm : '';
 
 	// Формируем переменные для WEB
 
-var web_utm_source = utm_source_sm ? '&utm_source='+utm_source_sm : '';
+var web_utm_source = utm_source_sm ? 'utm_source='+utm_source_sm : ''; // нужно добавить separator
 var web_utm_medium = utm_medium_sm ? '&utm_medium='+utm_medium_sm : '';
 var web_utm_campaign = utm_campaign_sm ? '&utm_campaign='+utm_campaign_sm : '';
 var web_utm_content = utm_content_sm ? '&utm_content='+utm_content_sm : '';
 var web_utm_term = utm_content_sm ? '&utm_term='+utm_term_sm : '';
+
+if (web_link+other_param_web.toLowerCase().search(/\?/)>0)
+	{ var separator_web = '&';}
+	if (web_link+other_param_web.toLowerCase().search(/\?/)<0);
+	{ var separator_web = '?';}
+
+if (web_link.toLowerCase().search('sberbank.ru')<0){
+var utm_all=separator_web+web_utm_source+web_utm_medium+web_utm_campaign+web_utm_content+web_utm_term;}
+else {var utm_all = '';}
+
+
+	if (af_web_url !=''){
+	var af_android_url = '&af_android_url=' + encodeURIComponent(af_web_url+web_link+other_param_web_url+utm_all)+'&af_param_forwarding=false';
+	var af_ios_url = '&af_ios_url=' + encodeURIComponent(af_web_url+other_param_web_url+utm_all)+'&af_param_forwarding=false';
+	} else {
+	var af_android_url = '';
+	var af_ios_url = '';
+	}
+
+
+
+
 
 	
 // Android
@@ -186,9 +200,9 @@ var redirect_iphone = 'https://sberbankonline.onelink.me/46WQ'+'?'+'af_force_dee
 
 // WEB
 // C параметром
-//var redirect_unknown=web_link+other_param_web;
+var redirect_unknown=web_link+other_param_web+utm_all;
 // БЕЗ парамтров
-var redirect_unknown=web_link;	
+//var redirect_unknown=web_link;	
 
 
 	// проверка платформы
@@ -225,7 +239,7 @@ var redirect_unknown=web_link;
 
 	function redirect_user (address) {
 
-		setTimeout(function(){window.location.href=address}, 500);
+		setTimeout(function(){window.location.href=address}, 2100);
 
 		return true;
 
