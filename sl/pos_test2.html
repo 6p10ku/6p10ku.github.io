@@ -232,32 +232,32 @@ function $_GET(key) {
 
 
 	//else if (platform=="iPhone") {
-        if (platform) {
+       // if (platform) {
         
         document.getElementById('iosblock').style.display='block';
        document.getElementById('iosdl').href='sberbankonline://loan/pos?ReqId='+reqid;
            
-	}
+	// }
 
 
 
-	else if (platform=="iPad") {
+	// else if (platform=="iPad") {
 
-		inform_user('Запрос обрабатывается. Подождите несколько секунд...');
+	// 	inform_user('Запрос обрабатывается. Подождите несколько секунд...');
 
-		redirect_user(redirect_ipad);
+	// 	redirect_user(redirect_ipad);
 
-	}
+	// }
 
 
 
-	else {
+	// else {
 
-		inform_user('Запрос обрабатывается. Подождите несколько секунд...');
+	// 	inform_user('Запрос обрабатывается. Подождите несколько секунд...');
 
-		redirect_user(redirect_unknown);	
+	// 	redirect_user(redirect_unknown);	
 
-	} 
+	// } 
 
 </script>
 
