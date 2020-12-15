@@ -1,0 +1,254 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Сбербанк Онлайн</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <style type="text/css">
+
+        body, html {
+            margin: 0;
+            padding: 0;
+        }
+
+        #iosblock {
+            padding: 12pt;
+            text-align: center;
+            display:none;
+        }
+
+        #logo {
+            margin: 80pt 0px 65pt;
+        }
+
+        .btn {
+            display: block;
+            padding: 6pt;
+            font-size: 11pt;
+            line-height: 16pt;
+            letter-spacing: 0;
+            font-family: 'Roboto', sans-serif;
+            width: 100%;
+            border-radius: 4pt;
+            text-decoration:none;
+        }
+
+        .btn-sberbank  {
+            color: rgb(255, 255, 255);
+            background: rgb(25, 187, 79);
+            margin-bottom: 16pt;
+            border: none;
+            text-decoration:none;
+        }
+
+        .btn-app-store {
+            color: rgb(29, 29, 29);
+            background: rgb(255, 255, 255);
+            border: 1px solid rgb(29, 29, 29);
+            text-decoration:none;
+        }
+        
+        a {
+            text-decoration:none;
+        }
+    </style>
+
+</head>
+<body>
+
+    <!-- Google Tag Manager -->
+	<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-NRDX7Z"
+	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-NRDX7Z');
+	</script>
+	<!-- End Google Tag Manager -->
+	
+	
+	<div id="iosblock">
+        <div id="logo">
+            <img src="sber-logo.png" alt="Покупай со Cбербанком">
+        </div>
+        <a id="iosdl"><button class="btn btn-sberbank">Открыть Сбербанк Онлайн</button></a>
+        <a href="https://apps.apple.com/RU/app/id492224193?mt=8"><button class="btn btn-app-store">Перейти в Apple Store</button></a>
+    </div>
+	
+<script>
+
+function $_GET(key) {
+    var s = window.location.search;
+    s = s.match(new RegExp(key + '=([^&=]+)'));
+    return s ? s[1] : false;
+};
+
+    var reqid = $_GET('r');
+
+	var redirect_wphone='https://online.sberbank.ru/CSAFront/payOrderPaymentLogin.do?ST=ufs.sberpay.ipos&ReqId='+reqid;
+
+	var redirect_android='https://app.appsflyer.com/ru.sberbankmobile?pid=pos&c=pos&is_retargeting=true&af_dp=sberbankonline%3A%2F%2Floan%2Fpos%3FReqId%3D'+reqid+'&af_r=https%3A%2F%2Fonline.sberbank.ru%2FCSAFront%2FpayOrderPaymentLogin.do%3FST%3Dufs.sberpay.ipos%26ReqId%3D'+reqid;
+
+	var redirect_ipad='https://online.sberbank.ru/CSAFront/payOrderPaymentLogin.do?ST=ufs.sberpay.ipos&ReqId='+reqid;
+
+	var redirect_unknown='https://online.sberbank.ru/CSAFront/payOrderPaymentLogin.do?ST=ufs.sberpay.ipos&ReqId='+reqid;
+
+		
+
+	// проверка платформы
+
+	function check_platform(ua) {
+
+	
+
+		if(/iemobile|windows\sphone/gi.test(ua)){
+
+            return 'wPhone';
+
+        }	
+
+
+
+        if(/android/gi.test(ua)){
+
+			return 'android';
+
+        }
+
+
+
+        if(/iphone|ipod/gi.test(ua)){
+
+            return 'iPhone';
+
+        }
+
+
+
+        if(/ipad/gi.test(ua)){
+
+			return 'iPad';
+
+        }
+
+
+
+		return  'unknown';
+
+		
+
+	}
+
+
+
+	// переадресация
+
+	function redirect_user (address) {
+
+		window.location.href=address;
+
+		return true;
+
+	}
+
+	
+
+	// сообщение пользователю
+
+	function inform_user (msg) {
+
+		document.write(msg);
+
+		return true;
+
+	}
+
+	
+
+	// отрисовка интерфейса
+
+	function draw_interface(redirect_url, cta) {
+
+		var output='<div><img src="sber-logo.png"></div><div><input type="button" value="' + cta + '" class="btn" onclick="redirect_user(\'' + redirect_url + '\')"></div>';
+
+		document.write(output);
+
+	}
+
+	
+
+	// начало
+
+	var platform=check_platform(navigator.userAgent);
+
+
+
+	// if (platform=="wPhone") {
+
+	// 	inform_user('Запрос обрабатывается. Подождите несколько секунд...');
+
+	// 	redirect_user(redirect_wphone);
+
+	// }
+
+	
+
+	// else if (platform=="android") {
+
+	// 	if (document.referrer!='') {
+
+	// 		inform_user('Запрос обрабатывается. Подождите несколько секунд...');
+
+	// 		redirect_user(redirect_android); 
+
+	// 	}
+
+	// 	else 
+
+	// 		draw_interface(redirect_android,'Открыть Диалоги в Сбербанк Онлайн');
+
+		
+
+	// }
+
+
+
+	//else if (platform=="iPhone") {
+         if (platform) {
+        document.getElementById('iosblock').style.display='block';
+        window.close();
+       // document.getElementById('iosdl').href='sberbankonline://loan/pos?ReqId='+reqid;
+        
+
+	}
+
+
+
+	else if (platform=="iPad") {
+
+		inform_user('Запрос обрабатывается. Подождите несколько секунд...');
+
+		redirect_user(redirect_ipad);
+
+	}
+
+
+
+	else {
+
+		inform_user('Запрос обрабатывается. Подождите несколько секунд...');
+
+		redirect_user(redirect_unknown);	
+
+	} 
+
+</script>
+
+
+</body>
+</html>
