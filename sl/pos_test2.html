@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,13 +75,182 @@
         <div id="logo">
             <img src="https://www.sberbank.ru/common/img/uploaded/files/sms/pos/sber-logo.png" alt="Покупай со Cбербанком">
         </div>
-        <a target="_blank" id="iosdl"><button class="btn btn-sberbank">Открыть Сбербанк Онлайн</button></a>
-        <a target="_blank" href="https://apps.apple.com/RU/app/id492224193?mt=8"><button class="btn btn-app-store">Перейти в Apple Store</button></a>
+        <a id="iosdl"><button class="btn btn-sberbank">Открыть Сбербанк Онлайн</button></a>
+        <a href="https://apps.apple.com/RU/app/id492224193?mt=8"><button class="btn btn-app-store">Перейти в Apple Store</button></a>
     </div>
 	
 <script>
 
-window.open('https://6p10ku.github.io/sl/pos_test3.html','_blank')
+var button = document.querySelector("button.btn.btn-sberbank");
+    button.addEventListener("click", function() {
+    setTimeout(function(){window.open('https://6p10ku.github.io/sl/pos_test3.html','_blank');}, 1000)
+  });
+
+function $_GET(key) {
+    var s = window.location.search;
+    s = s.match(new RegExp(key + '=([^&=]+)'));
+    return s ? s[1] : false;
+};
+
+    var reqid = $_GET('r');
+
+	var redirect_wphone='https://online.sberbank.ru/CSAFront/payOrderPaymentLogin.do?ST=ufs.sberpay.ipos&ReqId='+reqid;
+
+	var redirect_android='https://app.appsflyer.com/ru.sberbankmobile?pid=pos&c=pos&is_retargeting=true&af_dp=sberbankonline%3A%2F%2Floan%2Fpos%3FReqId%3D'+reqid+'&af_r=https%3A%2F%2Fonline.sberbank.ru%2FCSAFront%2FpayOrderPaymentLogin.do%3FST%3Dufs.sberpay.ipos%26ReqId%3D'+reqid;
+
+	var redirect_ipad='https://online.sberbank.ru/CSAFront/payOrderPaymentLogin.do?ST=ufs.sberpay.ipos&ReqId='+reqid;
+
+    var redirect_unknown='https://online.sberbank.ru/CSAFront/payOrderPaymentLogin.do?ST=ufs.sberpay.ipos&ReqId='+reqid;
+
+    
+
+
+
+	// проверка платформы
+
+	function check_platform(ua) {
+
+	
+
+		if(/iemobile|windows\sphone/gi.test(ua)){
+
+            return 'wPhone';
+
+        }	
+
+
+
+        if(/android/gi.test(ua)){
+
+			return 'android';
+
+        }
+
+
+
+        if(/iphone|ipod/gi.test(ua)){
+
+            return 'iPhone';
+
+        }
+
+
+
+        if(/ipad/gi.test(ua)){
+
+			return 'iPad';
+
+        }
+
+
+
+		return  'unknown';
+
+		
+
+	}
+
+
+
+	// переадресация
+
+	function redirect_user (address) {
+
+		window.location.href=address;
+
+		return true;
+
+	}
+
+	
+
+	// сообщение пользователю
+
+	function inform_user (msg) {
+
+		document.write(msg);
+
+		return true;
+
+	}
+
+	
+
+	// отрисовка интерфейса
+
+	function draw_interface(redirect_url, cta) {
+
+		var output='<div><img src="sber-logo.png"></div><div><input type="button" value="' + cta + '" class="btn" onclick="redirect_user(\'' + redirect_url + '\')"></div>';
+
+		document.write(output);
+
+	}
+
+	
+
+	// начало
+
+	var platform=check_platform(navigator.userAgent);
+
+
+
+	if (platform=="wPhone") {
+
+		inform_user('Запрос обрабатывается. Подождите несколько секунд...');
+
+		redirect_user(redirect_wphone);
+
+	}
+
+	
+
+	else if (platform=="android") {
+
+		if (document.referrer!='') {
+
+			inform_user('Запрос обрабатывается. Подождите несколько секунд...');
+
+			redirect_user(redirect_android); 
+
+		}
+
+		else 
+
+			draw_interface(redirect_android,'Открыть Диалоги в Сбербанк Онлайн');
+
+		
+
+	}
+
+
+
+	else if (platform=="iPhone") {
+
+		document.getElementById('iosblock').style.display='block';
+        document.getElementById('iosdl').href='sberbankonline://loan/pos?ReqId='+reqid;
+        
+
+	}
+
+
+
+	else if (platform=="iPad") {
+
+		inform_user('Запрос обрабатывается. Подождите несколько секунд...');
+
+		redirect_user(redirect_ipad);
+
+	}
+
+
+
+	else {
+
+		inform_user('Запрос обрабатывается. Подождите несколько секунд...');
+
+		redirect_user(redirect_unknown);	
+
+	} 
 
 </script>
 
