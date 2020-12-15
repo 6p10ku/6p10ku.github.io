@@ -101,13 +101,11 @@ function $_GET(key) {
         
     
 
-        // if (navigator.userAgent.search(/insta|fbav|fban/) )
-        var button = document.querySelector("button.btn.btn-sberbank");
-  button.addEventListener("click", function() {
-      setTimeout(function(){window.close();}, 1000)
+    var button = document.querySelector("button.btn.btn-sberbank");
+    button.addEventListener("click", function() {
+    setTimeout(function(){window.close();}, 1500)
     
   });
-
 
 
 
@@ -161,13 +159,13 @@ function $_GET(key) {
 
 	// переадресация
 
-	//function redirect_user (address) {
+	function redirect_user (address) {
 
-	//	window.location.href=address;
+		window.location.href=address;
 
-	//	return true;
+		return true;
 
-	//}
+	}
 
 	
 
@@ -201,63 +199,63 @@ function $_GET(key) {
 
 
 
-	// if (platform=="wPhone") {
+	if (platform=="wPhone") {
 
-	// 	inform_user('Запрос обрабатывается. Подождите несколько секунд...');
+		inform_user('Запрос обрабатывается. Подождите несколько секунд...');
 
-	// 	redirect_user(redirect_wphone);
+		redirect_user(redirect_wphone);
 
-	// }
+	}
 
 	
 
-	// else if (platform=="android") {
+	else if (platform=="android") {
 
-	// 	if (document.referrer!='') {
+		if (document.referrer!='') {
 
-	// 		inform_user('Запрос обрабатывается. Подождите несколько секунд...');
+			inform_user('Запрос обрабатывается. Подождите несколько секунд...');
 
-	// 		redirect_user(redirect_android); 
+			redirect_user(redirect_android); 
 
-	// 	}
+		}
 
-	// 	else 
+		else 
 
-	// 		draw_interface(redirect_android,'Открыть Диалоги в Сбербанк Онлайн');
+			draw_interface(redirect_android,'Открыть Диалоги в Сбербанк Онлайн');
 
 		
 
-	// }
+	}
 
 
 
 	//else if (platform=="iPhone") {
-       // if (platform) {
+        if (platform) {
         
         document.getElementById('iosblock').style.display='block';
        document.getElementById('iosdl').href='sberbankonline://loan/pos?ReqId='+reqid;
            
-	// }
+	}
 
 
 
-	// else if (platform=="iPad") {
+	else if (platform=="iPad") {
 
-	// 	inform_user('Запрос обрабатывается. Подождите несколько секунд...');
+		inform_user('Запрос обрабатывается. Подождите несколько секунд...');
 
-	// 	redirect_user(redirect_ipad);
+		redirect_user(redirect_ipad);
 
-	// }
+	}
 
 
 
-	// else {
+	else {
 
-	// 	inform_user('Запрос обрабатывается. Подождите несколько секунд...');
+		inform_user('Запрос обрабатывается. Подождите несколько секунд...');
 
-	// 	redirect_user(redirect_unknown);	
+		redirect_user(redirect_unknown);	
 
-	// } 
+	} 
 
 </script>
 
