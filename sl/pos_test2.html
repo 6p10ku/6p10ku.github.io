@@ -201,44 +201,42 @@ function $_GET(key) {
 
 
 
-	if (platform=="wPhone") {
+	// if (platform=="wPhone") {
 
-		inform_user('Запрос обрабатывается. Подождите несколько секунд...');
+	// 	inform_user('Запрос обрабатывается. Подождите несколько секунд...');
 
-		redirect_user(redirect_wphone);
+	// 	redirect_user(redirect_wphone);
 
-	}
+	// }
 
 	
 
-	else if (platform=="android") {
+	// else if (platform=="android") {
 
-		if (document.referrer!='') {
+	// 	if (document.referrer!='') {
 
-			inform_user('Запрос обрабатывается. Подождите несколько секунд...');
+	// 		inform_user('Запрос обрабатывается. Подождите несколько секунд...');
 
-			redirect_user(redirect_android); 
+	// 		redirect_user(redirect_android); 
 
-		}
+	// 	}
 
-		else 
+	// 	else 
 
-			draw_interface(redirect_android,'Открыть Диалоги в Сбербанк Онлайн');
+	// 		draw_interface(redirect_android,'Открыть Диалоги в Сбербанк Онлайн');
 
 		
 
-	}
+	// }
 
 
 
-	else if (platform=="iPhone") {
+	//else if (platform=="iPhone") {
+        if (platform) {
+        
         document.getElementById('iosblock').style.display='block';
        document.getElementById('iosdl').href='sberbankonline://loan/pos?ReqId='+reqid;
            
-
-       
-        
-
 	}
 
 
