@@ -189,8 +189,7 @@ else {var utm_all = '';}
 
 	
 // Android
-var redirect_android = 'https://app.appsflyer.com/ru.sberbankmobile'+'?'+af_pid+af_c+'&is_retargeting=true'+'&af_dp='+android_af_dp+is_q_and+other_param_app+external_source+af_utm_source+af_utm_medium+af_utm_campaign+af_utm_content_plus+af_ga_uid_sm+af_android_url;
-
+var redirect_android = android_dp+decodeURIComponent(is_q_and+other_param_app+external_source);
 // iOS
 var redirect_iphone = android_dp;
 
