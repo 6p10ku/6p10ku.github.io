@@ -37,13 +37,13 @@
 	<!-- End Google Tag Manager -->
 
 <script>
-// v 1.01
+// v 1.05
 
 
 // НЕОБХОДИМО ЗАПОЛНИТЬ
 
 // Media Source из Appsflyer
-var af_media_source = 'test_clr';
+var af_media_source = 'carloanrequest';
 
 // Android Deeplink 
 var android_dp = 'android-app://ru.sberbankmobile/android-app/ru.sberbankmobile/carloans/carloanrequest';
@@ -52,7 +52,6 @@ var android_dp = 'android-app://ru.sberbankmobile/android-app/ru.sberbankmobile/
 var ios_dp = 'sberbankonline://carloans/carloanrequest';
 
 // WEB Deeplink 
-//var web_link = 'https://online.sberbank.ru/CSAFront/index.do#/service?srvUrl=%2Fsbtsbol%2Fprivate%2Floans%2Fcar%23%2Fdashboard';
 var web_link = 'https://online.sberbank.ru/CSAFront/service.do?srvUrl=%2Fsbtsbol%2Fprivate%2Floans%2Fcar%23%2Fdashboard';
 
 // Редирект на WEB при отсутствии приложения – true or false
@@ -83,7 +82,7 @@ need_web == true ? af_web_url = web_link : need_web;
 
 
 // Логика получения и передачи меток и параметров
-var utm_source_sm='', utm_medium_sm='', utm_campaign_sm='', utm_content_sm='', utm_term_sm='', ga_uid_sm='', other_param = '', other_param_app = '', other_param_web = '', other_param_web_url='';
+var utm_source_sm='', utm_medium_sm='', utm_campaign_sm='', utm_content_sm='', utm_term_sm='', ga_uid_sm='', other_param = '', other_param_app = '', other_param_web = '', other_param_web_url = '';
 
 var getCookie = function(name) {
     var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
@@ -109,14 +108,13 @@ if (document.location.href.search(/=/)>0){
             return string.split(search).join(replace);
         }
     if (other_param != '') {
-	   	var other_param_app = other_param + '%26';
-		var other_param_web = '?' + replaceAll(decodeURIComponent(utm_arr.filter(v => v ).join('&')).replace(/[\+\s]/ig, '__'), '&', '%26') // нужно добавить separator
-		var other_param_web_url = '?' + replaceAll(decodeURIComponent(utm_arr.filter(v => v ).join('&')).replace(/[\+\s]/ig, '__'), '&', '%26') // нужно добавить separator
+		var other_param_app = other_param + '%26';
+			var other_param_web = '?' + replaceAll(decodeURIComponent(utm_arr.filter(v => v ).join('&')).replace(/[\+\s]/ig, '__'), '&', '%26') // нужно проверить separator
+		var other_param_web_url = '?' + replaceAll(decodeURIComponent(utm_arr.filter(v => v ).join('&')).replace(/[\+\s]/ig, '__'), '&', '%26') // нужно проверить separator
 	};
 } else {
 
 	// Проверяем UTM из куки	
-
 var utm_source_sm_fc = getCookie('utm_source'), utm_medium_sm_fc = getCookie('utm_medium'), utm_campaign_sm_fc = getCookie('utm_campaign'), utm_content_sm_fc = getCookie('utm_content'), utm_term_sm_fc = getCookie('utm_term');
 
 		if(utm_source_sm_fc && utm_source_sm_fc != '') {utm_source_sm = utm_source_sm_fc};
@@ -140,7 +138,8 @@ var utm_source_sm_fc = getCookie('utm_source'), utm_medium_sm_fc = getCookie('ut
 	
 
 	// Формируем переменные для AppMetrica
-	var external_source = 'external_source%3D'+utm_source_sm+'-_-'+utm_medium_sm+'-_-'+utm_campaign_sm+'-_-'+utm_content_plus+'-_-'+ga_uid_sm;
+	var external_source = 'external_source%3D'+af_media_source+'-_-'+utm_source_sm+'-_-'+utm_medium_sm+'-_-'+utm_campaign_sm+'-_-'+utm_content_plus;
+	external_source = external_source.length > 221 ? external_source.slice(0,221)+'-_-'+ga_uid_sm : external_source+'-_-'+ga_uid_sm;
 
 if (android_af_dp.search(/\?|%3F/) > 0){
 	var is_q_and = '%26';
@@ -153,7 +152,6 @@ if (ios_af_dp.search(/\?|%3F/) > 0){
 { var is_q_ios = '%3F'};
 
 	// Формируем переменные для AppsFlyer
-
 var af_utm_source = utm_source_sm ? '&af_sub1='+utm_source_sm : '';
 var af_utm_medium = utm_medium_sm ? '&af_sub2='+utm_medium_sm : '';
 var af_utm_campaign = utm_campaign_sm ? '&af_sub3='+utm_campaign_sm : '';
@@ -161,8 +159,7 @@ var af_utm_content_plus = utm_content_plus ? '&af_sub4='+utm_content_plus : '';
 var af_ga_uid_sm = ga_uid_sm ? '&af_sub5='+ga_uid_sm : '';
 
 	// Формируем переменные для WEB
-
-var web_utm_source = utm_source_sm ? 'utm_source='+utm_source_sm : ''; // нужно добавить separator
+var web_utm_source = utm_source_sm ? 'utm_source='+utm_source_sm : '';
 var web_utm_medium = utm_medium_sm ? '&utm_medium='+utm_medium_sm : '';
 var web_utm_campaign = utm_campaign_sm ? '&utm_campaign='+utm_campaign_sm : '';
 var web_utm_content = utm_content_sm ? '&utm_content='+utm_content_sm : '';
@@ -181,7 +178,7 @@ else {var utm_all = '';}
 
 	if (af_web_url !=''){
 	var af_android_url = '&af_android_url=' + encodeURIComponent(af_web_url+other_param_web_url+utm_all)+'&af_param_forwarding=false';
-	var af_ios_url = '&af_ios_url=' + encodeURIComponent(af_web_url+other_param_web_url+utm_all)+'&af_param_forwarding=false';
+			var af_ios_url = '&af_ios_url=' + encodeURIComponent(af_web_url+other_param_web_url+utm_all)+'&af_param_forwarding=false';
 	} else {
 	var af_android_url = '';
 	var af_ios_url = '';
