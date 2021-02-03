@@ -9,11 +9,11 @@
 	<link rel="icon" href="/sms/img/favicon2.ico" type="image/x-icon">
 
 	<title>Сбербанк Онлайн</title>
-
+    	<style type="text/css">.smart_img p{margin: 0;position: absolute;top: 50%;left: 50%;margin-right: -50%;transform: translate(-50%, -50%)}p {display: block;align-items: center;text-align: center;}p img { width: 50%;}@media screen and (max-width: 1000px) {p img { width: 70%;}}</style>
 </head>
 
 <body>
-	
+	<div class="smart_img"><p><br><img src="https://www.sberbank.ru/common/img/uploaded/files/sms/sber_logo_main.png"><br><br><br><br>Запрос обрабатывается. <br><br>Подождите несколько секунд...</p>
 	<!-- Переход в СБОЛ через deeplink -->
 
 	<!-- Google Tag Manager -->
@@ -37,11 +37,13 @@
 	<!-- End Google Tag Manager -->
 
 <script>
+// v 1.05
 
-// Необходимо заполнить
+
+// НЕОБХОДИМО ЗАПОЛНИТЬ
 
 // Media Source из Appsflyer
-var af_media_source = 'sbol_broker';
+var af_media_source = 'broker';
 
 // Android Deeplink 
 var android_dp = 'android-app://ru.sberbankmobile/android-app/ru.sberbankmobile/brokerage/agreement/short?action=create';
@@ -50,14 +52,14 @@ var android_dp = 'android-app://ru.sberbankmobile/android-app/ru.sberbankmobile/
 var ios_dp = 'sberbankonline://brokerage/agreement/short?action=create';
 
 // WEB Deeplink 
-var web_link = 'https://online.sberbank.ru/CSAFront/index.do#/service?srvUrl=/sbtsbol/private/brokerage%23/management';
+var web_link = 'https://online.sberbank.ru/CSAFront/service.do?srvUrl=/sbtsbol/private/brokerage/management/odbo';
 
 // Редирект на WEB при отсутствии приложения – true or false
 var need_web = true;
 
 
 
-// Заполняется автоматически
+// ЗАПОЛНЯЕТСЯ АВТОМАТИЧЕСКИ
 
 // Media Source из Appsflyer
 var af_pid = 'pid=' + af_media_source;
@@ -76,36 +78,11 @@ var ios_af_dp = encodeURIComponent(ios_dp);
 // Если нужен редирект в WEB при отсутствии установленного приложения
 var af_web_url = '';
 
-need_web == true ? af_web_url = 'https://www.sberbank.ru/sms/af_web_url' : need_web;
+need_web == true ? af_web_url = web_link : need_web;
 
-// %26 = &; %3F = ?; %23 = #
-// TESTING////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-var random_names = Math.max(...[web_link.indexOf('ST'),web_link.indexOf('srvURL'),web_link.indexOf('srvUrl'),web_link.indexOf('#'),web_link.indexOf('%23')])
-var random_names_helper = web_link.slice(random_names)
-if (random_names >= 0) {
-var random_names_helper2 = [[random_names_helper.indexOf('?'),random_names_helper.indexOf('%3F')].sort((a,b) => b-a)[0],[random_names_helper.indexOf('&'),random_names_helper.indexOf('%26')].sort((a,b) => b-a)[0]]
-if (random_names_helper2[0] > random_names_helper2[1]) {
-var separator = '&'
-} else if (random_names_helper2[0] < random_names_helper2[1]){
-var separator = '&'
-} else if (random_names_helper2[0] == random_names_helper2[1]){
-var separator = '?'
-} 
-}
-if (random_names == -1) {
-var random_names_helper3 = [[web_link.indexOf('?'),web_link.indexOf('%3F')].sort((a,b) => b-a)[0],[web_link.indexOf('&'),web_link.indexOf('%26')].sort((a,b) => b-a)[0]]
-if (random_names_helper3[0] > random_names_helper3[1]) {
-var separator = '&'
-} else if (random_names_helper3[0] < random_names_helper3[1]){
-var separator = '&'
-} else if (random_names_helper3[0] == random_names_helper3[1]){
-var separator = '?'
-} 
-}
-// TESTING////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Логика получения и передачи меток и параметров
-var utm_source_sm='', utm_medium_sm='', utm_campaign_sm='', utm_content_sm='', utm_term_sm='', ga_uid_sm='', other_param = '', other_param_web = '', other_param_web_url='';
+var utm_source_sm='', utm_medium_sm='', utm_campaign_sm='', utm_content_sm='', utm_term_sm='', ga_uid_sm='', other_param = '', other_param_app = '', other_param_web = '', other_param_web_url = '';
 
 var getCookie = function(name) {
     var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
@@ -125,34 +102,26 @@ if (document.location.href.search(/=/)>0){
 
 	}
 	
-	var other_param = encodeURIComponent(utm_arr.filter(v => v ).join('&')+'&');
+	var other_param = encodeURIComponent(utm_arr.filter(v => v ).join('&'));
 
     function replaceAll(string, search, replace) {
             return string.split(search).join(replace);
         }
     if (other_param != '') {
-			var other_param_web = separator + replaceAll(decodeURIComponent(utm_arr.filter(v => v ).join('&')).replace(/[\+\s]/ig, '__'), '&', '%26')
-		var other_param_web_url = separator + replaceAll(decodeURIComponent(utm_arr.filter(v => v ).join('&')).replace(/[\+\s]/ig, '__'), '&', '%26')
+		var other_param_app = other_param + '%26';
+			var other_param_web = '?' + replaceAll(decodeURIComponent(utm_arr.filter(v => v ).join('&')).replace(/[\+\s]/ig, '__'), '&', '%26') // нужно проверить separator
+		var other_param_web_url = '?' + replaceAll(decodeURIComponent(utm_arr.filter(v => v ).join('&')).replace(/[\+\s]/ig, '__'), '&', '%26') // нужно проверить separator
 	};
 } else {
 
 	// Проверяем UTM из куки	
-
-var utm_source_sm_fc = getCookie('utm_source'), utm_medium_sm_fc = getCookie('utm_medium'), utm_campaign_sm_fc = getCookie('utm_campaign'), utm_content_sm_fc = getCookie('utm_content');
+var utm_source_sm_fc = getCookie('utm_source'), utm_medium_sm_fc = getCookie('utm_medium'), utm_campaign_sm_fc = getCookie('utm_campaign'), utm_content_sm_fc = getCookie('utm_content'), utm_term_sm_fc = getCookie('utm_term');
 
 		if(utm_source_sm_fc && utm_source_sm_fc != '') {utm_source_sm = utm_source_sm_fc};
 		if(utm_medium_sm_fc && utm_medium_sm_fc != '') {utm_medium_sm = utm_medium_sm_fc};
-		if(utm_campaign_sm_fc && utm_campaign_sm_fc != '') {utm_campaign_sm = utm_campaign_sm_fc}
-		if(utm_content_sm_fc && utm_content_sm_fc != '') {utm_content_sm = utm_content_sm_fc}
-	}
-
-
-	if (af_web_url !=''){
-	var af_android_url = '&af_android_url=' + encodeURIComponent(af_web_url+ (other_param_web_url == '' ? separator : other_param_web_url + '&') + 'web_link='+web_link);
-	var af_ios_url = '&af_ios_url=' + encodeURIComponent(af_web_url+ (other_param_web_url == '' ? separator : other_param_web_url + '&') + 'web_link='+web_link);
-	} else {
-	var af_android_url = '';
-	var af_ios_url = '';
+		if(utm_campaign_sm_fc && utm_campaign_sm_fc != '') {utm_campaign_sm = utm_campaign_sm_fc};
+		if(utm_content_sm_fc && utm_content_sm_fc != '') {utm_content_sm = utm_content_sm_fc};
+		if(utm_term_sm_fc && utm_term_sm_fc != '') {utm_term_sm = utm_term_sm_fc};
 	}
 
 
@@ -169,7 +138,8 @@ var utm_source_sm_fc = getCookie('utm_source'), utm_medium_sm_fc = getCookie('ut
 	
 
 	// Формируем переменные для AppMetrica
-	var external_source = 'external_source%3D'+utm_source_sm+'-_-'+utm_medium_sm+'-_-'+utm_campaign_sm+'-_-'+utm_content_plus+'-_-'+ga_uid_sm;
+	var external_source = 'external_source%3D'+af_media_source+'-_-'+utm_source_sm+'-_-'+utm_medium_sm+'-_-'+utm_campaign_sm+'-_-'+utm_content_plus;
+	external_source = external_source.length > 221 ? external_source.slice(0,221)+'-_-'+ga_uid_sm : external_source+'-_-'+ga_uid_sm;
 
 if (android_af_dp.search(/\?|%3F/) > 0){
 	var is_q_and = '%26';
@@ -182,7 +152,6 @@ if (ios_af_dp.search(/\?|%3F/) > 0){
 { var is_q_ios = '%3F'};
 
 	// Формируем переменные для AppsFlyer
-
 var af_utm_source = utm_source_sm ? '&af_sub1='+utm_source_sm : '';
 var af_utm_medium = utm_medium_sm ? '&af_sub2='+utm_medium_sm : '';
 var af_utm_campaign = utm_campaign_sm ? '&af_sub3='+utm_campaign_sm : '';
@@ -190,30 +159,41 @@ var af_utm_content_plus = utm_content_plus ? '&af_sub4='+utm_content_plus : '';
 var af_ga_uid_sm = ga_uid_sm ? '&af_sub5='+ga_uid_sm : '';
 
 	// Формируем переменные для WEB
-
-var web_utm_source = utm_source_sm ? '&utm_source='+utm_source_sm : '';
+var web_utm_source = utm_source_sm ? 'utm_source='+utm_source_sm : '';
 var web_utm_medium = utm_medium_sm ? '&utm_medium='+utm_medium_sm : '';
 var web_utm_campaign = utm_campaign_sm ? '&utm_campaign='+utm_campaign_sm : '';
 var web_utm_content = utm_content_sm ? '&utm_content='+utm_content_sm : '';
 var web_utm_term = utm_content_sm ? '&utm_term='+utm_term_sm : '';
 
+var web_link_other_param_web = web_link+other_param_web
+if (web_link_other_param_web.toLowerCase().search(/\?/)>0)
+	{ var separator_web = '&';}
+	if (web_link_other_param_web.toLowerCase().search(/\?/)<0)
+	{ var separator_web = '?';}
+
+if (web_link.toLowerCase().search('sberbank.ru')<0){
+var utm_all=separator_web+web_utm_source+web_utm_medium+web_utm_campaign+web_utm_content+web_utm_term;}
+else {var utm_all = '';}
+
+
+	if (af_web_url !=''){
+	var af_android_url = '&af_android_url=' + encodeURIComponent(af_web_url+other_param_web_url+utm_all)+'&af_param_forwarding=false';
+			var af_ios_url = '&af_ios_url=' + encodeURIComponent(af_web_url+other_param_web_url+utm_all)+'&af_param_forwarding=false';
+	} else {
+	var af_android_url = '';
+	var af_ios_url = '';
+	}
+
+
 	
 // Android
-var redirect_android = 'https://app.appsflyer.com/ru.sberbankmobile'+'?'+af_pid+af_c+'&is_retargeting=true'+'&af_dp='+android_af_dp+is_q_and+other_param+external_source+af_utm_source+af_utm_medium+af_utm_campaign+af_utm_content_plus+af_ga_uid_sm+af_android_url;
-
+var redirect_android = 'https://app.appsflyer.com/ru.sberbankmobile'+'?'+af_pid+af_c+'&is_retargeting=true'+'&af_dp='+android_af_dp+is_q_and+other_param_app+external_source+af_utm_source+af_utm_medium+af_utm_campaign+af_utm_content_plus+af_ga_uid_sm+af_android_url;
 
 // iOS
-// C параметром
-var redirect_iphone = 'https://sberbankonline.onelink.me/46WQ'+'?'+'af_force_deeplink=true&'+af_pid+af_c+'&is_retargeting=true'+'&af_dp='+ios_af_dp+is_q_ios+other_param+external_source+af_utm_source+af_utm_medium+af_utm_campaign+af_utm_content_plus+af_ga_uid_sm+af_ios_url;
-// БЕЗ параметров
-//var redirect_iphone = iphone_link+'?af_force_deeplink=true'+af_utm_source+af_utm_medium+af_utm_campaign+af_utm_content_plus+af_ga_uid_sm;
-
+var redirect_iphone = 'https://sberbankonline.onelink.me/46WQ'+'?'+'af_force_deeplink=true&'+af_pid+af_c+'&is_retargeting=true'+'&af_dp='+ios_af_dp+is_q_ios+other_param_app+external_source+af_utm_source+af_utm_medium+af_utm_campaign+af_utm_content_plus+af_ga_uid_sm+af_ios_url;
 
 // WEB
-// C параметром
-var redirect_unknown=web_link+other_param_web;
-// БЕЗ парамтров
-//var redirect_unknown=web_link;	
+var redirect_unknown=web_link+other_param_web+utm_all;
 
 
 
@@ -252,7 +232,7 @@ var redirect_unknown=web_link+other_param_web;
 
 	function redirect_user (address) {
 
-		setTimeout(function(){window.location.href=address}, 1700);
+		setTimeout(function(){window.location.href=address}, 2100);
 
 		return true;
 
@@ -281,8 +261,6 @@ var redirect_unknown=web_link+other_param_web;
 
 	if (platform=="android") {
 
-		inform_user('Запрос обрабатывается. Подождите несколько секунд...');
-
 		redirect_user(redirect_android);
 
 	}
@@ -291,8 +269,6 @@ var redirect_unknown=web_link+other_param_web;
 
 	else if (platform=="iPhone") {
 
-		inform_user('Запрос обрабатывается. Подождите несколько секунд...');
-
 		redirect_user (redirect_iphone);
 
 	}
@@ -300,9 +276,6 @@ var redirect_unknown=web_link+other_param_web;
 
 
 	else {
-
-		inform_user('Запрос обрабатывается. Подождите несколько секунд...');
-
 		redirect_user(redirect_unknown);
 
 	}
