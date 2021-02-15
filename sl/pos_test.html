@@ -1,3 +1,4 @@
+
 <!doctype html>
 
 <html lang="en">
@@ -14,6 +15,9 @@
 
 <body>
 	<div class="smart_img"><p><br><img src="https://www.sberbank.ru/common/img/uploaded/files/sms/sber_logo_main.png"><br><br><br><br>Запрос обрабатывается. <br><br>Подождите несколько секунд...</p>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-21169438-9"></script>
+	
 	<!-- Переход в СБОЛ через deeplink -->
 
 	<!-- Google Tag Manager -->
@@ -99,7 +103,7 @@ if (document.location.href.search(/=/)>0){
   if (utm_arr != '' && utm_arr[i].toLowerCase().search('utm_campaign')>=0) {var utm_campaign_sm = utm_arr[i].split('=').pop(); utm_arr[i] = ''};
   if (utm_arr != '' && utm_arr[i].toLowerCase().search('utm_content')>=0) {var utm_content_sm = utm_arr[i].split('=').pop(); utm_arr[i] = ''};
   if (utm_arr != '' && utm_arr[i].toLowerCase().search('utm_term')>=0) {var utm_term_sm = '-_-'+utm_arr[i].split('=').pop(); utm_arr[i] = ''};
-  if (utm_arr != '' && utm_arr[i].toLowerCase().search("^r=")>=0) {var rrr = 'ReqId='+utm_arr[i].split('=').pop(); utm_arr[i] = ''};
+  if (utm_arr != '' && utm_arr[i].toLowerCase().search("^r=|ReqId=")>=0) {var rrr = 'ReqId='+utm_arr[i].split('=').pop(); utm_arr[i] = ''};
 
 	}
 	
@@ -286,6 +290,73 @@ var redirect_unknown=web_link+rrr_web+utm_all;
 
 	}
 
+	var nVer = navigator.appVersion;
+var nAgt = navigator.userAgent;
+var browserName  = navigator.appName;
+var fullVersion  = ''+parseFloat(navigator.appVersion); 
+var majorVersion = parseInt(navigator.appVersion,10);
+var nameOffset,verOffset,ix;
+
+// In Opera, the true version is after "Opera" or after "Version"
+if ((verOffset=nAgt.indexOf("Opera"))!=-1) {
+   browserName = "Opera";
+   fullVersion = nAgt.substring(verOffset+6);
+   if ((verOffset=nAgt.indexOf("Version"))!=-1) 
+     fullVersion = nAgt.substring(verOffset+8);
+}
+// In MSIE, the true version is after "MSIE" in userAgent
+else if ((verOffset=nAgt.indexOf("MSIE"))!=-1) {
+   browserName = "Microsoft Internet Explorer";
+   fullVersion = nAgt.substring(verOffset+5);
+}
+// In Chrome, the true version is after "Chrome" 
+else if ((verOffset=nAgt.indexOf("Chrome"))!=-1) {
+   browserName = "Chrome";
+   fullVersion = nAgt.substring(verOffset+7);
+}
+// In Safari, the true version is after "Safari" or after "Version" 
+else if ((verOffset=nAgt.indexOf("Safari"))!=-1) {
+   browserName = "Safari";
+   fullVersion = nAgt.substring(verOffset+7);
+   if ((verOffset=nAgt.indexOf("Version"))!=-1) 
+     fullVersion = nAgt.substring(verOffset+8);
+}
+// In Firefox, the true version is after "Firefox" 
+else if ((verOffset=nAgt.indexOf("Firefox"))!=-1) {
+    browserName = "Firefox";
+    fullVersion = nAgt.substring(verOffset+8);
+}
+// In most other browsers, "name/version" is at the end of userAgent 
+else if ( (nameOffset=nAgt.lastIndexOf(' ')+1) < (verOffset=nAgt.lastIndexOf('/')) ) {
+    browserName = nAgt.substring(nameOffset,verOffset);
+    fullVersion = nAgt.substring(verOffset+1);
+    if (browserName.toLowerCase()==browserName.toUpperCase()) {
+       browserName = navigator.appName;
+    }
+}
+// trim the fullVersion string at semicolon/space if present
+if ((ix=fullVersion.indexOf(";"))!=-1)
+    fullVersion=fullVersion.substring(0,ix);
+if ((ix=fullVersion.indexOf(" "))!=-1)
+    fullVersion=fullVersion.substring(0,ix);
+
+majorVersion = parseInt(''+fullVersion,10);
+if (isNaN(majorVersion)) {
+    fullVersion  = ''+parseFloat(navigator.appVersion); 
+    majorVersion = parseInt(navigator.appVersion,10);
+}
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-21169438-9');
+  var productNameGTM = document.location.hostname.replace(/https:\/\/|http:\/\/|www./, '')+document.location.pathname.split('/').join('.').split('?')[0].split('#')[0];
+  gtag('event', 'event', {
+  'event_category': productNameGTM,
+  'event_action': 'show_details_'+platform,
+  'event_label': browserName+fullVersion,
+});
 
 
 </script>
