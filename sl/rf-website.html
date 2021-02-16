@@ -9,11 +9,14 @@
 	<link rel="icon" href="/sms/img/favicon2.ico" type="image/x-icon">
 
 	<title>Сбербанк Онлайн</title>
-
+    	<style type="text/css">.smart_img p{margin: 0;position: absolute;top: 50%;left: 50%;margin-right: -50%;transform: translate(-50%, -50%)}p {display: block;align-items: center;text-align: center;}p img { width: 50%;}@media screen and (max-width: 1000px) {p img { width: 70%;}}</style>
 </head>
 
 <body>
-	
+	<div class="smart_img"><p><br><img src="https://www.sberbank.ru/common/img/uploaded/files/sms/sber_logo_main.png"><br><br><br><br>Запрос обрабатывается. <br><br>Подождите несколько секунд...</p>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-21169438-11"></script>
+		
 	<!-- Переход в СБОЛ через deeplink -->
 
 	<!-- Google Tag Manager -->
@@ -37,6 +40,8 @@
 	<!-- End Google Tag Manager -->
 
 <script>
+// v 1.07
+
 
 // НЕОБХОДИМО ЗАПОЛНИТЬ
 
@@ -80,7 +85,7 @@ need_web == true ? af_web_url = web_link : need_web;
 
 
 // Логика получения и передачи меток и параметров
-var utm_source_sm='', utm_medium_sm='', utm_campaign_sm='', utm_content_sm='', utm_term_sm='', ga_uid_sm='', other_param = '', other_param_web = '', other_param_web_url='';
+var utm_source_sm='', utm_medium_sm='', utm_campaign_sm='', utm_content_sm='', utm_term_sm='', ga_uid_sm='', other_param = '', other_param_app = '', other_param_web = '', other_param_web_url = '';
 
 var getCookie = function(name) {
     var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
@@ -106,13 +111,13 @@ if (document.location.href.search(/=/)>0){
             return string.split(search).join(replace);
         }
     if (other_param != '') {
-			var other_param_web = '&' + replaceAll(decodeURIComponent(utm_arr.filter(v => v ).join('&')).replace(/[\+\s]/ig, '__'), '&', '%26') // нужно добавить separator
-		var other_param_web_url = '&' + replaceAll(decodeURIComponent(utm_arr.filter(v => v ).join('&')).replace(/[\+\s]/ig, '__'), '&', '%26') // нужно добавить separator
+		var other_param_app = other_param + '%26';
+			var other_param_web = '?' + replaceAll(decodeURIComponent(utm_arr.filter(v => v ).join('&')).replace(/[\+\s]/ig, '__'), '&', '%26') // нужно проверить separator
+		var other_param_web_url = '?' + replaceAll(decodeURIComponent(utm_arr.filter(v => v ).join('&')).replace(/[\+\s]/ig, '__'), '&', '%26') // нужно проверить separator
 	};
 } else {
 
 	// Проверяем UTM из куки	
-
 var utm_source_sm_fc = getCookie('utm_source'), utm_medium_sm_fc = getCookie('utm_medium'), utm_campaign_sm_fc = getCookie('utm_campaign'), utm_content_sm_fc = getCookie('utm_content'), utm_term_sm_fc = getCookie('utm_term');
 
 		if(utm_source_sm_fc && utm_source_sm_fc != '') {utm_source_sm = utm_source_sm_fc};
@@ -136,7 +141,8 @@ var utm_source_sm_fc = getCookie('utm_source'), utm_medium_sm_fc = getCookie('ut
 	
 
 	// Формируем переменные для AppMetrica
-	var external_source = 'external_source%3D'+utm_source_sm+'-_-'+utm_medium_sm+'-_-'+utm_campaign_sm+'-_-'+utm_content_plus+'-_-'+ga_uid_sm;
+	var external_source = 'external_source%3D'+af_media_source+'-_-'+utm_source_sm+'-_-'+utm_medium_sm+'-_-'+utm_campaign_sm+'-_-'+utm_content_plus;
+	external_source = external_source.length > 221 ? external_source.slice(0,221)+'-_-'+ga_uid_sm : external_source+'-_-'+ga_uid_sm;
 
 if (android_af_dp.search(/\?|%3F/) > 0){
 	var is_q_and = '%26';
@@ -149,7 +155,6 @@ if (ios_af_dp.search(/\?|%3F/) > 0){
 { var is_q_ios = '%3F'};
 
 	// Формируем переменные для AppsFlyer
-
 var af_utm_source = utm_source_sm ? '&af_sub1='+utm_source_sm : '';
 var af_utm_medium = utm_medium_sm ? '&af_sub2='+utm_medium_sm : '';
 var af_utm_campaign = utm_campaign_sm ? '&af_sub3='+utm_campaign_sm : '';
@@ -157,16 +162,16 @@ var af_utm_content_plus = utm_content_plus ? '&af_sub4='+utm_content_plus : '';
 var af_ga_uid_sm = ga_uid_sm ? '&af_sub5='+ga_uid_sm : '';
 
 	// Формируем переменные для WEB
-
-var web_utm_source = utm_source_sm ? 'utm_source='+utm_source_sm : ''; // нужно добавить separator
+var web_utm_source = utm_source_sm ? 'utm_source='+utm_source_sm : '';
 var web_utm_medium = utm_medium_sm ? '&utm_medium='+utm_medium_sm : '';
 var web_utm_campaign = utm_campaign_sm ? '&utm_campaign='+utm_campaign_sm : '';
 var web_utm_content = utm_content_sm ? '&utm_content='+utm_content_sm : '';
 var web_utm_term = utm_content_sm ? '&utm_term='+utm_term_sm : '';
 
-if (web_link+other_param_web.toLowerCase().search(/\?/)>0)
+var web_link_other_param_web = web_link+other_param_web
+if (web_link_other_param_web.toLowerCase().search(/\?/)>0)
 	{ var separator_web = '&';}
-	if (web_link+other_param_web.toLowerCase().search(/\?/)<0);
+	if (web_link_other_param_web.toLowerCase().search(/\?/)<0)
 	{ var separator_web = '?';}
 
 if (web_link.toLowerCase().search('sberbank.ru')<0){
@@ -175,34 +180,24 @@ else {var utm_all = '';}
 
 
 	if (af_web_url !=''){
-	var af_android_url = '&af_android_url=' + encodeURIComponent(af_web_url+web_link+other_param_web_url+utm_all)+'&af_param_forwarding=false';
-	var af_ios_url = '&af_ios_url=' + encodeURIComponent(af_web_url+other_param_web_url+utm_all)+'&af_param_forwarding=false';
+	var af_android_url = '&af_android_url=' + encodeURIComponent(af_web_url+other_param_web_url+utm_all)+'&af_param_forwarding=false';
+			var af_ios_url = '&af_ios_url=' + encodeURIComponent(af_web_url+other_param_web_url+utm_all)+'&af_param_forwarding=false';
 	} else {
 	var af_android_url = '';
 	var af_ios_url = '';
 	}
 
 
-
-
-
 	
 // Android
-var redirect_android = 'https://app.appsflyer.com/ru.sberbankmobile'+'?'+af_pid+af_c+'&is_retargeting=true'+'&af_dp='+decodeURIComponent(android_af_dp+is_q_and+other_param+external_source)+af_utm_source+af_utm_medium+af_utm_campaign+af_utm_content_plus+af_ga_uid_sm+af_android_url;
-
-
+//var redirect_android = 'https://app.appsflyer.com/ru.sberbankmobile'+'?'+af_pid+af_c+'&is_retargeting=true'+'&af_dp='+android_af_dp+is_q_and+other_param_app+external_source+af_utm_source+af_utm_medium+af_utm_campaign+af_utm_content_plus+af_ga_uid_sm+af_android_url;
+var redirect_android = android_dp+decodeURIComponent(is_q_and+other_param_app+external_source);
 // iOS
-// C параметром
-var redirect_iphone = 'https://sberbankonline.onelink.me/46WQ'+'?'+'af_force_deeplink=true&'+af_pid+af_c+'&is_retargeting=true'+'&af_dp='+decodeURIComponent(ios_af_dp+is_q_ios+other_param+external_source)+af_utm_source+af_utm_medium+af_utm_campaign+af_utm_content_plus+af_ga_uid_sm+af_ios_url;
-// БЕЗ параметров
-//var redirect_iphone = iphone_link+'?af_force_deeplink=true'+af_utm_source+af_utm_medium+af_utm_campaign+af_utm_content_plus+af_ga_uid_sm;
-
-
+//var redirect_iphone = 'https://sberbankonline.onelink.me/46WQ'+'?'+'af_force_deeplink=true&'+af_pid+af_c+'&is_retargeting=true'+'&af_dp='+ios_af_dp+is_q_ios+other_param_app+external_source+af_utm_source+af_utm_medium+af_utm_campaign+af_utm_content_plus+af_ga_uid_sm+af_ios_url;
+var redirect_iphone = ios_dp+decodeURIComponent(is_q_and+other_param_app+external_source);
 // WEB
-// C параметром
 var redirect_unknown=web_link+other_param_web+utm_all;
-// БЕЗ парамтров
-//var redirect_unknown=web_link;	
+
 
 
 	// проверка платформы
@@ -268,8 +263,6 @@ var redirect_unknown=web_link+other_param_web+utm_all;
 
 	if (platform=="android") {
 
-		inform_user('Запрос обрабатывается. Подождите несколько секунд...');
-
 		redirect_user(redirect_android);
 
 	}
@@ -278,8 +271,6 @@ var redirect_unknown=web_link+other_param_web+utm_all;
 
 	else if (platform=="iPhone") {
 
-		inform_user('Запрос обрабатывается. Подождите несколько секунд...');
-
 		redirect_user (redirect_iphone);
 
 	}
@@ -287,12 +278,22 @@ var redirect_unknown=web_link+other_param_web+utm_all;
 
 
 	else {
-
-		inform_user('Запрос обрабатывается. Подождите несколько секунд...');
-
 		redirect_user(redirect_unknown);
 
 	}
+
+window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-21169438-11');
+  var productNameGTM = document.location.hostname.replace(/https:\/\/|http:\/\/|www./, '')+document.location.pathname.split('/').join('.').split('?')[0].split('#')[0];
+  gtag('event', 'event', {
+  'event_category': productNameGTM,
+  'event_action': 'show_details',
+  'event_label': af_media_source,
+});
+
 
 
 
