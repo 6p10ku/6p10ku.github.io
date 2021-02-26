@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="icon" href="/sms/img/favicon2.ico" type="image/x-icon">
+	<title>Сбербанк Онлайн</title>
+	<meta name="twitter:card" content="summary_large_image">
+	<meta property="og:title" content="СберБанк Онлайн">
+	<meta property="og:type" content="article">
+	<meta property="og:description" content="СберБанк Онлайн">
+	<meta property="og:image" content="https://www.sberbank.ru/portalserver/static/templates/%5BBBHOST%5D/RuMasterpageTemplate/static/social-ru.png" />
+	<meta name="twitter:image" content="https://www.sberbank.ru/portalserver/static/templates/%5BBBHOST%5D/RuMasterpageTemplate/static/social-ru.png" />
+	<meta property="og:image:width" content="100" />
+    <style type="text/css">.smart_img p{margin: 0;position: absolute;top: 50%;left: 50%;margin-right: -50%;transform: translate(-50%, -50%)}p {display: block;align-items: center;text-align: center;}p img { width: 50%;}@media screen and (max-width: 1000px) {p img { width: 70%;}}</style>
+</head>
+<body>
+
+	<div class="smart_img"><p><br><img src="https://www.sberbank.ru/common/img/uploaded/files/sms/sber_logo_main.png"><br><br><br><br>Запрос обрабатывается. <br><br>Подождите несколько секунд...</p>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-21169438-11"></script>
+		
+		<!-- Переход в СБОЛ через deeplink -->
+	
+		<!-- Google Tag Manager -->
+	
+		<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-NRDX7Z"
+	
+		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+	
+		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	
+		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	
+		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	
+		'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	
+		})(window,document,'script','dataLayer','GTM-NRDX7Z');
+	
+		</script>
+
+	<!-- End Google Tag Manager -->
+
+	<script>
+	// v 1.09
+
+		//?uid%3D91%26currency%3DRUB%26amount%3D400000%26term%3D1-0-0%26capitalization%3Dtrue%26minBalance%3D0
+
+		//uid=91&currency=RUB&amount=400000&term=1-0-0&capitalization=true&minBalance=0&
+
+	// !!! НЕОБХОДИМО ЗАПОЛНИТЬ !!!
+
+	// Media Source из Appsflyer
+	var af_media_source = 'dp-website';
+
+	// Android Deeplink 
+	var android_dp = 'android-app://ru.sberbankmobile/android-app/ru.sberbankmobile/products/deposit?action=create';
+
+
+	// iOS Deeplink 
+	var ios_dp = 'sberbankonline://deposits/new-deposit';
+
+
+	// WEB Deeplink 
+	var web_link = 'https://online.sberbank.ru/CSAFront/index.do#/service?srvUrl=/PhizIC/private/deposits/products/list.do?form=AccountOpeningClaim';
+	//https://online.sberbank.ru/CSAFront/service.do?srvUrl=/accounts/open&srvParams=channel%3DS%26uid%3D91%26currency%3DRUB%26amount%3D400000%26term%3D1-0-0%26capitalization%3Dtrue%26minBalance%3D0
+
+
+	// Редирект на WEB при отсутствии приложения – true or false
+	var need_web = false
+
+	// !!! ОКОНЧАНИЕ ЧАСТИ ДЛЯ ЗАПОЛНЕНИЯ !!!
+
+
+// Р—РђРџРћР›РќРЇР•РўРЎРЇ РђР’РўРћРњРђРўРР§Р•РЎРљР
+
+
+
+// Media Source РёР· Appsflyer
+
+var af_pid = 'pid=' + af_media_source;
+
+
+
+// Campaign РёР· AppsFlyer
+
+var af_c = '&c=' + af_media_source;
+
+// РћС‚Р»РёС‡РЅС‹Р№ Campaign
+
+//var af_c = '&c='+ 'XXX';
+
+
+
+// Android Deeplink РґР»СЏ AppsFlyer
+
+var android_af_dp = encodeURIComponent(android_dp);
+
+
+
+// iOS Deeplink РґР»СЏ AppsFlyer
+
+var ios_af_dp = encodeURIComponent(ios_dp);
+
+
+
+// Р•СЃР»Рё РЅСѓР¶РµРЅ СЂРµРґРёСЂРµРєС‚ РІ WEB РїСЂРё РѕС‚СЃСѓС‚СЃС‚РІРёРё СѓСЃС‚Р°РЅРѕРІР»РµРЅРЅРѕРіРѕ РїСЂРёР»РѕР¶РµРЅРёСЏ
+
+var af_web_url = '';
+
+
+
+need_web == true ? af_web_url = web_link : need_web;
+
+
+
+
+
+// Р›РѕРіРёРєР° РїРѕР»СѓС‡РµРЅРёСЏ Рё РїРµСЂРµРґР°С‡Рё РјРµС‚РѕРє Рё РїР°СЂР°РјРµС‚СЂРѕРІ
+
+var utm_source_sm='', utm_medium_sm='', utm_campaign_sm='', utm_content_sm='', utm_term_sm='', ga_uid_sm='', other_param = '', other_param_app = '', other_param_web = '', other_param_web_url = '';
+
+
+
+var getCookie = function(name) {
+
+    var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+
+	if (match) return match[2] || ''; };
+
+	
+
+// Р•СЃР»Рё РµСЃС‚СЊ РјРµС‚РєР° РІ URL
+
+
+if (decodeURIComponent(document.location.href).search(/=/)>0){
+
+	var UTM = decodeURIComponent(document.location.href).split('?').pop()
+
+	var utm_arr = UTM.split('&');
+
+	for (i=0; i<utm_arr.length; i++){
+
+
+
+  if (utm_arr != '' && utm_arr[i].toLowerCase().search('utm_source')>=0) {var utm_source_sm = utm_arr[i].split('=').pop(); utm_arr[i] = ''};
+
+  if (utm_arr != '' && utm_arr[i].toLowerCase().search('utm_medium')>=0) {var utm_medium_sm = utm_arr[i].split('=').pop(); utm_arr[i] = ''};
+
+  if (utm_arr != '' && utm_arr[i].toLowerCase().search('utm_campaign')>=0) {var utm_campaign_sm = utm_arr[i].split('=').pop(); utm_arr[i] = ''};
+
+  if (utm_arr != '' && utm_arr[i].toLowerCase().search('utm_content')>=0) {var utm_content_sm = utm_arr[i].split('=').pop(); utm_arr[i] = ''};
+
+  if (utm_arr != '' && utm_arr[i].toLowerCase().search('utm_term')>=0) {var utm_term_sm = '-_-'+utm_arr[i].split('=').pop(); utm_arr[i] = ''};
+
+  if (utm_arr != '' && utm_arr[i].toLowerCase().search('need_web')>=0) { utm_arr[i] = ''};
+
+	}
+
+	
+
+	var other_param = encodeURIComponent(utm_arr.filter(v => v ).join('&'));
+
+
+
+    function replaceAll(string, search, replace) {
+
+            return string.split(search).join(replace);
+
+        }
+
+    if (other_param != '') {
+
+		var other_param_app = other_param + '%26';
+
+			var other_param_web = '?' + replaceAll(decodeURIComponent(utm_arr.filter(v => v ).join('&')).replace(/[\+\s]/ig, '__'), '&', '%26') // РЅСѓР¶РЅРѕ РїСЂРѕРІРµСЂРёС‚СЊ separator
+
+		var other_param_web_url = '?' + replaceAll(decodeURIComponent(utm_arr.filter(v => v ).join('&')).replace(/[\+\s]/ig, '__'), '&', '%26') // РЅСѓР¶РЅРѕ РїСЂРѕРІРµСЂРёС‚СЊ separator
+
+	};
+
+} else {
+
+
+
+	// РџСЂРѕРІРµСЂСЏРµРј UTM РёР· РєСѓРєРё	
+
+var utm_source_sm_fc = getCookie('utm_source'), utm_medium_sm_fc = getCookie('utm_medium'), utm_campaign_sm_fc = getCookie('utm_campaign'), utm_content_sm_fc = getCookie('utm_content'), utm_term_sm_fc = getCookie('utm_term');
+
+
+
+		if(utm_source_sm_fc && utm_source_sm_fc != '') {utm_source_sm = utm_source_sm_fc};
+
+		if(utm_medium_sm_fc && utm_medium_sm_fc != '') {utm_medium_sm = utm_medium_sm_fc};
+
+		if(utm_campaign_sm_fc && utm_campaign_sm_fc != '') {utm_campaign_sm = utm_campaign_sm_fc};
+
+		if(utm_content_sm_fc && utm_content_sm_fc != '') {utm_content_sm = utm_content_sm_fc};
+
+		if(utm_term_sm_fc && utm_term_sm_fc != '') {utm_term_sm = utm_term_sm_fc};
+
+	}
+
+
+
+
+
+	// РџРѕР»СѓС‡Р°РµРј РєСѓРєСѓ GA
+
+	var ga_uid_fc = getCookie('_ga');
+
+	if (ga_uid_fc && ga_uid_fc != '') {
+
+	var ga_uid_arr = ga_uid_fc.split(/\./);
+
+	var ga_uid_sm = ga_uid_arr[2]+'.'+ga_uid_arr[3];
+
+		};
+
+
+
+	// РЎРѕР±РёСЂР°РµРј utm_content_plus - content + term
+
+	var utm_content_plus = utm_content_sm+utm_term_sm;
+
+	
+
+	
+
+
+
+	// Р¤РѕСЂРјРёСЂСѓРµРј РїРµСЂРµРјРµРЅРЅС‹Рµ РґР»СЏ AppMetrica
+
+	var external_source = 'external_source%3D'+af_media_source+'-_-'+utm_source_sm+'-_-'+utm_medium_sm+'-_-'+utm_campaign_sm+'-_-'+utm_content_plus;
+
+	external_source = external_source.length > 221 ? external_source.slice(0,221)+'-_-'+ga_uid_sm : external_source+'-_-'+ga_uid_sm;
+
+
+
+if (android_af_dp.search(/\?|%3F/) > 0){
+
+	var is_q_and = '%26';
+
+} else
+
+{ var is_q_and = '%3F'};
+
+
+
+if (ios_af_dp.search(/\?|%3F/) > 0){
+
+	var is_q_ios = '%26';
+
+} else
+
+{ var is_q_ios = '%3F'};
+
+
+
+	// Р¤РѕСЂРјРёСЂСѓРµРј РїРµСЂРµРјРµРЅРЅС‹Рµ РґР»СЏ AppsFlyer
+
+var af_utm_source = utm_source_sm ? '&af_sub1='+utm_source_sm : '';
+
+var af_utm_medium = utm_medium_sm ? '&af_sub2='+utm_medium_sm : '';
+
+var af_utm_campaign = utm_campaign_sm ? '&af_sub3='+utm_campaign_sm : '';
+
+var af_utm_content_plus = utm_content_plus ? '&af_sub4='+utm_content_plus : ''; 
+
+var af_ga_uid_sm = ga_uid_sm ? '&af_sub5='+ga_uid_sm : '';
+
+
+
+	// Р¤РѕСЂРјРёСЂСѓРµРј РїРµСЂРµРјРµРЅРЅС‹Рµ РґР»СЏ WEB
+
+var web_utm_source = utm_source_sm ? 'utm_source='+utm_source_sm : '';
+
+var web_utm_medium = utm_medium_sm ? '&utm_medium='+utm_medium_sm : '';
+
+var web_utm_campaign = utm_campaign_sm ? '&utm_campaign='+utm_campaign_sm : '';
+
+var web_utm_content = utm_content_sm ? '&utm_content='+utm_content_sm : '';
+
+var web_utm_term = utm_content_sm ? '&utm_term='+utm_term_sm : '';
+
+
+
+var web_link_other_param_web = web_link+other_param_web
+
+if (web_link_other_param_web.toLowerCase().search(/\?/)>0)
+
+	{ var separator_web = '&';}
+
+	if (web_link_other_param_web.toLowerCase().search(/\?/)<0)
+
+	{ var separator_web = '?';}
+
+
+
+if (web_link.toLowerCase().search('sberbank.ru')<0){
+
+var utm_all=separator_web+web_utm_source+web_utm_medium+web_utm_campaign+web_utm_content+web_utm_term;}
+
+else {var utm_all = '';}
+
+
+
+	if (af_web_url !=''){
+
+	var af_android_url = '&af_android_url=' + encodeURIComponent(af_web_url+other_param_web_url+utm_all)+'&af_param_forwarding=false';
+
+			var af_ios_url = '&af_ios_url=' + encodeURIComponent(af_web_url+other_param_web_url+utm_all)+'&af_param_forwarding=false';
+
+	} else {
+
+	var af_android_url = '';
+
+	var af_ios_url = '';
+
+	}
+
+
+
+	
+
+// Android
+
+var redirect_android = 'https://app.appsflyer.com/ru.sberbankmobile'+'?'+af_pid+af_c+'&is_retargeting=true'+'&af_dp='+android_af_dp+is_q_and+other_param_app+external_source+af_utm_source+af_utm_medium+af_utm_campaign+af_utm_content_plus+af_ga_uid_sm+af_android_url;
+
+
+
+// iOS
+
+var redirect_iphone = 'https://sberbankonline.onelink.me/46WQ'+'?'+'af_force_deeplink=true&'+af_pid+af_c+'&is_retargeting=true'+'&af_dp='+ios_af_dp+is_q_ios+other_param_app+external_source+af_utm_source+af_utm_medium+af_utm_campaign+af_utm_content_plus+af_ga_uid_sm+af_ios_url;
+
+
+
+// WEB
+
+var redirect_unknown=web_link+other_param_web+utm_all;
+
+
+
+
+
+
+
+	// РїСЂРѕРІРµСЂРєР° РїР»Р°С‚С„РѕСЂРјС‹
+
+
+
+	function check_platform(ua) {
+
+
+
+
+
+
+
+        if(/android/gi.test(ua)){
+
+
+
+			return 'android';
+
+
+
+        }
+
+
+
+
+
+
+
+        if(/iphone|ipod/gi.test(ua)){
+
+
+
+            return 'iPhone';
+
+
+
+        }
+
+
+
+
+
+
+
+		return  'unknown';
+
+
+
+
+
+
+
+	}
+
+
+
+
+
+
+
+	// РїРµСЂРµР°РґСЂРµСЃР°С†РёСЏ
+
+
+
+	function redirect_user (address) {
+
+
+
+		setTimeout(function(){window.location.href=address}, 2100);
+
+
+
+		return true;
+
+
+
+	}
+
+
+
+
+
+
+
+	// СЃРѕРѕР±С‰РµРЅРёРµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ
+
+
+
+	function inform_user (msg) {
+
+
+
+		document.write(msg);
+
+
+
+		return true;
+
+
+
+	}
+
+
+
+
+
+
+
+	// РЅР°С‡Р°Р»Рѕ
+
+
+
+	var platform=check_platform(navigator.userAgent);
+
+
+
+
+
+
+
+
+
+	if (platform=="android") {
+
+
+
+		redirect_user(redirect_android);
+
+
+
+	}
+
+
+
+
+
+
+
+	else if (platform=="iPhone") {
+
+
+
+		redirect_user (redirect_iphone);
+
+
+
+	}
+
+
+
+
+
+
+
+	else {
+
+		redirect_user(redirect_unknown);
+
+
+
+	}
+
+
+
+
+
+
+
+
+
+	if (document.location.href.search('need_web=true')>0) 
+	{var need_web = true}
+
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'UA-21169438-11');
+	var productNameGTM = document.location.hostname.replace(/https:\/\/|http:\/\/|www./, '')+document.location.pathname.split('/').join('.').split('?')[0].split('#')[0];
+	gtag('event', 'event', {
+	'event_category': productNameGTM,
+	'event_action': 'show_details',
+	'event_label': af_media_source,
+	});
+	</script>
+
+	
+	<style>
+
+	 body {font-size: 20px; font-family: Arial;}
+
+	</style>
+
+
+
+
+
+</body>
+
+</html>
