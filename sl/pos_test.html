@@ -50,7 +50,7 @@
 var af_media_source = 'pos';
 
 // Android Deeplink 
-var android_dp = 'android-app://ru.sberbankmobile/android-app/ru.sberbankmobile/loan/pos';
+var android_dp = 'android-app://ru.sberbankmobile_alpha/android-app/ru.sberbankmobile_alpha/loan/pos';
 
 // iOS Deeplink 
 var ios_dp = 'sberbankonline://loan/pos';
@@ -103,7 +103,7 @@ if (document.location.href.search(/=/)>0){
   if (utm_arr != '' && utm_arr[i].toLowerCase().search('utm_campaign')>=0) {var utm_campaign_sm = utm_arr[i].split('=').pop(); utm_arr[i] = ''};
   if (utm_arr != '' && utm_arr[i].toLowerCase().search('utm_content')>=0) {var utm_content_sm = utm_arr[i].split('=').pop(); utm_arr[i] = ''};
   if (utm_arr != '' && utm_arr[i].toLowerCase().search('utm_term')>=0) {var utm_term_sm = '-_-'+utm_arr[i].split('=').pop(); utm_arr[i] = ''};
-  if (utm_arr != '' && utm_arr[i].toLowerCase().search("^r=|reqid=")>=0) {var rrr = 'ReqId='+utm_arr[i].split('=').pop(); utm_arr[i] = ''};
+  if (utm_arr != '' && utm_arr[i].toLowerCase().search("^r=|reqid")>=0) {var rrr = 'ReqId='+utm_arr[i].split('=').pop(); utm_arr[i] = ''};
 
 	}
 	
@@ -196,7 +196,7 @@ else {var utm_all = '';}
 
 	
 // Android
-var redirect_android = 'https://app.appsflyer.com/ru.sberbankmobile'+'?'+af_pid+af_c+'&is_retargeting=true'+'&af_dp='+android_af_dp+is_q_and+rrr_app+external_source+af_utm_source+af_utm_medium+af_utm_campaign+af_utm_content_plus+af_ga_uid_sm+af_android_url;
+var redirect_android = 'https://app.appsflyer.com/ru.sberbankmobile_alpha'+'?'+af_pid+af_c+'&is_retargeting=true'+'&af_dp='+android_af_dp+is_q_and+rrr_app+external_source+af_utm_source+af_utm_medium+af_utm_campaign+af_utm_content_plus+af_ga_uid_sm+af_android_url;
 
 // iOS
 var redirect_iphone = 'https://sberbankonline.onelink.me/46WQ'+'?'+'af_force_deeplink=true&'+af_pid+af_c+'&is_retargeting=true'+'&af_dp='+ios_af_dp+is_q_ios+rrr_app+external_source+af_utm_source+af_utm_medium+af_utm_campaign+af_utm_content_plus+af_ga_uid_sm+af_ios_url;
