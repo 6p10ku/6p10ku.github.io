@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -52,7 +53,7 @@
 	// !!! НЕОБХОДИМО ЗАПОЛНИТЬ !!!
 
 	// Media Source из Appsflyer
-	var af_media_source = 'dp-website';
+	var af_media_source = 'dp-website';
 
 	// Android Deeplink 
 	var android_dp = 'android-app://ru.sberbankmobile/android-app/ru.sberbankmobile/products/deposit?action=create';
@@ -63,9 +64,10 @@
 
 
 	// WEB Deeplink 
-	var web_link = 'https://online.sberbank.ru/CSAFront/index.do#/service?srvUrl=/PhizIC/private/deposits/products/list.do?form=AccountOpeningClaim';
-	//https://online.sberbank.ru/CSAFront/service.do?srvUrl=/accounts/open&srvParams=channel%3DS%26uid%3D91%26currency%3DRUB%26amount%3D400000%26term%3D1-0-0%26capitalization%3Dtrue%26minBalance%3D0
-
+    var web_link = 'https://online.sberbank.ru/CSAFront/service.do?srvUrl=/accounts/open'
+	// var web_link = 'https://online.sberbank.ru/CSAFront/index.do#/service?srvUrl=/PhizIC/private/deposits/products/list.do?form=AccountOpeningClaim';
+	              //https://online.sberbank.ru/CSAFront/service.do?srvUrl=/accounts/open&srvParams=channel%3DS%26uid%3D91%26currency%3DRUB%26amount%3D400000%26term%3D1-0-0%26capitalization%3Dtrue%26minBalance%3D0
+                  //https://online.sberbank.ru/CSAFront/service.do?srvUrl=/accounts/open&srvParams=channel%3DS%26uid%3D91%26currency%3DRUB%26amount%3D400000%26term%3D0-13-0%26capitalization%3Dfalse
 
 	// Редирект на WEB при отсутствии приложения – true or false
 	var need_web = false
@@ -174,7 +176,7 @@ if (decodeURIComponent(document.location.href).search(/=/)>0){
 
 		var other_param_app = other_param + '%26';
 
-			var other_param_web = '?' + replaceAll(decodeURIComponent(utm_arr.filter(v => v ).join('&')).replace(/[\+\s]/ig, '__'), '&', '%26') // РЅСѓР¶РЅРѕ РїСЂРѕРІРµСЂРёС‚СЊ separator
+			var other_param_web = '&' + replaceAll(decodeURIComponent(utm_arr.filter(v => v ).join('&')).replace(/[\+\s]/ig, '__'), '&', '%26') // РЅСѓР¶РЅРѕ РїСЂРѕРІРµСЂРёС‚СЊ separator
 
 		var other_param_web_url = '?' + replaceAll(decodeURIComponent(utm_arr.filter(v => v ).join('&')).replace(/[\+\s]/ig, '__'), '&', '%26') // РЅСѓР¶РЅРѕ РїСЂРѕРІРµСЂРёС‚СЊ separator
 
@@ -332,7 +334,7 @@ var redirect_android = 'https://app.appsflyer.com/ru.sberbankmobile'+'?'+af_pid+
 
 // iOS
 
-var redirect_iphone = 'https://sberbankonline.onelink.me/46WQ'+'?'+'af_force_deeplink=true&'+af_pid+af_c+'&is_retargeting=true'+'&af_dp='+ios_af_dp+is_q_ios+other_param_app+external_source+af_utm_source+af_utm_medium+af_utm_campaign+af_utm_content_plus+af_ga_uid_sm+af_ios_url;
+var redirect_iphone = 'https://sberbankonline.onelink.me/46WQ'+'?'+'af_force_deeplink=true&'+af_pid+af_c+'&is_retargeting=true'+'&af_dp='+ios_af_dp+is_q_ios+external_source+af_utm_source+af_utm_medium+af_utm_campaign+af_utm_content_plus+af_ga_uid_sm+af_ios_url;
 
 
 
