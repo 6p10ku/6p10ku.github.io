@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -46,10 +45,6 @@
 	<script>
 	// v 1.09
 
-		//?uid%3D91%26currency%3DRUB%26amount%3D400000%26term%3D1-0-0%26capitalization%3Dtrue%26minBalance%3D0
-
-		//uid=91&currency=RUB&amount=400000&term=1-0-0&capitalization=true&minBalance=0&
-
 	// !!! НЕОБХОДИМО ЗАПОЛНИТЬ !!!
 
 	// Media Source из Appsflyer
@@ -65,10 +60,7 @@
 
 	// WEB Deeplink 
     var web_link = 'https://online.sberbank.ru/CSAFront/service.do?srvUrl=/accounts/open'
-	// var web_link = 'https://online.sberbank.ru/CSAFront/index.do#/service?srvUrl=/PhizIC/private/deposits/products/list.do?form=AccountOpeningClaim';
-	              //https://online.sberbank.ru/CSAFront/service.do?srvUrl=/accounts/open&srvParams=channel%3DS%26uid%3D91%26currency%3DRUB%26amount%3D400000%26term%3D1-0-0%26capitalization%3Dtrue%26minBalance%3D0
-                  //https://online.sberbank.ru/CSAFront/service.do?srvUrl=/accounts/open&srvParams=channel%3DS%26uid%3D91%26currency%3DRUB%26amount%3D400000%26term%3D0-13-0%26capitalization%3Dfalse
-
+	
 	// Редирект на WEB при отсутствии приложения – true or false
 	var need_web = false
 
@@ -176,8 +168,8 @@ if (decodeURIComponent(document.location.href).search(/=/)>0){
 
 		var other_param_app = other_param + '%26';
 
-			var other_param_web = '&' + replaceAll(decodeURIComponent(utm_arr.filter(v => v ).join('&')).replace(/[\+\s]/ig, '__'), '&', '%26') // РЅСѓР¶РЅРѕ РїСЂРѕРІРµСЂРёС‚СЊ separator
-
+	    	//var other_param_web = '&' + replaceAll(decodeURIComponent(utm_arr.filter(v => v ).join('&')).replace(/[\+\s]/ig, '__'), '&', '%26') // РЅСѓР¶РЅРѕ РїСЂРѕРІРµСЂРёС‚СЊ separator
+			var other_param_web = '&' + other_param.replace('srvParams%3Dchannel','srvParams=channel')
 		var other_param_web_url = '?' + replaceAll(decodeURIComponent(utm_arr.filter(v => v ).join('&')).replace(/[\+\s]/ig, '__'), '&', '%26') // РЅСѓР¶РЅРѕ РїСЂРѕРІРµСЂРёС‚СЊ separator
 
 	};
