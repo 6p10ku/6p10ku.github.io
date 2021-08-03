@@ -1,301 +1,182 @@
 
-<!doctype html>
-
-<html lang="en">
-
+<html lang='en'>
 <head>
-
-	<meta charset="UTF-8">
-
-	<link rel="icon" href="/sms/img/favicon2.ico" type="image/x-icon">
-
-	<title>Сбербанк Онлайн</title>
-
+<meta charset='UTF-8'>
+<link rel='icon' href='/sms/img/favicon2.ico' type='image/x-icon'>
+<title>Сбербанк Онлайн</title>
+<meta name='twitter:card' content='summary_large_image'>
+<meta property='og:title' content='СберБанк Онлайн'>
+<meta property='og:type' content='article'>
+<meta property='og:description' content='СберБанк Онлайн'>
+<meta property='og:image' content='https://www.sberbank.ru/portalserver/static/templates/%5BBBHOST%5D/RuMasterpageTemplate/static/social-ru.png' />
+<meta name='twitter:image' content='https://www.sberbank.ru/portalserver/static/templates/%5BBBHOST%5D/RuMasterpageTemplate/static/social-ru.png' />
+<meta property='og:image:width' content='100' />
+<style type='text/css'>.smart_img p{margin: 0;position: absolute;top: 50%;left: 50%;margin-right: -50%;transform: translate(-50%, -50%)}p {display: block;align-items: center;text-align: center;}p img { width: 50%;}@media screen and (max-width: 1000px) {p img { width: 70%;}}</style>
 </head>
-
 <body>
-	
-	<!-- Переход в СБОЛ через deeplink -->
-
-	<!-- Google Tag Manager -->
-
-	<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-NRDX7Z"
-
-	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-
-	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-
-	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-
-	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-
-	'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-
-	})(window,document,'script','dataLayer','GTM-NRDX7Z');
-
-	</script>
-
-	<!-- End Google Tag Manager -->
-
+<div class='smart_img'><p><br><img src='https://www.sberbank.ru/common/img/uploaded/files/sms/sber_logo_main.png'><br><br><br><br>Запрос обрабатывается. <br><br>Подождите несколько секунд...</p>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src='https://www.googletagmanager.com/gtag/js?id=UA-21169438-11'></script>
+<!-- Переход в СБОЛ через deeplink -->
+<!-- Google Tag Manager -->
+<noscript><iframe src='//www.googletagmanager.com/ns.html?id=GTM-NRDX7Z'
+height='0' width='0' style='display:none;visibility:hidden'></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NRDX7Z');
+</script>
+<!-- End Google Tag Manager -->
 <script>
-
-// Android - Настриваем deeplink
-
+// v 1.09
+// !!! НЕОБХОДИМО ЗАПОЛНИТЬ !!!
 // Media Source из Appsflyer
-var af_media_source = 'brokerage_agreement';
-
-// Deeplink encode
-var android_dp = 'android-app://ru.sberbankmobile/android-app/ru.sberbankmobile/brokerage/agreement/short?action=create';
-
-// iOS - Настриваем deeplink
-// Пока не работает логика используем короткую ссылку из AppsFlyer
-var ios_dp = 'sberbankonline://brokerage/agreement/short?action=create';
-//var iphone_link = 'https://sberbankonline.onelink.me/46WQ/9fb7ad50';
-
-
-// WEB - Настриваем deeplink
-var web_link = 'https://www.sberbank.ru/ru/person/investments/promobroweb';
-
-// Редирект на WEB – TRUE or FALSE
+var af_media_source = 'sberprime';
+// Android Deeplink
+var android_dp = 'android-app://ru.sberbankmobile/sberprime/ms?offerId=f0b8a3c5-e1f5-443b-bbdd-39d2b65169a3';
+// iOS Deeplink
+var ios_dp = 'sberbankonline://app/sberprime/ms?offerId=f0b8a3c5-e1f5-443b-bbdd-39d2b65169a3';
+// WEB Deeplink
+var web_link = 'https://www.sberbank.ru/ru/person/dist_services/inner_apps';
+// Редирект на WEB при отсутствии приложения – true or false
 var need_web = false;
+if (document.location.href.search('need_web=true')>0) {var need_web = true};
+// !!! ОКОНЧАНИЕ ЧАСТИ ДЛЯ ЗАПОЛНЕНИЯ !!!
 
-// Media Source из Appsflyer
+// v 1.10
+// Р вЂ”Р С’Р СџР С›Р вЂєР СњР Р‡Р вЂўР СћР РЋР Р‡ Р С’Р вЂ™Р СћР С›Р СљР С’Р СћР ВР В§Р вЂўР РЋР С™Р В
+// Media Source Р С‘Р В· Appsflyer
 var af_pid = 'pid=' + af_media_source;
-
-// Campaign из AppsFlyer
-var af_c = '&c=' + af_media_source;
-// Отличный Campaign
+// Campaign Р С‘Р В· AppsFlyer
+if (typeof af_c == "undefined") { var af_c = '&c=' + af_media_source;}
+// Р С›РЎвЂљР В»Р С‘РЎвЂЎР Р…РЎвЂ№Р в„– Campaign
 //var af_c = '&c='+ 'XXX';
-
-// Android Deeplink для AppsFlyer
+// Android Deeplink Р Т‘Р В»РЎРЏ AppsFlyer
 var android_af_dp = encodeURIComponent(android_dp);
-
-// iOS Deeplink для AppsFlyer
+// iOS Deeplink Р Т‘Р В»РЎРЏ AppsFlyer
 var ios_af_dp = encodeURIComponent(ios_dp);
-
-// Если нужен редирект в WEB при отсутствии установленного приложения
+// Р вЂўРЎРѓР В»Р С‘ Р Р…РЎС“Р В¶Р ВµР Р… РЎР‚Р ВµР Т‘Р С‘РЎР‚Р ВµР С”РЎвЂљ Р Р† WEB Р С—РЎР‚Р С‘ Р С•РЎвЂљРЎРѓРЎС“РЎвЂљРЎРѓРЎвЂљР Р†Р С‘Р С‘ РЎС“РЎРѓРЎвЂљР В°Р Р…Р С•Р Р†Р В»Р ВµР Р…Р Р…Р С•Р С–Р С• Р С—РЎР‚Р С‘Р В»Р С•Р В¶Р ВµР Р…Р С‘РЎРЏ
 var af_web_url = '';
-
-need_web == true ? af_web_url = 'https://www.sberbank.ru/sms/af_web_url' : need_web;
-
-
-// Логика получения и передачи меток и параметров
-var utm_source_sm='', utm_medium_sm='', utm_campaign_sm='', utm_content_sm='', utm_term_sm='', ga_uid_sm='', other_param = '', other_param_web = '', other_param_web_url='';
-
+need_web == true ? af_web_url = web_link : need_web;
+// Р вЂєР С•Р С–Р С‘Р С”Р В° Р С—Р С•Р В»РЎС“РЎвЂЎР ВµР Р…Р С‘РЎРЏ Р С‘ Р С—Р ВµРЎР‚Р ВµР Т‘Р В°РЎвЂЎР С‘ Р СР ВµРЎвЂљР С•Р С” Р С‘ Р С—Р В°РЎР‚Р В°Р СР ВµРЎвЂљРЎР‚Р С•Р Р†
+var utm_source_sm='', utm_medium_sm='', utm_campaign_sm='', utm_content_sm='', utm_term_sm='', ga_uid_sm='', other_param = '', other_param_app = '', other_param_web = '', other_param_web_url='';
 var getCookie = function(name) {
-    var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-	if (match) return match[2] || ''; };
-	
-// Если есть метка в URL
-if (document.location.href.search(/=/)>0){
-	var UTM = document.location.href.split('?').pop()
-	var utm_arr = UTM.split('&');
-	for (i=0; i<utm_arr.length; i++){
-
-  if (utm_arr != '' && utm_arr[i].toLowerCase().search('utm_source')>=0) {var utm_source_sm = utm_arr[i].split('=').pop(); utm_arr[i] = ''};
-  if (utm_arr != '' && utm_arr[i].toLowerCase().search('utm_medium')>=0) {var utm_medium_sm = utm_arr[i].split('=').pop(); utm_arr[i] = ''};
-  if (utm_arr != '' && utm_arr[i].toLowerCase().search('utm_campaign')>=0) {var utm_campaign_sm = utm_arr[i].split('=').pop(); utm_arr[i] = ''};
-  if (utm_arr != '' && utm_arr[i].toLowerCase().search('utm_content')>=0) {var utm_content_sm = utm_arr[i].split('=').pop(); utm_arr[i] = ''};
-  if (utm_arr != '' && utm_arr[i].toLowerCase().search('utm_term')>=0) {var utm_term_sm = '-_-'+utm_arr[i].split('=').pop(); utm_arr[i] = ''};
-
-	}
-	
-	var other_param = encodeURIComponent(utm_arr.filter(v => v ).join('&')+'&');
-
-    function replaceAll(string, search, replace) {
-            return string.split(search).join(replace);
-        }
-    if (other_param != '') {
-			var other_param_web = '&' + replaceAll(decodeURIComponent(utm_arr.filter(v => v ).join('&')).replace(/[\+\s]/ig, '__'), '&', '%26')
-		var other_param_web_url = '?' + replaceAll(decodeURIComponent(utm_arr.filter(v => v ).join('&')).replace(/[\+\s]/ig, '__'), '&', '%26')
-	};
-} else {
-
-	// Проверяем UTM из куки	
-
-var utm_source_sm_fc = getCookie('utm_source'), utm_medium_sm_fc = getCookie('utm_medium'), utm_campaign_sm_fc = getCookie('utm_campaign'), utm_content_sm_fc = getCookie('utm_content');
-
-		if(utm_source_sm_fc && utm_source_sm_fc != '') {utm_source_sm = utm_source_sm_fc};
-		if(utm_medium_sm_fc && utm_medium_sm_fc != '') {utm_medium_sm = utm_medium_sm_fc};
-		if(utm_campaign_sm_fc && utm_campaign_sm_fc != '') {utm_campaign_sm = utm_campaign_sm_fc}
-		if(utm_content_sm_fc && utm_content_sm_fc != '') {utm_content_sm = utm_content_sm_fc}
-	}
-
-
-	if (af_web_url !=''){
-	var af_android_url = '&af_android_url=' + encodeURIComponent(af_web_url+other_param_web_url+'&web_link='+web_link);
-	var af_ios_url = '&af_ios_url=' + encodeURIComponent(af_web_url+other_param_web_url+'&web_link='+web_link);
-	} else {
-	var af_android_url = '';
-	var af_ios_url = '';
-	}
-
-
-	// Получаем куку GA
-	var ga_uid_fc = getCookie('_ga');
-	if (ga_uid_fc && ga_uid_fc != '') {
-	var ga_uid_arr = ga_uid_fc.split(/\./);
-	var ga_uid_sm = ga_uid_arr[2]+'.'+ga_uid_arr[3];
-		};
-
-	// Собираем utm_content_plus - content + term
-	var utm_content_plus = utm_content_sm+utm_term_sm;
-	
-	
-
-	// Формируем переменные для AppMetrica
-	var external_source = 'external_source%3D'+utm_source_sm+'-_-'+utm_medium_sm+'-_-'+utm_campaign_sm+'-_-'+utm_content_plus+'-_-'+ga_uid_sm;
-
+var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+if (match) { return match[2] } else { return ''}; };
+// Р РЋР СР С•РЎвЂљРЎР‚Р С‘Р С Р СР ВµРЎвЂљР С”РЎС“ Р Р† URL Р С‘Р В»Р С‘ Р С—Р С•Р В»РЎС“РЎвЂЎР В°Р ВµР С Р ВµРЎвЂ Р С‘Р В· Cookie
+var utm_cookie_arr = [getCookie('utm_source'), getCookie('utm_medium'), getCookie('utm_campaign'), getCookie('utm_content'), getCookie('utm_term')]
+var utm_arr = [];
+if (document.location.href.search(/=/) > 0) {
+var UTM = decodeURIComponent(document.location.href.split('?').pop());
+var utm_arr = UTM.split('&');
+var count_utm_arr = -1;
+// Р Р€Р Т‘Р В°Р В»РЎРЏР ВµР С Р Р†РЎРѓР Вµ Р С—Р В°РЎР‚Р В°Р СР ВµРЎвЂљРЎР‚РЎвЂ№ Р С—Р С•РЎРѓР В»Р Вµ utm_
+for (i = 0; i < utm_arr.length; i++) { if (utm_arr[i].search('utm_') >= 0) { var count_utm_arr = ++i } }
+(count_utm_arr >= 0) ? utm_arr = utm_arr.slice(0, count_utm_arr) : count_utm_arr = 0;
+for (i = 0; i < utm_arr.length; i++) {
+//utm_arr[i] = utm_arr[i].replace(/[^a-zA-Z0-9_=-]/g, '');
+if (utm_arr[i].toLowerCase().search('utm_source') >= 0) { var utm_source_sm = (utm_arr[i].split('=').pop()).replace(/[^a-zA-Z0-9_=-]/g, ''); utm_arr[i] = '' };
+if (utm_arr[i].toLowerCase().search('utm_medium') >= 0) { var utm_medium_sm = (utm_arr[i].split('=').pop()).replace(/[^a-zA-Z0-9_=-]/g, ''); utm_arr[i] = '' };
+if (utm_arr[i].toLowerCase().search('utm_campaign') >= 0) { var utm_campaign_sm = (utm_arr[i].split('=').pop()).replace(/[^a-zA-Z0-9_=-]/g, ''); utm_arr[i] = '' };
+if (utm_arr[i].toLowerCase().search('utm_content') >= 0) { var utm_content_sm = (utm_arr[i].split('=').pop()).replace(/[^a-zA-Z0-9_=-]/g, ''); utm_arr[i] = '' };
+if (utm_arr[i].toLowerCase().search('utm_term') >= 0) { var utm_term_sm = '-_-' + (utm_arr[i].split('=').pop()).replace(/[^a-zA-Z0-9_=-]/g, ''); utm_arr[i] = '' };
+if (utm_arr[i].toLowerCase().search('need_web') >= 0) { utm_arr[i] = '' };
+if (utm_arr[i].length > 200) { utm_arr[i] = utm_arr[i].slice(0, 200) }
+}
+}
+if (utm_source_sm == '') { utm_source_sm = utm_cookie_arr[0].replace(/[^a-zA-Z0-9_=-]/g, '').slice(0,200)};
+if (utm_medium_sm == '') { utm_medium_sm = utm_cookie_arr[1].replace(/[^a-zA-Z0-9_=-]/g, '').slice(0,200)};
+if (utm_campaign_sm == '') { utm_campaign_sm = utm_cookie_arr[2].replace(/[^a-zA-Z0-9_=-]/g, '').slice(0,200)};
+if (utm_content_sm == '') { utm_content_sm = utm_cookie_arr[3].replace(/[^a-zA-Z0-9_=-]/g, '').slice(0,200)};
+if (utm_term_sm == '') { utm_term_sm = '-_-'+utm_cookie_arr[4].replace(/[^a-zA-Z0-9_=-]/g, '').slice(0,200)};
+var other_param = encodeURIComponent(utm_arr.filter(v => v ).join('&'));
+function replaceAll(string, search, replace) {
+return string.split(search).join(replace);
+}
+if (other_param != '') {
+var other_param_app = other_param + '%26';
+var other_param_web = '?' + replaceAll(decodeURIComponent(utm_arr.filter(v => v ).join('&')).replace(/[\+\s]/ig, '__'), '&', '%26') // Р Р…РЎС“Р В¶Р Р…Р С• Р Т‘Р С•Р В±Р В°Р Р†Р С‘РЎвЂљРЎРЉ separator
+var other_param_web_url = '&' + replaceAll(decodeURIComponent(utm_arr.filter(v => v ).join('&')).replace(/[\+\s]/ig, '__'), '&', '%26') // Р Р…РЎС“Р В¶Р Р…Р С• Р Т‘Р С•Р В±Р В°Р Р†Р С‘РЎвЂљРЎРЉ separator
+};
+// Р СџР С•Р В»РЎС“РЎвЂЎР В°Р ВµР С Р С”РЎС“Р С”РЎС“ GA
+var ga_uid_fc = getCookie('_ga');
+if (ga_uid_fc && ga_uid_fc != '') {
+var ga_uid_arr = ga_uid_fc.split(/\./);
+var ga_uid_sm = ga_uid_arr[2]+'.'+ga_uid_arr[3];
+};
+// Р РЋР С•Р В±Р С‘РЎР‚Р В°Р ВµР С utm_content_plus - content + term
+var utm_content_plus = utm_content_sm.slice(0,100)+utm_term_sm.slice(0,100);
+// Р В¤Р С•РЎР‚Р СР С‘РЎР‚РЎС“Р ВµР С Р С—Р ВµРЎР‚Р ВµР СР ВµР Р…Р Р…РЎвЂ№Р Вµ Р Т‘Р В»РЎРЏ AppMetrica
+var external_source = 'external_source%3D'+af_media_source+'-_-'+utm_source_sm+'-_-'+utm_medium_sm+'-_-'+utm_campaign_sm+'-_-'+utm_content_plus;
+external_source = external_source.length > 221 ? external_source.slice(0,221)+'-_-'+ga_uid_sm : external_source+'-_-'+ga_uid_sm;
 if (android_af_dp.search(/\?|%3F/) > 0){
-	var is_q_and = '%26';
+var is_q_and = '%26';
 } else
 { var is_q_and = '%3F'};
-
 if (ios_af_dp.search(/\?|%3F/) > 0){
-	var is_q_ios = '%26';
+var is_q_ios = '%26';
 } else
 { var is_q_ios = '%3F'};
-
-	// Формируем переменные для AppsFlyer
-
+// Р В¤Р С•РЎР‚Р СР С‘РЎР‚РЎС“Р ВµР С Р С—Р ВµРЎР‚Р ВµР СР ВµР Р…Р Р…РЎвЂ№Р Вµ Р Т‘Р В»РЎРЏ AppsFlyer
 var af_utm_source = utm_source_sm ? '&af_sub1='+utm_source_sm : '';
 var af_utm_medium = utm_medium_sm ? '&af_sub2='+utm_medium_sm : '';
 var af_utm_campaign = utm_campaign_sm ? '&af_sub3='+utm_campaign_sm : '';
 var af_utm_content_plus = utm_content_plus ? '&af_sub4='+utm_content_plus : ''; 
 var af_ga_uid_sm = ga_uid_sm ? '&af_sub5='+ga_uid_sm : '';
-
-	// Формируем переменные для WEB
-
-var web_utm_source = utm_source_sm ? '&utm_source='+utm_source_sm : '';
+// Р В¤Р С•РЎР‚Р СР С‘РЎР‚РЎС“Р ВµР С Р С—Р ВµРЎР‚Р ВµР СР ВµР Р…Р Р…РЎвЂ№Р Вµ Р Т‘Р В»РЎРЏ WEB
+var web_utm_source = utm_source_sm ? 'utm_source='+utm_source_sm : '';
 var web_utm_medium = utm_medium_sm ? '&utm_medium='+utm_medium_sm : '';
 var web_utm_campaign = utm_campaign_sm ? '&utm_campaign='+utm_campaign_sm : '';
 var web_utm_content = utm_content_sm ? '&utm_content='+utm_content_sm : '';
 var web_utm_term = utm_content_sm ? '&utm_term='+utm_term_sm : '';
-
-	
+var web_link_other_param_web = web_link+other_param_web
+if (web_link_other_param_web.toLowerCase().search(/\?/)>0)
+{ var separator_web = '&';}
+if (web_link_other_param_web.toLowerCase().search(/\?/)<0)
+{ var separator_web = '?';}
+if (web_link.toLowerCase().search('sberbank.ru')<0){
+var utm_all=separator_web+web_utm_source+web_utm_medium+web_utm_campaign+web_utm_content+web_utm_term;}
+else {var utm_all = '';}
+if (af_web_url !=''){
+var af_android_url = '&af_android_url=' + encodeURIComponent(af_web_url+other_param_web_url+utm_all)+'&af_param_forwarding=false';
+var af_ios_url = '&af_ios_url=' + encodeURIComponent(af_web_url+other_param_web_url+utm_all)+'&af_param_forwarding=false';
+} else {
+var af_android_url = '';
+var af_ios_url = '';
+}
 // Android
-var redirect_android = 'https://app.appsflyer.com/ru.sberbankmobile'+'?'+af_pid+af_c+'&is_retargeting=true'+'&af_dp='+android_af_dp+is_q_and+other_param+external_source+af_utm_source+af_utm_medium+af_utm_campaign+af_utm_content_plus+af_ga_uid_sm+af_android_url;
-
-
+var redirect_android = android_af_dp;
 // iOS
-// C параметром
-var redirect_iphone = 'https://sberbankonline.onelink.me/46WQ'+'?'+'af_force_deeplink=true&'+af_pid+af_c+'&is_retargeting=true'+'&af_dp='+ios_af_dp+is_q_ios+other_param+external_source+af_utm_source+af_utm_medium+af_utm_campaign+af_utm_content_plus+af_ga_uid_sm+af_ios_url;
-// БЕЗ параметров
-//var redirect_iphone = iphone_link+'?af_force_deeplink=true'+af_utm_source+af_utm_medium+af_utm_campaign+af_utm_content_plus+af_ga_uid_sm;
-
-
+var redirect_iphone = ios_af_dp;
 // WEB
-// C параметром
-//var redirect_unknown=web_link+other_param_web;
-// БЕЗ парамтров
-var redirect_unknown=web_link;	
+var redirect_unknown=web_link+other_param_web+utm_all;
+// Р С—РЎР‚Р С•Р Р†Р ВµРЎР‚Р С”Р В° Р С—Р В»Р В°РЎвЂљРЎвЂћР С•РЎР‚Р СРЎвЂ№
+function check_platform(ua) {if(/android/gi.test(ua)){return 'android';}if(/iphone|ipod/gi.test(ua)){return 'iPhone';}return  'unknown';}
+// Р С—Р ВµРЎР‚Р ВµР В°Р Т‘РЎР‚Р ВµРЎРѓР В°РЎвЂ Р С‘РЎРЏ
+function redirect_user (address) {setTimeout(function(){window.location.href=address}, 2100);return true;}
+// РЎРѓР С•Р С•Р В±РЎвЂ°Р ВµР Р…Р С‘Р Вµ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎР‹
+function inform_user (msg) {document.write(msg);return true;}
+// Р Р…Р В°РЎвЂЎР В°Р В»Р С•
+var platform=check_platform(navigator.userAgent);
+if (platform=="android") {redirect_user(redirect_android);}
+else if (platform=="iPhone") {redirect_user (redirect_iphone);}
+else { redirect_user(redirect_unknown);}
 
-
-	// проверка платформы
-
-	function check_platform(ua) {
-
-
-
-        if(/android/gi.test(ua)){
-
-			return 'android';
-
-        }
-
-
-
-        if(/iphone|ipod/gi.test(ua)){
-
-            return 'iPhone';
-
-        }
-
-
-
-		return  'unknown';
-
-
-
-	}
-
-
-
-	// переадресация
-
-	function redirect_user (address) {
-
-		setTimeout(function(){window.location.href=address}, 500);
-
-		return true;
-
-	}
-
-
-
-	// сообщение пользователю
-
-	function inform_user (msg) {
-
-		document.write(msg);
-
-		return true;
-
-	}
-
-
-
-	// начало
-
-	var platform=check_platform(navigator.userAgent);
-
-
-
-
-	if (platform=="android") {
-
-		inform_user('Запрос обрабатывается. Подождите несколько секунд...');
-
-		redirect_user(redirect_android);
-
-	}
-
-
-
-	else if (platform=="iPhone") {
-
-		inform_user('Запрос обрабатывается. Подождите несколько секунд...');
-
-		redirect_user (redirect_iphone);
-
-	}
-
-
-
-	else {
-
-		inform_user('Запрос обрабатывается. Подождите несколько секунд...');
-
-		redirect_user(redirect_unknown);
-
-	}
-
-
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-21169438-11');
+var productNameGTM = document.location.hostname.replace(/https:\/\/|http:\/\/|www./, '')+document.location.pathname.split('/').join('.').split('?')[0].split('#')[0];
+gtag('event', 'event', {
+'event_category': productNameGTM,
+'event_action': 'show_details',
+'event_label': af_media_source,
+});
 
 </script>
-
-
-
-	<style>
-
-	 body {font-size: 20px; font-family: Arial;}
-
-	</style>
-
-
-
-
-
+<style>
+body {font-size: 20px; font-family: Arial;}
+</style>
 </body>
-
 </html>
