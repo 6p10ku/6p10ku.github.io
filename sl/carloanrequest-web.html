@@ -252,6 +252,15 @@ const redirectWebLink = [
     )
 ].join('')
 
+const platform = CheckPlatform(navigator.userAgent)
+if (platform === 'android') {
+    RedirectUser(redirectAndroidLink)
+} else if (platform === 'iPhone') {
+    RedirectUser(redirectIosLink)
+} else {
+    RedirectUser(redirectWebLink)
+}
+
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
@@ -262,6 +271,7 @@ gtag('event', 'event', {
 'event_action': 'show_details',
 'event_label': af_media_source,
 });
+    
 </script>
 <style>
 body {font-size: 20px; font-family: Arial;}
