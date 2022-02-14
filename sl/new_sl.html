@@ -72,8 +72,18 @@
         <!-- End Google Tag Manager -->
 
     
-            <div id="div"></div>
+           
 
+        <span>
+            <div id="div"></div>   
+        </span>  
+        <span>
+            <div id="div1"></div>   
+        </span> 
+         <span>
+            <div id="div2"></div>   
+        </span>
+          
 
         <script>
             // v 1.09
@@ -285,9 +295,9 @@
                 }))
             }
 
-                   // НАЧАЛО Исключение для теста кнопки IOS
+            // НАЧАЛО Исключение для теста кнопки IOS
 
-                   const iosParams1 = {
+            const iosParams1 = {
                 ...appsFlyerParams,
                 //af_force_deeplink: 'true',
                 af_dp: appsFlyerDeepLinkIOS + encodeURIComponent('?' + MakeSearchStr({
@@ -322,6 +332,17 @@
                 MakeSearchStr(iosParams)
             ].join('')
 
+                               
+            // НАЧАЛО Исключение для теста кнопки IOS
+
+            const redirectIosLink1 = [
+                'https://sberbankonline.onelink.me/46WQ',
+                '?',
+                MakeSearchStr(iosParams1)
+            ].join('')
+
+            // ОКОНЧАНИЕ сключение для теста кнопки IOS
+
             // нужно проработать сепаратор
             const redirectWebLink = [
                 deepLinkWeb,
@@ -336,7 +357,7 @@
                 )
             ].join('')
 
-// Окончание части для теста в консоли
+        // Окончание части для теста в консоли
 
 
              const platform = CheckPlatform(navigator.userAgent)
@@ -349,14 +370,28 @@
 
         // НАЧАЛО Исключение для теста кнопки IOS
 
-                RedirectUser1(redirectIosLink) 
                 var mydiv = document.getElementById("div");
                     var aTag = document.createElement('a');
                             aTag.setAttribute('href',redirectIosLink1);
-                            aTag.textContent= "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+                            aTag.textContent= "ЭТО ТАКАЯ КНОПКА:))";
                             mydiv.appendChild(aTag);
 
-                        // ОКОНЧАНИЕ сключение для теста кнопки IOS                  
+                    var mydiv1 = document.getElementById("div");
+                    var aTag1 = document.createElement('a');
+                            aTag1.setAttribute('href',redirectIosLink1);
+                            aTag1.textContent= "эта кнопка без af_force_deeplink=true";
+                            mydiv.appendChild(aTag1);
+
+                    var mydiv2 = document.getElementById("div");
+                    var aTag2 = document.createElement('a');
+                            aTag2.setAttribute('href',redirectIosLink1);
+                            aTag2.textContent= "а через 5 сек сработает обычный редирект";
+                            mydiv2.appendChild(aTag2);
+
+         // ОКОНЧАНИЕ сключение для теста кнопки IOS
+
+
+            RedirectUser1(redirectIosLink)                        
 
             } else {
                 RedirectUser(redirectWebLink)
