@@ -161,7 +161,7 @@
             function RedirectUser1(address) {
                 setTimeout(() => {
                     window.location.href = address
-                }, 3100)
+                }, 5100)
                 return true
             }
 
@@ -373,8 +373,11 @@
                 var mydiv = document.getElementById("div");
                     var aTag = document.createElement('a');
                             aTag.setAttribute('href',redirectIosLink1);
-                            aTag.textContent= "ЭТО ТАКАЯ КНОПКА:)) -- без af_force_deeplink=true для ios";
+                            aTag.textContent= "ЭТО ТАКАЯ КНОПКА:)) без af_force_deeplink=true для IOS";
+                            aTag.style.cssText = "font-size:55px;";
                             mydiv.appendChild(aTag);
+
+                            
 
          // ОКОНЧАНИЕ исключение для теста кнопки IOS
 
