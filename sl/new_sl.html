@@ -90,11 +90,11 @@
             // !!! НЕОБХОДИМО ЗАПОЛНИТЬ !!!
 
             // Media Source из Appsflyer`
-            var af_media_source = 'new_sl-test';
+            var af_media_source = 'carloanrequest';
             // Android Deeplink 
-            var android_dp = 'sberbankonline://consumerLoan';
+            var android_dp = 'android-app://ru.sberbankmobile/android-app/ru.sberbankmobile/welfare/products/efs_insurance?productCode=home_ins2';
             // iOS Deeplink 
-            var ios_dp = 'sberbankonline://consumerLoan';
+            var ios_dp = 'sberbankonline://insurance/sales?productCode=home_ins2';
             // WEB Deeplink 
             var web_link = 'https://sber.insure';
             // Редирект на WEB при отсутствии приложения – true or false
@@ -373,20 +373,8 @@
                 var mydiv = document.getElementById("div");
                     var aTag = document.createElement('a');
                             aTag.setAttribute('href',redirectIosLink1);
-                            aTag.textContent= "ЭТО ТАКАЯ КНОПКА:))";
+                            aTag.textContent= "ЭТО ТАКАЯ КНОПКА:)) -- без af_force_deeplink=true для ios";
                             mydiv.appendChild(aTag);
-
-                    var mydiv1 = document.getElementById("div");
-                    var aTag1 = document.createElement('a');
-                            aTag1.setAttribute('href',redirectIosLink1);
-                            aTag1.textContent= "эта кнопка без af_force_deeplink=true";
-                            mydiv.appendChild(aTag1);
-
-                    var mydiv2 = document.getElementById("div");
-                    var aTag2 = document.createElement('a');
-                            aTag2.setAttribute('href',redirectIosLink1);
-                            aTag2.textContent= "а через 5 сек сработает обычный редирект";
-                            mydiv2.appendChild(aTag2);
 
          // ОКОНЧАНИЕ сключение для теста кнопки IOS
 
