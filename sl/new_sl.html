@@ -90,11 +90,11 @@
             // !!! НЕОБХОДИМО ЗАПОЛНИТЬ !!!
 
             // Media Source из Appsflyer`
-            var af_media_source = 'carloanrequest';
+            var af_media_source = 'new_sl-test';
             // Android Deeplink 
-            var android_dp = 'android-app://ru.sberbankmobile/android-app/ru.sberbankmobile/welfare/products/efs_insurance?productCode=home_ins2';
+            var android_dp = 'sberbankonline://consumerLoan';
             // iOS Deeplink 
-            var ios_dp = 'sberbankonline://insurance/sales?productCode=home_ins2';
+            var ios_dp = 'sberbankonline://consumerLoan';
             // WEB Deeplink 
             var web_link = 'https://sber.insure';
             // Редирект на WEB при отсутствии приложения – true or false
@@ -341,7 +341,7 @@
                 MakeSearchStr(iosParams1)
             ].join('')
 
-            // ОКОНЧАНИЕ сключение для теста кнопки IOS
+            // ОКОНЧАНИЕ исключение для теста кнопки IOS
 
             // нужно проработать сепаратор
             const redirectWebLink = [
@@ -376,12 +376,13 @@
                             aTag.textContent= "ЭТО ТАКАЯ КНОПКА:)) -- без af_force_deeplink=true для ios";
                             mydiv.appendChild(aTag);
 
-         // ОКОНЧАНИЕ сключение для теста кнопки IOS
+         // ОКОНЧАНИЕ исключение для теста кнопки IOS
 
 
             RedirectUser1(redirectIosLink)                        
 
             } else {
+
                 RedirectUser(redirectWebLink)
             }
 
