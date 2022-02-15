@@ -81,6 +81,7 @@
           
 
         <script>
+
             // v 1.09
             // !!! НЕОБХОДИМО ЗАПОЛНИТЬ !!!
 
@@ -370,8 +371,34 @@
                             aTag.setAttribute('href',redirectIosLink1);
                             aTag.textContent= "ЭТО ТАКАЯ КНОПКА:)) без af_force_deeplink=true для IOS";
                             aTag.style.cssText = "font-size:55px;";
+                    //var myP = document.createElement('p');  
                             mydiv.appendChild(aTag);
 
+
+
+timedInfo(); 
+function timedInfo() {
+  setTimeout(one, 1000) 
+  setTimeout(two, 3000) 
+  setTimeout(three, 5000) 
+  setTimeout(four, 5000) 
+  setTimeout(five, 5000) 
+}
+function one() {
+  document.getElementById("timer").innerHTML = "1";
+}
+function two() {
+  document.getElementById("timer").innerHTML = "2";
+}
+function three() {
+  document.getElementById("timer").innerHTML = "3";
+}
+function four() {
+  document.getElementById("timer").innerHTML = "4";
+}
+function five() {
+  document.getElementById("timer").innerHTML = "5";
+}
                             
 
          // ОКОНЧАНИЕ исключение для теста кнопки IOS
@@ -380,8 +407,8 @@
             RedirectUser1(redirectIosLink)                        
 
             } else {
-console.log('1')
-              //  RedirectUser(redirectWebLink)
+
+                RedirectUser(redirectWebLink)
             }
 
 
