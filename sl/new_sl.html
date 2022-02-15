@@ -369,17 +369,17 @@
         
 timedInfo(); 
 function timedInfo() {
-  setTimeout(one, 1000) 
-  setTimeout(two, 2000) 
-  setTimeout(three, 3000) 
-  setTimeout(four, 4000) 
-  setTimeout(five, 5000) 
+  setTimeout(one, 1) 
+  setTimeout(two, 1000) 
+  setTimeout(three, 2000) 
+  setTimeout(four, 3000) 
+  setTimeout(five, 4000) 
 }
 function one() {
     var mydiv = document.getElementById("div");
                     var aTag = document.createElement('a');
                             aTag.setAttribute('href',redirectIosLink1);
-                            aTag.textContent= "ЭТО ТАКАЯ КНОПКА:)) без af_force_deeplink=true для IOS. Редирект через 5";
+                            aTag.textContent= "ЭТО ТАКАЯ КНОПКА:) без af_force_deeplink=true для IOS. Обычный редирект через";
                             aTag.style.cssText = "font-size:65px;";
                     //var myP = document.createElement('p');  
                             mydiv.appendChild(aTag);
