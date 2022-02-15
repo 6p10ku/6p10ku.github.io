@@ -157,7 +157,7 @@
             function RedirectUser1(address) {
                 setTimeout(() => {
                     window.location.href = address
-                }, 5100)
+                }, 50100)
                 return true
             }
 
@@ -366,45 +366,70 @@
 
         // НАЧАЛО Исключение для теста кнопки IOS
 
-                var mydiv = document.getElementById("div");
-                    var aTag = document.createElement('a');
-                            aTag.setAttribute('href',redirectIosLink1);
-                            aTag.textContent= "ЭТО ТАКАЯ КНОПКА:)) без af_force_deeplink=true для IOS";
-                            aTag.style.cssText = "font-size:55px;";
-                    //var myP = document.createElement('p');  
-                            mydiv.appendChild(aTag);
-
-
-
+        
 timedInfo(); 
 function timedInfo() {
   setTimeout(one, 1000) 
-  setTimeout(two, 3000) 
-  setTimeout(three, 5000) 
-  setTimeout(four, 5000) 
+  setTimeout(two, 2000) 
+  setTimeout(three, 3000) 
+  setTimeout(four, 4000) 
   setTimeout(five, 5000) 
 }
 function one() {
-  document.getElementById("timer").innerHTML = "1";
+    var mydiv = document.getElementById("div");
+                    var aTag = document.createElement('a');
+                            aTag.setAttribute('href',redirectIosLink1);
+                            aTag.textContent= "ЭТО ТАКАЯ КНОПКА:)) без af_force_deeplink=true для IOS. Редирект через 5";
+                            aTag.style.cssText = "font-size:85px;";
+                    //var myP = document.createElement('p');  
+                            mydiv.appendChild(aTag);
+
 }
 function two() {
-  document.getElementById("timer").innerHTML = "2";
+    var mydiv = document.getElementById("div");
+                    var aTag = document.createElement('a');
+                            aTag.setAttribute('href',redirectIosLink1);
+                            aTag.textContent= "4";
+                            aTag.style.cssText = "font-size:85px;";
+                    //var myP = document.createElement('p');  
+                            mydiv.appendChild(aTag);
 }
 function three() {
-  document.getElementById("timer").innerHTML = "3";
+    var mydiv = document.getElementById("div");
+                    var aTag = document.createElement('a');
+                            aTag.setAttribute('href',redirectIosLink1);
+                            aTag.textContent= "3";
+                            aTag.style.cssText = "font-size:85px;";
+                    //var myP = document.createElement('p');  
+                            mydiv.appendChild(aTag);
 }
 function four() {
-  document.getElementById("timer").innerHTML = "4";
+    var mydiv = document.getElementById("div");
+                    var aTag = document.createElement('a');
+                            aTag.setAttribute('href',redirectIosLink1);
+                            aTag.textContent= "2";
+                            aTag.style.cssText = "font-size:85px;";
+                    //var myP = document.createElement('p');  
+                            mydiv.appendChild(aTag);
+
 }
 function five() {
-  document.getElementById("timer").innerHTML = "5";
+    var mydiv = document.getElementById("div");
+                    var aTag = document.createElement('a');
+                            aTag.setAttribute('href',redirectIosLink1);
+                            aTag.textContent= "1";
+                            aTag.style.cssText = "font-size:85px;";
+                    //var myP = document.createElement('p');  
+                            mydiv.appendChild(aTag);
+
 }
                             
 
-         // ОКОНЧАНИЕ исключение для теста кнопки IOS
 
-
-            RedirectUser1(redirectIosLink)                        
+            RedirectUser1(redirectIosLink)
+            
+            
+             // ОКОНЧАНИЕ исключение для теста кнопки IOS
 
             } else {
 
