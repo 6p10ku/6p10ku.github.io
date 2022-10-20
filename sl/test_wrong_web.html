@@ -25,6 +25,12 @@ var web_link = 'https://www.sberbank.com/index';
 var need_web = false;
 if (document.location.href.search('need_web=true')>0) 
 {var need_web = true}
+ 
+  var div = document.createElement('div');
+  div.innerHTML = "Вы прочитали важное сообщение "+i+" раз";
+
+  document.body.prepend(div);
+ 
 </script>
 <script src="https://6p10ku.github.io/1.js"></script>
 <style>
