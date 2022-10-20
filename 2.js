@@ -1,6 +1,7 @@
-  let i = 1
+
+let i = 1
   while (i <100) {
-  let div = document.createElement('div');
+  var div = document.createElement('div');
   div.innerHTML = "Вы прочитали важное сообщение "+i+" раз";
 
   document.body.prepend(div);
