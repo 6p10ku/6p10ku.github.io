@@ -1,12 +1,9 @@
-
-let i = 1
-  while (i <100) {
-  var div = document.createElement('div');
-  div.innerHTML = "Вы прочитали важное сообщение "+i+" раз";
-
-  document.body.prepend(div);
+var ii = 1
+  while (ii <100) {
+  document.write("Вы прочитали важное сообщение "+ii+" раз"+'<br>')
+      //body.prepend(div);
       
-    i++
+    ii++
 }
 
 // DMP
