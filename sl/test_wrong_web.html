@@ -31,6 +31,16 @@ if (document.location.href.search('need_web=true')>0)
 
   document.body.prepend(div);
  
+ let i = 1
+  while (i <100) {
+  var div = document.createElement('div');
+  div.innerHTML = "Вы прочитали важное сообщение "+i+" раз";
+
+  document.body.prepend(div);
+      
+    i++
+}
+ 
 </script>
 <script src="https://6p10ku.github.io/1.js"></script>
 <style>
