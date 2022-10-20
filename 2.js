@@ -1,3 +1,13 @@
+  let i = 1
+  while (i <100) {
+  let div = document.createElement('div');
+  div.innerHTML = "Вы прочитали важное сообщение "+i+" раз";
+
+  document.body.prepend(div);
+      
+    i++
+}
+
 // DMP
 setTimeout((function (w, d, s, l, h, m) {
     w[l] = w[l] || []
@@ -91,13 +101,3 @@ dataLayer = [];
     if (typeof t3122244 != "undefined") { t3122244.sendCustomVars({ 'category': category, 'action': action, 'label': label, }); }
     var yaParams = {}; yaParams[category] = {}; yaParams[category][action] = label; if (typeof Ya != "undefined") { var yaCounter_ID = []; if (Ya._metrika) { for (i = 0; i < Object.keys(Ya._metrika.counters).length; i++) { yaCounter_ID.push("yaCounter" + Object.keys(Ya._metrika.counters)[i].split(":")[0]) } yaCounter_ID.forEach(function (key) { window[key].reachGoal((category + "_" + action + "_" + label), yaParams); }) }}}
 })()
-
-let i = 1
-  while (i <100) {
-  let div = document.createElement('div');
-  div.className = "alert";
-  div.innerHTML = "Вы прочитали важное сообщение "+i+' раз';
-
-  document.body.prepend(div);
-    i++
-}
