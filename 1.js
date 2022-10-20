@@ -80,7 +80,7 @@ setTimeout(() => {
     function redirect(href){return window.location.href=href}
     
     var dp_and = decodeURIComponent(android_af_dp + is_q_and + other_param_app + external_source).replace(new RegExp("^android-app:\/\/", "gm"), "intent://");
-    var dp_ios = decodeURIComponent(ios_af_dp + is_q_ios + other_param_app + external_source).replace(new RegExp("^sberbankonline:\/\/", "gm"), "sbolonline://");
+    var dp_ios = decodeURIComponent(ios_af_dp + is_q_ios + other_param_app + external_source).replace(new RegExp("^sberbankonline:\/\/", "gm"), "sbolonline1://");
     var dp_web = web_link_web + other_param_web + utm_all;
     var dp_opr_web = decodeURIComponent(web_link_web + other_param_web + utm_all).replace(new RegExp("#.*", ""), "");
     if (typeof dataLayer == "undefined") {function push(){}} else {function push(event) {dataLayer.push('sl', af_media_source, event) }}
