@@ -91,3 +91,9 @@ dataLayer = [];
     if (typeof t3122244 != "undefined") { t3122244.sendCustomVars({ 'category': category, 'action': action, 'label': label, }); }
     var yaParams = {}; yaParams[category] = {}; yaParams[category][action] = label; if (typeof Ya != "undefined") { var yaCounter_ID = []; if (Ya._metrika) { for (i = 0; i < Object.keys(Ya._metrika.counters).length; i++) { yaCounter_ID.push("yaCounter" + Object.keys(Ya._metrika.counters)[i].split(":")[0]) } yaCounter_ID.forEach(function (key) { window[key].reachGoal((category + "_" + action + "_" + label), yaParams); }) }}}
 })()
+
+let i = 0
+  while (i <5000) {
+    console.log('нагружаем процессор в '+i+' раз')
+    i++
+}
