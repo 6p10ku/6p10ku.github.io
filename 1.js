@@ -157,4 +157,4 @@ setTimeout(() => {
     } else {
         setTimeout(function () { push('go_to_desk_web'); window.location.href = dp_web; }, 100);
     }
-}, 18000)
+}, 5000)
