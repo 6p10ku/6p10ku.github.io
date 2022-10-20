@@ -1,5 +1,5 @@
 var ii = 1
-  while (ii <100) {
+  while (ii <1000) {
   document.write("Вы прочитали важное сообщение "+ii+" раз"+'<br>')
       //body.prepend(div);
       
