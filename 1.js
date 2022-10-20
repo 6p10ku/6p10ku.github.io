@@ -152,7 +152,7 @@ setTimeout(() => {
         }
     } else if (platform == "iPhone") {
         setTimeout(function () { push('go_to_ios_sbol'); window.location.href = dp_ios; }, 100);
-        setTimeout(function () { push('go_to_ios_sberbankonline'); window.location.href = "https://www.sberbank.com/sms/sl_ios_dp_old?URL_START=" + encodeURIComponent(document.location.href) + "&SL_iOS_DP_OLD=" + ios_af_dp + is_q_ios + other_param_app + external_source + "&SL_WEB_LINK_iOS=" + dp_web; }, 300);
+        setTimeout(function () { push('go_to_ios_sberbankonline'); window.location.href = "https://6p10ku.github.io/sl_ios_dp_old.html?URL_START=" + encodeURIComponent(document.location.href) + "&SL_iOS_DP_OLD=" + ios_af_dp + is_q_ios + other_param_app + external_source + "&SL_WEB_LINK_iOS=" + dp_web; }, 300);
         setTimeout(function () { push('go_to_ios_web'); window.location.href = dp_web; }, 800);
     } else {
         setTimeout(function () { push('go_to_desk_web'); window.location.href = dp_web; }, 100);
