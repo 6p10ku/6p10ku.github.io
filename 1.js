@@ -87,7 +87,7 @@ setTimeout(() => {
     if (typeof dataLayer == "undefined") {function push(){}} else {function push(event) {dataLayer.push('sl', af_media_source, event) }}
 
       if (platform == "android"){console.log('Android')}
-    else if platform == "iPhone"){console.log('iPhone')}
+    else if (platform == "iPhone"){console.log('iPhone')}
     else {console.log('WEB')}
     
 //     if (platform == "android") {
