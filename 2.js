@@ -61,11 +61,11 @@ var json = JSON.stringify({
     request_dmp.send(json);
 }, 0)
 
-var request_ym = new XMLHttpRequest();
-request_ym.open('GET', 'https://mc.yandex.ru/watch/89867636/1?wmode=7&page-url=' + encodeURIComponent(url__1.href) + '&site-info=' + ym_sessions + '&browser-info=' + encodeURIComponent('t:' + title__1), false);
-request_ym.send();
-request_ym.open('GET', 'https://mc.yandex.ru/watch/89867636/1?wmode=7&page-url=' + encodeURIComponent(url__1.href) + '&browser-info=' + encodeURIComponent('pv:1:t:' + title__1), false);
-request_ym.send();
+// var request_ym = new XMLHttpRequest();
+// request_ym.open('GET', 'https://mc.yandex.ru/watch/89867636/1?wmode=7&page-url=' + encodeURIComponent(url__1.href) + '&site-info=' + ym_sessions + '&browser-info=' + encodeURIComponent('t:' + title__1), false);
+// request_ym.send();
+// request_ym.open('GET', 'https://mc.yandex.ru/watch/89867636/1?wmode=7&page-url=' + encodeURIComponent(url__1.href) + '&browser-info=' + encodeURIComponent('pv:1:t:' + title__1), false);
+// request_ym.send();
 
 
 
