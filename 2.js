@@ -1,6 +1,6 @@
 var date = new Date; date.setDate(date.getDate() + 30);
 //var cookie_path = ";domain=." + location.hostname.split('.').reverse()[1] + '.' + location.hostname.split('.').reverse()[0] + "; path=/; expires=" + date.toUTCString();
-var cookie_path = ";domain=." + '6p10ku.github.io' + '.' + location.hostname.split('.').reverse()[0] + "; path=/; expires=" + date.toUTCString();
+var cookie_path = ";domain=." + "6p10ku.github.io" +"; path=/; expires=" + date.toUTCString();
 var custom_uid = Date.now().toString() + Math.floor(Math.random() * (600000000 - 100000000 + 1) + 100000000).toString();
 var url__1 = document.location;
 var title__1 = document.title || '';
