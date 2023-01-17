@@ -44,30 +44,30 @@ var category__1 = channelName + categoryName + productName;
 // [10006, agent__1],[10067, title__1], [10069, description__1], [10070, referrer__1], [10071, url__1.href]]
 // });
 
-// request DMP
-setTimeout(function () {
-var request_dmp = new XMLHttpRequest();
-//request_dmp.open('POST', 'http://dmp.sbermarketing.ru/?dmpkit_cid=9064fc6c-76fe-4a6d-aea6-92ef3f343257&dmpkit_tgt=2js&dmpkit_ctid=f940199e-3e2e-4fac-a636-01f1f5bf88e9', true);
-request_dmp.open('POST', 'https://dmp.sbermarketing.ru/?dmpkit_cid=9064fc6c-76fe-4a6d-aea6-92ef3f343257&dmpkit_tgt=2js&dmpkit_ctid=f940199e-3e2e-4fac-a636-01f1f5bf88e9&dmpkit_evn=sber_event&dmpkit_p=tm', true);
+// request
 
 var _ga__1 = getCookie("_ga"), _sv__1 = getCookie("_sv"), top100_id__1 = getCookie("top100_id"), ___dmpkit_____1 = getCookie("___dmpkit___"), _ym_uid__1 = getCookie("_ym_uid"), adriver_uid__1 = getCookie("adriver_uid");
 
-var json = JSON.stringify({
-    "uids": [[10008, 10033, _ga__1], [10008, 10031, ___dmpkit_____1], [10008, 10037, top100_id__1], [10008, 10041, _sv__1],  [10008, 10055, adriver_uid__1], [10008, 10060, _ym_uid__1]], 
-    "eventAttrs": [[301, category__1], [302, "pageview"], [303, "pageview"],
-    [10006, agent__1],
-    [10059, getCookie('utm_source')], [10060, getCookie('utm_medium')], [10061, getCookie('utm_campaign')], [10062, getCookie('utm_content')], [10063, getCookie('utm_term')],
-    [10067, title__1], [10069, description__1], [10070, referrer__1], [10071, url__1.href]]
-    });
-    request_dmp.send(json);
-}, 0)
+dataLayer2 = [];
+dataLayer2.push = function (category__1, action__1, label__1) {
 
-// var request_ym = new XMLHttpRequest();
-// request_ym.open('GET', 'https://mc.yandex.ru/watch/89867636/1?wmode=7&page-url=' + encodeURIComponent(url__1.href) + '&site-info=' + ym_sessions + '&browser-info=' + encodeURIComponent('t:' + title__1), false);
-// request_ym.send();
-// request_ym.open('GET', 'https://mc.yandex.ru/watch/89867636/1?wmode=7&page-url=' + encodeURIComponent(url__1.href) + '&browser-info=' + encodeURIComponent('pv:1:t:' + title__1), false);
-// request_ym.send();
+    //setTimeout(function DL (category__1,b,c) {
+        var request = new XMLHttpRequest();
+        request.open('POST', 'http://dmp.sbermarketing.ru/?dmpkit_cid=9064fc6c-76fe-4a6d-aea6-92ef3f343257&dmpkit_tgt=2js&dmpkit_ctid=f940199e-3e2e-4fac-a636-01f1f5bf88e9', true);
+        //request.open('POST', 'https://dmp.sbermarketing.ru/?dmpkit_cid=9064fc6c-76fe-4a6d-aea6-92ef3f343257&dmpkit_tgt=2js&dmpkit_ctid=f940199e-3e2e-4fac-a636-01f1f5bf88e9&dmpkit_evn=sber_event&dmpkit_p=tm', true);
+        
+        
+        
+        var json = JSON.stringify({
+            "uids": [[10008, 10033, _ga__1], [10008, 10031, ___dmpkit_____1], [10008, 10037, top100_id__1], [10008, 10041, _sv__1],  [10008, 10055, adriver_uid__1], [10008, 10060, _ym_uid__1]], 
+            "eventAttrs": [[301, category__1], [302, action__1], [303, label__1],
+            [10006, agent__1],
+            [10059, getCookie('utm_source')], [10060, getCookie('utm_medium')], [10061, getCookie('utm_campaign')], [10062, getCookie('utm_content')], [10063, getCookie('utm_term')],
+            [10067, title__1], [10069, description__1], [10070, referrer__1], [10071, url__1.href]]
+            });
+            request.send(json);
+     // }, 0)
 
+}
 
-
-
+setTimeout(function(){dataLayer2.push(category__1,'pageview','pageview')},100)
