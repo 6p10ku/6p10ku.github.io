@@ -1,3 +1,5 @@
+
+
 // проверка старых переменных, создание новых
 // необходимо для поддержки старого шаблона
 if (typeof(web_link) != "undefined") {var web_link_and = web_link, web_link_ios = web_link, web_link_desk = web_link}//, store_link_and = web_link, store_link_ios = web_link;}
@@ -33,8 +35,11 @@ var utm_name = ['utm_source=', 'utm_medium=', 'utm_campaign=', 'utm_content=', '
 
 setTimeout(() => {
 
-    if (typeof dataLayer == "undefined") {function push(){}} else {function push(event) {dataLayer.push('sl_3', sl_name, event) }}
-    
+    if (typeof dataLayer == "undefined") {function push(){}} else {function push(action__1,label__1) {
+        dataLayer.push(category__1, action__1, label__1);
+        setTimeout(() => {window.location.href = label__1},0)
+    }}
+
 // Куки в переменную через таймер
 var utm_cookie_arr = [getCookie('utm_source'), getCookie('utm_medium'), getCookie('utm_campaign'), getCookie('utm_content'), getCookie('utm_term')];
 
@@ -92,6 +97,7 @@ function get_final_app(dp) {
     }
     return app_final
 }
+var link_for_pad = document.location.origin + '/x/redirect_pad.html?URL_START=' +  (document.location.href) + '&SL_iOS_DP_OLD=' + encodeURIComponent(ios_apps_dp[1] + param_for_pad) + '&SL_WEB_LINK_iOS=' + encodeURIComponent(web_data)
 
 
 
@@ -117,18 +123,18 @@ var browser = getBrowser();
     setTimeout(function() {
         setTimeout(function() {
             setTimeout(function() {
-                push('go_to_ios_web'); window.location.href = get_final_web(web_link_ios);
+                push('ios_go_to_web', get_final_web(web_link_ios));
             }, 800);
-                    push('go_to_ios_sberbankonline'); window.location.href = document.location.origin + '/sms/sl_intent/redirect_pad.html?URL_START=' +  (document.location.href) + '&SL_iOS_DP_OLD=' + encodeURIComponent(ios_apps_dp[1] + param_for_pad) + '&SL_WEB_LINK_iOS=' + encodeURIComponent(web_data);
+                    push('ios_go_to_'+ios_apps_dp[1].split('://')[0], link_for_pad ); 
               }, 400);
-                        push('go_to_ios_sbol'); window.location.href = ios_apps_dp[0] + param_for_pad;
+                        push('ios_go_to_'+ios_apps_dp[0].split('://')[0], ios_apps_dp[0] + param_for_pad);
                  }, 100);
 } else {
     // Desktop
     setTimeout(function () {
-        push('go_to_desk_web'); window.location.href = get_final_web(web_link_desk); 
+        push('web', get_final_web(web_link_desk));
     }, 100);
 }
 
-}, 300)
+}, 500)
 
