@@ -1,39 +1,41 @@
+
 <!doctype html>
-<html lang="en">
+<html lang='en'>
 <head>
-<meta charset="UTF-8">
-<link rel="icon" href="/sms/img/favicon2.ico" type="image/x-icon">
-<title>Сбербанк Онлайн</title>
-<meta name="twitter:card" content="summary_large_image">
-<meta property="og:title" content="без палева">
-<meta property="og:type" content="article">
-<meta property="og:description" content="без палева">
-<meta property="og:image" content="https://8kwky1agm3.a.trbcdn.net/smartlinks/b2424b49e7926e52af939ec3da8323cb.jpg" />
-<meta name="twitter:image" content="https://8kwky1agm3.a.trbcdn.net/smartlinks/b2424b49e7926e52af939ec3da8323cb.jpg" />
-<meta property="og:image:width" content="100" />
-<style type="text/css">.smart_img p{margin: 0;position: absolute;top: 50%;left: 50%;margin-right: -50%;transform: translate(-50%, -50%)}p {display: block;align-items: center;text-align: center;}p img { width: 50%;}@media screen and (max-width: 1000px) {p img { width: 70%;}}</style>
+<meta charset='UTF-8'>
+<style type='text/css'>body {font-size: 20px; font-family: Arial;} .smart_img p{margin: 0;position: absolute;top: 50%;left: 50%;margin-right: -50%;transform: translate(-50%, -50%)}p {display: block;align-items: center;text-align: center;}p img { width: 50%;}@media screen and (max-width: 1000px) {p img { width: 70%;}}</style>
 </head>
-<body>
-<div class="smart_img"><p><br><img src="https://8kwky1agm3.a.trbcdn.net/smartlinks/b2424b49e7926e52af939ec3da8323cb.jpg"><br><br><br><br>Запрос обрабатывается. <br><br>Подождите несколько секунд...</p>
+<body>  
+<div class='smart_img'><p><br><img src='/sms/sl_intent/test.jpg'><br><br><br><br>Запрос обрабатывается. <br><br>Подождите несколько секунд...</p>
+<script id="1"></script>
+<script id="2"></script>
+
 <script>
+var sl_name = 'ppkiu';
+var android_dp = 'android-app://ru.sberbankmobile/android-app/ru.sberbankmobile/transfers/overseas'; // Проверка диплинков на UTM метки?
+var ios_dp = ''; // массив с диплинками?
+var web_link_desk = 'http://www.sberbank.ru/ru/person/remittance_foreign/foreign_banks/perevodi-v-kirgiziu-i-uzbekistan';
 
-var qq = 0
-document.addEventListener("visibilitychange", function() {
-    ++qq
-})
+var need_web = true;
 
-setTimeout(function(){window.location.href = "sbolonline://consumerLoan"},1000)
+var web_link_and = '';
+var web_link_ios = '';
+var store_link_and = '';
+var store_link_ios = '';
 
-setTimeout(function(){
+var android_app = ['ru.sberbankmobile'];
+var ios_apps_dp = ['sberbankonline://abroadtransfers/foreignbank','sbolonline://transfers/overseas'];
+//var ios_apps_dp = ['',''];
+var params_URL = ['cs'];
+var params_WEB = ['serviceId'];
+var params_APP = ['cs'];
 
-if (qq == 0) {
-    window.location.href = "https://6p10ku.github.io/super_new_sl_2.html"
-}
-},3000)
+var ext = true;
+var custom_params = false;
+
+document.getElementById('2').src = "/sms/sl_intent/2.js?" + Math.floor(Math.random() * 1000000);
+document.getElementById('1').src = "/sms/sl_intent/1.js?" + Math.floor(Math.random() * 1000000);
 
 </script>
-<style>
-body {font-size: 20px; font-family: Arial;}
-</style>
 </body>
 </html>
