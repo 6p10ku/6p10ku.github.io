@@ -1,28 +1,3 @@
-var sl_name = 'ppkiu';
-var android_dp = 'android-app://ru.sberbankmobile/android-app/ru.sberbankmobile/transfers/overseas'; // Проверка диплинков на UTM метки?
-var ios_dp = ''; // массив с диплинками?
-var web_link_desk = 'http://www.sberbank.ru/ru/person/remittance_foreign/foreign_banks/perevodi-v-kirgiziu-i-uzbekistan';
-
-var need_web = true;
-
-var web_link_and = '';
-var web_link_ios = '';
-var store_link_and = '';
-var store_link_ios = '';
-
-var android_app = ['ru.sberbankmobile'];
-var ios_apps_dp = ['sberbankonline://abroadtransfers/foreignbank','sbolonline://transfers/overseas'];
-//var ios_apps_dp = ['',''];
-var params_URL = ['cs'];
-var params_WEB = ['serviceId'];
-var params_APP = ['cs'];
-
-var ext = true;
-var custom_params = false;
-
-
-
-
 // проверка старых переменных, создание новых
 // необходимо для поддержки старого шаблона
 if (typeof(web_link) != "undefined") {var web_link_and = web_link, web_link_ios = web_link, web_link_desk = web_link}//, store_link_and = web_link, store_link_ios = web_link;}
@@ -48,6 +23,7 @@ if (document.location.href.search('need_web=false')>0) {var need_web = false};
 if (document.location.href.search('external_source=true')>0) {var ext = true};
 if (document.location.href.search('external_source=false')>0) {var ext = false};
 
+if (typeof dataLayer == "undefined") {function push(){}} else {function push(event) {dataLayer.push('sl_3', af_media_source, event) }}
 function getCookie(name) { var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));if (match) { return match[2].replace(/[^a-zA-Z0-9_=-]/g, '') } else { return '' }};
 function check_platform() { if (/android/gi.test(navigator.userAgent)) { return 'android'; } else if (/iphone|ipod/gi.test(navigator.userAgent)) { return 'iPhone'; } else {return 'unknown'; }};
 var platform = check_platform();
@@ -116,7 +92,7 @@ function get_final_app(dp) {
     return app_final
 }
 
-if (typeof dataLayer == "undefined") {function push(){}} else {function push(event) {dataLayer.push('sl_3', af_media_source, event) }}
+
 
 // маршрутизация
 if (platform == "android") {
