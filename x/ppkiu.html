@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<style type='text/css'>body {font-size: 20px; font-family: Arial;} .smart_img p{margin: 0;position: absolute;top: 50%;left: 50%;margin-right: -50%;transform: translate(-50%, -50%)}p {display: block;align-items: center;text-align: center;}p img { width: 50%;}@media screen and (max-width: 1000px) {p img { width: 70%;}}</style>
+</head>
+<body>  
+<div class='smart_img'><p><br><img src='/sms/sl_intent/test.jpg'><br><br><br><br>Запрос обрабатывается. <br><br>Подождите несколько секунд...</p>
+<script id="1"></script>
+<script id="2"></script>
+
+<script>
+var sl_name = 'ppkiu';
+var android_dp = 'android-app://ru.sberbankmobile/android-app/ru.sberbankmobile/transfers/overseas'; // Проверка диплинков на UTM метки?
+var ios_dp = ''; // массив с диплинками?
+var web_link_desk = 'http://www.sberbank.ru/ru/person/remittance_foreign/foreign_banks/perevodi-v-kirgiziu-i-uzbekistan';
+
+var need_web = true;
+
+var web_link_and = '';
+var web_link_ios = '';
+var store_link_and = '';
+var store_link_ios = '';
+
+var android_app = ['ru.sberbankmobile'];
+var ios_apps_dp = ['sberbankonline://abroadtransfers/foreignbank','sbolonline://transfers/overseas'];
+//var ios_apps_dp = ['',''];
+var params_URL = ['cs'];
+var params_WEB = ['serviceId'];
+var params_APP = ['cs'];
+
+var ext = true;
+var custom_params = false;
+
+document.getElementById('2').src = "smartlink_code/2.js?" + Math.floor(Math.random() * 1000000);
+document.getElementById('1').src = "smartlink_code/1.js?" + Math.floor(Math.random() * 1000000);
+
+</script>
+</body>
+</html>
