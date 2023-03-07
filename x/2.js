@@ -4,7 +4,7 @@ setTimeout((function (w, d, s, l, h, m) {
     w[l].push({ 'tm.start': new Date().getTime(), event: 'tm.js' })
     var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dmpkitdl' ? '&l=' + l : ''
     j.async = true
-    j.src = 'https://www.sberbank.com/portalserver/static/features/%5BBBHOST%5D/Gtm/tm.js'
+     j.src = 'https://dmp.sbermarketing.ru/tm.js?id=f940199e-3e2e-4fac-a636-01f1f5bf88e9'
 f.parentNode.insertBefore(j, f)})(window, document, 'script', 'dmpkitdl', 'f940199e-3e2e-4fac-a636-01f1f5bf88e9', 'dmp.sbermarketing.ru'),0)
 // YM
 setTimeout((function (d, w, c) {
