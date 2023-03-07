@@ -23,7 +23,6 @@ if (document.location.href.search('need_web=false')>0) {var need_web = false};
 if (document.location.href.search('external_source=true')>0) {var ext = true};
 if (document.location.href.search('external_source=false')>0) {var ext = false};
 
-if (typeof dataLayer == "undefined") {function push(){}} else {function push(event) {dataLayer.push('sl_3', sl_name, event) }}
 function getCookie(name) { var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));if (match) { return match[2].replace(/[^a-zA-Z0-9_=-]/g, '') } else { return '' }};
 function check_platform() { if (/android/gi.test(navigator.userAgent)) { return 'android'; } else if (/iphone|ipod/gi.test(navigator.userAgent)) { return 'iPhone'; } else {return 'unknown'; }};
 var platform = check_platform();
@@ -34,6 +33,8 @@ var utm_name = ['utm_source=', 'utm_medium=', 'utm_campaign=', 'utm_content=', '
 
 setTimeout(() => {
 
+    if (typeof dataLayer == "undefined") {function push(){}} else {function push(event) {dataLayer.push('sl_3', sl_name, event) }}
+    
 // Куки в переменную через таймер
 var utm_cookie_arr = [getCookie('utm_source'), getCookie('utm_medium'), getCookie('utm_campaign'), getCookie('utm_content'), getCookie('utm_term')];
 
