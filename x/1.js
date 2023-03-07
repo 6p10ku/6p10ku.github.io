@@ -33,12 +33,11 @@ var platform = check_platform();
 var host_href = new URL(location).hostname.match('[[a-z0-9-_]+.[a-z]+$')[0];
 var utm_name = ['utm_source=', 'utm_medium=', 'utm_campaign=', 'utm_content=', 'utm_term='];
 
-setTimeout(() => {
-
-    if (typeof dataLayer == "undefined") {function push(){}} else {function push(action__1,label__1) {
-        dataLayer.push(category__1, action__1, label__1);
+//setTimeout(() => {
+   function push(action__1,label__1) {
+        if (typeof dataLayer2 == "undefined") {dataLayerSL.push(category__1, action__1, label__1)};
         setTimeout(() => {window.location.href = label__1},0)
-    }}
+    }
 
 // Куки в переменную через таймер
 var utm_cookie_arr = [getCookie('utm_source'), getCookie('utm_medium'), getCookie('utm_campaign'), getCookie('utm_content'), getCookie('utm_term')];
@@ -97,6 +96,10 @@ function get_final_app(dp) {
     }
     return app_final
 }
+
+// часть финальных переменных для ios
+var web_data =  get_final_web(web_link_ios)
+var param_for_pad = get_final_app(ios_apps_dp[0]).split(ios_apps_dp[0])[1];
 var link_for_pad = document.location.origin + '/x/redirect_pad.html?URL_START=' +  (document.location.href) + '&SL_iOS_DP_OLD=' + encodeURIComponent(ios_apps_dp[1] + param_for_pad) + '&SL_WEB_LINK_iOS=' + encodeURIComponent(web_data)
 
 
@@ -119,22 +122,21 @@ var browser = getBrowser();
     }
 } else if (platform == "iPhone") {
     
-    var param_for_pad = get_final_app(ios_apps_dp[0]).split(ios_apps_dp[0])[1];
     setTimeout(function() {
         setTimeout(function() {
             setTimeout(function() {
                 push('ios_go_to_web', get_final_web(web_link_ios));
-            }, 800);
+            }, 1100);
                     push('ios_go_to_'+ios_apps_dp[1].split('://')[0], link_for_pad ); 
-              }, 400);
+              }, 800);
                         push('ios_go_to_'+ios_apps_dp[0].split('://')[0], ios_apps_dp[0] + param_for_pad);
-                 }, 100);
+                 }, 600);
 } else {
     // Desktop
     setTimeout(function () {
         push('web', get_final_web(web_link_desk));
-    }, 100);
+    }, 600);
 }
 
-}, 500)
+//}, 500)
 
