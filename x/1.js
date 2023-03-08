@@ -174,14 +174,14 @@ if (platform == "android") {
                         dataLayerSL.push(category__1, afi2,'');
                         window.location.href = document.location.origin + '/x/redirect_pad.html?URL_START=' +  (document.location.href) + '&SL_iOS_DP_OLD=' + encodeURIComponent(ios_apps_dp[1] + param_for_pad) + '&SL_WEB_LINK_iOS=' + encodeURIComponent(web_data)
                   }, 600);
-                        dataLayerSL.push(category__1, afi,'');
+                        dataLayerSL.push(category__1, afi1,'');
                         window.location.href = ios_apps_dp[0] + get_final_app(ios_apps_dp[0]).split(ios_apps_dp[0])[1];
                      }, 300);
     } else {
         // Desktop
         setTimeout(function () {
             dataLayerSL.push(category__1,'web','');
-            window.location.href = get_final_web(web_link_desk);
+            //window.location.href = get_final_web(web_link_desk);
         }, 100);
     }
 
@@ -232,12 +232,3 @@ dataLayerSL.push = function (category__1, action__1, label__1) {
     
     }, 300)
     
-
-    // EVENT
-
-    //channelName + categoryName + productName
-// if (document.location.hostname == 'www.sberbank.ru' || 'sberbank.ru') { var channelName = 'SITE_' } else { var channelName = '' }
-// if (document.location.href.search('legal|s_m_business|onlinecredit|start|corporateclients|mybestfriend|svoedelo') > 0) { var categoryName = 'categoryName' } else if (document.location.href.search('person|common/img/uploaded|sberbank.ru/promo') > 0) { var categoryName = 'Person_' } else if (document.location.href.search('legal|s_m_business|person|start|common/img/uploaded|onlinecredit|corporateclients|mybestfriend|svoedelo|sberbank.ru/promo') < 0) { var categoryName = 'Other_' } else { var categoryName = 'Other_' }
-// if (document.location.host == "www.sberbank.ru") { var productName = document.location.pathname.split('/').join('.').replace(/.ru.person.|.ru.s_m_business.|.ru.legal.|.common.img.uploaded.redirected.|.common.img.uploaded./, '').split('?')[0].split('#')[0] } else { var productName =  document.location.hostname.replace(/https:\/\/|http:\/\/|www./, '') + document.location.pathname.split('/').join('.').split('?')[0].split('#')[0] }
-// var category__1 = channelName + categoryName + productName;
-
