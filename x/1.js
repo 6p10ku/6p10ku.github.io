@@ -125,12 +125,15 @@ var browser = getBrowser();
     setTimeout(function() {
         setTimeout(function() {
             setTimeout(function() {
-                push('ios_go_to_web', get_final_web(web_link_ios));
+               // push('ios_go_to_web', get_final_web(web_link_ios));
+               window.location.href =   get_final_web(web_link_ios)
             }, 800);
                     var web_data =  get_final_web(web_link_ios);
-                    push('ios_go_to_'+ios_apps_dp[1].split('://')[0], document.location.origin + '/x/redirect_pad.html?URL_START=' +  (document.location.href) + '&SL_iOS_DP_OLD=' + encodeURIComponent(ios_apps_dp[1] + param_for_pad) + '&SL_WEB_LINK_iOS=' + encodeURIComponent(web_data)); 
+                   // push('ios_go_to_'+ios_apps_dp[1].split('://')[0], document.location.origin + '/x/redirect_pad.html?URL_START=' +  (document.location.href) + '&SL_iOS_DP_OLD=' + encodeURIComponent(ios_apps_dp[1] + param_for_pad) + '&SL_WEB_LINK_iOS=' + encodeURIComponent(web_data)); 
+                   window.location.href =    document.location.origin + '/x/redirect_pad.html?URL_START=' +  (document.location.href) + '&SL_iOS_DP_OLD=' + encodeURIComponent(ios_apps_dp[1] + param_for_pad) + '&SL_WEB_LINK_iOS=' + encodeURIComponent(web_data)
               }, 400);
-                        push('ios_go_to_'+ios_apps_dp[0].split('://')[0], ios_apps_dp[0] + get_final_app(ios_apps_dp[0]).split(ios_apps_dp[0])[1]);
+                      //  push('ios_go_to_'+ios_apps_dp[0].split('://')[0], ios_apps_dp[0] + get_final_app(ios_apps_dp[0]).split(ios_apps_dp[0])[1]);
+                      window.location.href =   ios_apps_dp[0] + get_final_app(ios_apps_dp[0]).split(ios_apps_dp[0])[1]
                  }, 100);
 } else {
     // Desktop
