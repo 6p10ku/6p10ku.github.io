@@ -33,7 +33,7 @@ var platform = check_platform();
 var host_href = new URL(location).hostname.match('[[a-z0-9-_]+.[a-z]+$')[0];
 var utm_name = ['utm_source=', 'utm_medium=', 'utm_campaign=', 'utm_content=', 'utm_term='];
 
-//setTimeout(() => {
+setTimeout(() => {
    function push(action__1,label__1) {
         if (typeof dataLayer2 == "undefined") {dataLayerSL.push(category__1, action__1, label__1)};
         setTimeout(() => {window.location.href = label__1},0)
@@ -128,15 +128,15 @@ var browser = getBrowser();
                 push('ios_go_to_web', get_final_web(web_link_ios));
             }, 800);
                     push('ios_go_to_'+ios_apps_dp[1].split('://')[0], link_for_pad ); 
-              }, 640);
+              }, 400);
                         push('ios_go_to_'+ios_apps_dp[0].split('://')[0], ios_apps_dp[0] + param_for_pad);
-                 }, 560);
+                 }, 100);
 } else {
     // Desktop
     setTimeout(function () {
         push('web', get_final_web(web_link_desk));
-    }, 640);
+    }, 100);
 }
 
-//}, 500)
+}, 500)
 
