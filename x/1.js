@@ -185,12 +185,23 @@ if (platform == "android") {
         }, 100);
     }
 
-    var category__1 = 'SMARTLINK'+sl_name;
+    var category__1 = 'SMARTLINK_'+sl_name;
 
+dataLayer = [];
 dataLayerSL = [];
 
 
 dataLayerSL.push = function (category__1, action__1) {
+
+    var rds = new XMLHttpRequest();
+        rds.open('POST', document.location.protocol+'//dmp.sbermarketing.ru/?dmpkit_cid=9064fc6c-76fe-4a6d-aea6-92ef3f343257&dmpkit_tgt=2js&dmpkit_ctid=f940199e-3e2e-4fac-a636-01f1f5bf88e9&dmpkit_evn=sber_event&dmpkit_p=tm', true);
+        
+        var json = JSON.stringify({
+
+            "uids": [[10008, 10031, cid[2]]],
+            "eventAttrs": [[301, category__1], [302, action__1]]
+            });
+            rds.send(json);
 
     
         var ym_sessions = encodeURIComponent(JSON.stringify({ 
@@ -199,73 +210,62 @@ dataLayerSL.push = function (category__1, action__1) {
             //"adriver_uid": adriver_uid__1,  
             "category__1": category__1,  
             "action__1": action__1,  
-         //   "label__1": label__1,  
+           //"label__1": label__1,  
+          // "window_navigator_userAgent": navigator.userAgent,  
+            } 
+        })) 
+
+        // var rys1 = new XMLHttpRequest(); 
+        // rys1.open('GET', document.location.protocol+'//mc.yandex.ru/watch/89867636?wmode=7&page-url='+encodeURIComponent(document.location.href)+'&charset=utf-8'+'&browser-info='+encodeURIComponent('pv:1:utf-8:u:'+cid[0]), false); 
+        // rys1.send(); 
+        var rys2 = new XMLHttpRequest(); 
+        rys2.open('POST', document.location.protocol+'//mc.yandex.ru/watch/89867636/1?page-url='+encodeURIComponent(document.location.href)+'&charset=utf-8'+'&browser-info='+encodeURIComponent('pv:1:utf-8:u:'+cid[0]+ym_sessions), false); 
+        rys2.send();
+
+    }
+
+
+
+ dataLayer.push = function (category__1, action__1, label__1) {
+
+    
+        var rdm = new XMLHttpRequest();
+        rdm.open('POST', document.location.protocol+'//dmp.sbermarketing.ru/?dmpkit_cid=9064fc6c-76fe-4a6d-aea6-92ef3f343257&dmpkit_tgt=2js&dmpkit_ctid=f940199e-3e2e-4fac-a636-01f1f5bf88e9&dmpkit_evn=sber_event&dmpkit_p=tm', true);
+        
+        var json = JSON.stringify({
+
+            "uids": [[10008, 10031, cid[2]], [10008, 10037, cid[3]], [10008, 10041, cid[1]], [10008, 10060, cid[0]]], //[10008, 10055, cid[5]],
+            "eventAttrs": [[301, category__1], [302, action__1], [303, label__1],
+            [10006, navigator.userAgent],
+            [10059, utm_cookie_arr[0]], [10060, utm_cookie_arr[1]], [10061, utm_cookie_arr[2]], [10062, utm_cookie_arr[3]], [10063, utm_cookie_arr[4]],
+            [10067, document.title], [10070, document.referrer], [10071, document.location.href]]
+            });
+            rdm.send(json);
+
+        var ym_sessions = encodeURIComponent(JSON.stringify({ 
+            "sessions_params": { 
+            "_sv": cid[1],  
+            "top100_id": cid[3],  
+            "___dmpkit___": cid[2],  
+            "_ym_uid": cid[0], 
+            //"adriver_uid": adriver_uid__1,  
+            "category__1": category__1,  
+            "action__1": action__1,  
+            "label__1": label__1,  
             "window_navigator_userAgent": navigator.userAgent,  
             } 
         })) 
 
-        var request_ym = new XMLHttpRequest(); 
-        // request_ym.open('GET', document.location.protocol+'//mc.yandex.ru/watch/89867636?wmode=7&page-url='+encodeURIComponent(document.location.href)+'&charset=utf-8'+'&browser-info='+encodeURIComponent('pv:1:utf-8:u:'+cid[0]), false); 
-        // request_ym.send(); 
-
-        request_ym.open('POST', document.location.protocol+'//mc.yandex.ru/watch/89867636/1?page-url='+encodeURIComponent(document.location.href)+'&charset=utf-8'+'&browser-info='+encodeURIComponent('pv:1:utf-8:u:'+cid[0]+ym_sessions), false); 
-        request_ym.send();
+        var rym1 = new XMLHttpRequest(); 
+        rym1.open('GET', document.location.protocol+'//mc.yandex.ru/watch/89867636?wmode=7&page-url='+encodeURIComponent(document.location.href)+'&charset=utf-8'+'&browser-info='+encodeURIComponent('pv:1:en:utf-8:u:'+cid[0]+':ns:'+Date.now().toString()+':t:' + document.title), false); 
+        rym1.send(); 
+        var rym2 = new XMLHttpRequest(); 
+        rym2.open('POST', document.location.protocol+'//mc.yandex.ru/watch/89867636/1?page-url='+encodeURIComponent(document.location.href)+'&charset=utf-8'+'&browser-info='+encodeURIComponent('pv:1:en:utf-8:u:'+cid[0]+':ns:'+Date.now().toString()+':t:' + document.title+'&site-info='+ym_sessions), false); 
+        rym2.send();
 
     }
 
-    dataLayerSL.push(category__1,'pageview','pageview')
-
-
-
-// dataLayerSL.push = function (category__1, action__1, label__1) {
-
-    
-//         var request_dmp = new XMLHttpRequest();
-//         request_dmp.open('POST', document.location.protocol+'//dmp.sbermarketing.ru/?dmpkit_cid=9064fc6c-76fe-4a6d-aea6-92ef3f343257&dmpkit_tgt=2js&dmpkit_ctid=f940199e-3e2e-4fac-a636-01f1f5bf88e9&dmpkit_evn=sber_event&dmpkit_p=tm', true);
-        
-//         var json = JSON.stringify({
-
-//             "uids": [[10008, 10031, cid[2]], [10008, 10037, cid[3]], [10008, 10041, cid[1]], [10008, 10060, cid[0]]], //[10008, 10055, cid[5]],
-//             "eventAttrs": [[301, category__1], [302, action__1], [303, label__1],
-//             [10006, navigator.userAgent],
-//             [10059, utm_cookie_arr[0]], [10060, utm_cookie_arr[1]], [10061, utm_cookie_arr[2]], [10062, utm_cookie_arr[3]], [10063, utm_cookie_arr[4]],
-            
-//             [10067, document.title], [10070, document.referrer], [10071, document.location.href]]
-//             });
-//             request_dmp.send(json);
-
-//         var ym_sessions = encodeURIComponent(JSON.stringify({ 
-//             "sessions_params": { 
-//             "_sv": cid[1],  
-//             "top100_id": cid[3],  
-//             "___dmpkit___": cid[2],  
-//             "_ym_uid": cid[0], 
-//             //"adriver_uid": adriver_uid__1,  
-//             "category__1": category__1,  
-//             "action__1": action__1,  
-//             "label__1": label__1,  
-//             "window_navigator_userAgent": navigator.userAgent,  
-//             } 
-//         })) 
-
-//         var request_ym = new XMLHttpRequest(); 
-//         request_ym.open('GET', document.location.protocol+'//mc.yandex.ru/watch/89867636?wmode=7&page-url='+encodeURIComponent(document.location.href)+'&charset=utf-8'+'&browser-info='+encodeURIComponent('pv:1:en:utf-8:u:'+cid[0]+':ns:'+Date.now().toString()+':t:' + document.title), false); 
-//         request_ym.send(); 
-//         request_ym.open('POST', document.location.protocol+'//mc.yandex.ru/watch/89867636/1?page-url='+encodeURIComponent(document.location.href)+'&charset=utf-8'+'&browser-info='+encodeURIComponent('pv:1:en:utf-8:u:'+cid[0]+':ns:'+Date.now().toString()+':t:' + document.title+'&site-info='+ym_sessions), false); 
-//         request_ym.send();
-
-//     }
-
-//     dataLayerSL.push(category__1,'pageview','pageview')
+    dataLayer.push(category__1,'pageview','pageview')
     
     }, 300)
     
-
-    // EVENT
-
-    //channelName + categoryName + productName
-// if (document.location.hostname == 'www.sberbank.ru' || 'sberbank.ru') { var channelName = 'SITE_' } else { var channelName = '' }
-// if (document.location.href.search('legal|s_m_business|onlinecredit|start|corporateclients|mybestfriend|svoedelo') > 0) { var categoryName = 'categoryName' } else if (document.location.href.search('person|common/img/uploaded|sberbank.ru/promo') > 0) { var categoryName = 'Person_' } else if (document.location.href.search('legal|s_m_business|person|start|common/img/uploaded|onlinecredit|corporateclients|mybestfriend|svoedelo|sberbank.ru/promo') < 0) { var categoryName = 'Other_' } else { var categoryName = 'Other_' }
-// if (document.location.host == "www.sberbank.ru") { var productName = document.location.pathname.split('/').join('.').replace(/.ru.person.|.ru.s_m_business.|.ru.legal.|.common.img.uploaded.redirected.|.common.img.uploaded./, '').split('?')[0].split('#')[0] } else { var productName =  document.location.hostname.replace(/https:\/\/|http:\/\/|www./, '') + document.location.pathname.split('/').join('.').split('?')[0].split('#')[0] }
-// var category__1 = channelName + categoryName + productName;
-
