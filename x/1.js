@@ -36,7 +36,7 @@ var utm_name = ['utm_source=', 'utm_medium=', 'utm_campaign=', 'utm_content=', '
 setTimeout(() => {
    function push(action__1,label__1) {
         if (typeof dataLayer2 == "undefined") {dataLayerSL.push(category__1, action__1, label__1)};
-        setTimeout(() => {window.location.href = label__1},0)
+        setTimeout(function() {window.location.href = label__1},0)
     }
 
 // Куки в переменную через таймер
@@ -98,9 +98,9 @@ function get_final_app(dp) {
 }
 
 // часть финальных переменных для ios
-var web_data =  get_final_web(web_link_ios)
-var param_for_pad = get_final_app(ios_apps_dp[0]).split(ios_apps_dp[0])[1];
-var link_for_pad = document.location.origin + '/x/redirect_pad.html?URL_START=' +  (document.location.href) + '&SL_iOS_DP_OLD=' + encodeURIComponent(ios_apps_dp[1] + param_for_pad) + '&SL_WEB_LINK_iOS=' + encodeURIComponent(web_data)
+// var web_data =  get_final_web(web_link_ios)
+// var param_for_pad = get_final_app(ios_apps_dp[0]).split(ios_apps_dp[0])[1];
+// var link_for_pad = document.location.origin + '/x/redirect_pad.html?URL_START=' +  (document.location.href) + '&SL_iOS_DP_OLD=' + encodeURIComponent(ios_apps_dp[1] + param_for_pad) + '&SL_WEB_LINK_iOS=' + encodeURIComponent(web_data)
 
 
 
@@ -127,9 +127,10 @@ var browser = getBrowser();
             setTimeout(function() {
                 push('ios_go_to_web', get_final_web(web_link_ios));
             }, 800);
-                    push('ios_go_to_'+ios_apps_dp[1].split('://')[0], link_for_pad ); 
+                    var web_data =  get_final_web(web_link_ios);
+                    push('ios_go_to_'+ios_apps_dp[1].split('://')[0], document.location.origin + '/x/redirect_pad.html?URL_START=' +  (document.location.href) + '&SL_iOS_DP_OLD=' + encodeURIComponent(ios_apps_dp[1] + param_for_pad) + '&SL_WEB_LINK_iOS=' + encodeURIComponent(web_data)); 
               }, 400);
-                        push('ios_go_to_'+ios_apps_dp[0].split('://')[0], ios_apps_dp[0] + param_for_pad);
+                        push('ios_go_to_'+ios_apps_dp[0].split('://')[0], ios_apps_dp[0] + get_final_app(ios_apps_dp[0]).split(ios_apps_dp[0])[1]);
                  }, 100);
 } else {
     // Desktop
@@ -138,5 +139,5 @@ var browser = getBrowser();
     }, 100);
 }
 
-}, 5000)
+}, 500)
 
