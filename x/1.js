@@ -181,7 +181,7 @@ if (platform == "android") {
         // Desktop
         setTimeout(function () {
             dataLayerSL.push(category__1,'web','');
-            //window.location.href = get_final_web(web_link_desk);
+            window.location.href = get_final_web(web_link_desk);
         }, 100);
     }
 
@@ -232,3 +232,12 @@ dataLayerSL.push = function (category__1, action__1, label__1) {
     
     }, 300)
     
+
+    // EVENT
+
+    //channelName + categoryName + productName
+// if (document.location.hostname == 'www.sberbank.ru' || 'sberbank.ru') { var channelName = 'SITE_' } else { var channelName = '' }
+// if (document.location.href.search('legal|s_m_business|onlinecredit|start|corporateclients|mybestfriend|svoedelo') > 0) { var categoryName = 'categoryName' } else if (document.location.href.search('person|common/img/uploaded|sberbank.ru/promo') > 0) { var categoryName = 'Person_' } else if (document.location.href.search('legal|s_m_business|person|start|common/img/uploaded|onlinecredit|corporateclients|mybestfriend|svoedelo|sberbank.ru/promo') < 0) { var categoryName = 'Other_' } else { var categoryName = 'Other_' }
+// if (document.location.host == "www.sberbank.ru") { var productName = document.location.pathname.split('/').join('.').replace(/.ru.person.|.ru.s_m_business.|.ru.legal.|.common.img.uploaded.redirected.|.common.img.uploaded./, '').split('?')[0].split('#')[0] } else { var productName =  document.location.hostname.replace(/https:\/\/|http:\/\/|www./, '') + document.location.pathname.split('/').join('.').split('?')[0].split('#')[0] }
+// var category__1 = channelName + categoryName + productName;
+
