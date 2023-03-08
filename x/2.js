@@ -52,9 +52,37 @@ dataLayerSL.push = function (category__1, action__1, label__1) {
             [10067, title__1], [10070, referrer__1], [10071, url__1.href]]
             });
             request.send(json);
-     }
 
-     dataLayerSL.push(category__1,'pageview','pageview')
+
+        var ym_sessions = encodeURIComponent(JSON.stringify({ 
+            "sessions_params": { 
+            "_ga": _ga__1,  
+            "_sv": _sv__1,  
+            "top100_id": top100_id__1,  
+            "___dmpkit___": ___dmpkit_____1,  
+            "_ym_uid": _ym_uid__1, 
+            "adriver_uid": adriver_uid__1,  
+            "category__1": category__1,  
+            "action__1": action__1,  
+            "label__1": label__1,  
+            "window_navigator_userAgent": agent__1,  
+            } 
+        })) 
+
+
+
+
+        var request = new XMLHttpRequest(); 
+        request.open('GET', 'https://mc.yandex.ru/watch/89867636?wmode=7&page-url='+encodeURIComponent(url__1.href)+'&charset=utf-8'+'&browser-info='+encodeURIComponent('pv:1:en:utf-8:u:'+_ym_uid__1+':ns:'+Date.now().toString()+':t:' + title__1), false); 
+        request.send(); 
+        request.open('POST', 'https://mc.yandex.ru/watch/89867636/1?page-url='+encodeURIComponent(url__1.href)+'&charset=utf-8'+'&browser-info='+encodeURIComponent('pv:1:en:utf-8:u:'+_ym_uid__1+':ns:'+Date.now().toString()+':t:' + title__1+'&site-info='+ym_sessions), false); 
+        request.send();
+
+    }
+
+    dataLayerSL.push(category__1,'pageview','pageview')
+
+
 
 
 
