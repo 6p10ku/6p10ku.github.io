@@ -138,5 +138,5 @@ var browser = getBrowser();
     }, 100);
 }
 
-}, 500)
+}, 5000)
 
