@@ -126,16 +126,16 @@ var browser = getBrowser();
         setTimeout(function() {
             setTimeout(function() {
                 push('ios_go_to_web', get_final_web(web_link_ios));
-            }, 1100);
+            }, 800);
                     push('ios_go_to_'+ios_apps_dp[1].split('://')[0], link_for_pad ); 
-              }, 800);
+              }, 640);
                         push('ios_go_to_'+ios_apps_dp[0].split('://')[0], ios_apps_dp[0] + param_for_pad);
-                 }, 600);
+                 }, 560);
 } else {
     // Desktop
     setTimeout(function () {
         push('web', get_final_web(web_link_desk));
-    }, 600);
+    }, 640);
 }
 
 //}, 500)
