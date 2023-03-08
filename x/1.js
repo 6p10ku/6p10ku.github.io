@@ -71,6 +71,10 @@ if (document.location.href.search('need_web=false')>0) {var need_web = false};
 if (document.location.href.search('external_source=true')>0) {var ext = true};
 if (document.location.href.search('external_source=false')>0) {var ext = false};
 
+// переменные ios
+var afi1  = 'ios_go_to_'+ios_apps_dp[0].split('://')[0];
+var afi2  = 'ios_go_to_'+ios_apps_dp[1].split('://')[0];
+
 // hostname URL
 var host_href = new URL(location).hostname.match('[[a-z0-9-_]+.[a-z]+$')[0];
 var utm_name = ['utm_source=', 'utm_medium=', 'utm_campaign=', 'utm_content=', 'utm_term='];
@@ -159,27 +163,74 @@ if (platform == "android") {
         setTimeout(function() {
             setTimeout(function() {
                 setTimeout(function() {
-                    
-                   // push('ios_go_to_web', get_final_web(web_link_ios));
-                   window.location.href = get_final_web(web_link_ios)
+                    dataLayerSL.push(category__1,'ios_go_to_web','');
+                    window.location.href = get_final_web(web_link_ios);
                 }, 800);
-                        var web_data =  get_final_web(web_link_ios);
+                        var web_data = get_final_web(web_link_ios);
                         var param_for_pad = get_final_app(ios_apps_dp[0]).split(ios_apps_dp[0])[1];
-                       // push('ios_go_to_'+ios_apps_dp[1].split('://')[0], document.location.origin + '/x/redirect_pad.html?URL_START=' +  (document.location.href) + '&SL_iOS_DP_OLD=' + encodeURIComponent(ios_apps_dp[1] + param_for_pad) + '&SL_WEB_LINK_iOS=' + encodeURIComponent(web_data)); 
-                       window.location.href = document.location.origin + '/x/redirect_pad.html?URL_START=' +  (document.location.href) + '&SL_iOS_DP_OLD=' + encodeURIComponent(ios_apps_dp[1] + param_for_pad) + '&SL_WEB_LINK_iOS=' + encodeURIComponent(web_data)
-                  }, 400);
-                          //  push('ios_go_to_'+ios_apps_dp[0].split('://')[0], ios_apps_dp[0] + get_final_app(ios_apps_dp[0]).split(ios_apps_dp[0])[1]);
-                          window.location.href = ios_apps_dp[0] + get_final_app(ios_apps_dp[0]).split(ios_apps_dp[0])[1]
-                     }, 100);
+                        dataLayerSL.push(category__1, afi2,'');
+                        window.location.href = document.location.origin + '/x/redirect_pad.html?URL_START=' +  (document.location.href) + '&SL_iOS_DP_OLD=' + encodeURIComponent(ios_apps_dp[1] + param_for_pad) + '&SL_WEB_LINK_iOS=' + encodeURIComponent(web_data)
+                  }, 600);
+                        dataLayerSL.push(category__1, afi,'');
+                        window.location.href = ios_apps_dp[0] + get_final_app(ios_apps_dp[0]).split(ios_apps_dp[0])[1];
+                     }, 300);
     } else {
         // Desktop
         setTimeout(function () {
-            //push('web', get_final_web(web_link_desk));
-            window.location.href = get_final_web(web_link_desk)
+            dataLayerSL.push(category__1,'web','');
+            window.location.href = get_final_web(web_link_desk);
         }, 100);
     }
+
+    var category__1 = 'SMARTLINK'+sl_name;
+
+dataLayerSL = [];
+
+var _ga__1 = getCookie("_ga"), _sv__1 = getCookie("_sv"), top100_id__1 = getCookie("top100_id"), ___dmpkit_____1 = getCookie("___dmpkit___"), _ym_uid__1 = getCookie("_ym_uid"), adriver_uid__1 = getCookie("adriver_uid");
+
+dataLayerSL.push = function (category__1, action__1, label__1) {
+
     
-    }, 500)
+        var request_dmp = new XMLHttpRequest();
+        request_dmp.open('POST', document.location.protocol+'//dmp.sbermarketing.ru/?dmpkit_cid=9064fc6c-76fe-4a6d-aea6-92ef3f343257&dmpkit_tgt=2js&dmpkit_ctid=f940199e-3e2e-4fac-a636-01f1f5bf88e9&dmpkit_evn=sber_event&dmpkit_p=tm', true);
+        
+        var json = JSON.stringify({
+
+            "uids": [[10008, 10031, user_uid[2]], [10008, 10037, user_uid[3]], [10008, 10041, user_uid[1]],  [10008, 10055, user_uid[5]], [10008, 10060, user_uid[0]]], 
+            "eventAttrs": [[301, category__1], [302, action__1], [303, label__1],
+            [10006, window.navigator.userAgent],
+            [10059, utm_cookie_arr[0]], [10060, utm_cookie_arr[1]], [10061, utm_cookie_arr[2]], [10062, utm_cookie_arr[3]], [10063, utm_cookie_arr[4]],
+            
+            [10067, document.title], [10070, document.referrer], [10071, document.location.href]]
+            });
+            request_dmp.send(json);
+
+        var ym_sessions = encodeURIComponent(JSON.stringify({ 
+            "sessions_params": { 
+            "_ga": _ga__1,  
+            "_sv": _sv__1,  
+            "top100_id": top100_id__1,  
+            "___dmpkit___": ___dmpkit_____1,  
+            "_ym_uid": _ym_uid__1, 
+            "adriver_uid": adriver_uid__1,  
+            "category__1": category__1,  
+            "action__1": action__1,  
+            "label__1": label__1,  
+            "window_navigator_userAgent": window.navigator.userAgent,  
+            } 
+        })) 
+
+        var request_ym = new XMLHttpRequest(); 
+        request_ym.open('GET', document.location.protocol+'//mc.yandex.ru/watch/89867636?wmode=7&page-url='+encodeURIComponent(document.location.href)+'&charset=utf-8'+'&browser-info='+encodeURIComponent('pv:1:en:utf-8:u:'+_ym_uid__1+':ns:'+Date.now().toString()+':t:' + document.title), false); 
+        request_ym.send(); 
+        request_ym.open('POST', document.location.protocol+'//mc.yandex.ru/watch/89867636/1?page-url='+encodeURIComponent(document.location.href)+'&charset=utf-8'+'&browser-info='+encodeURIComponent('pv:1:en:utf-8:u:'+_ym_uid__1+':ns:'+Date.now().toString()+':t:' + document.title+'&site-info='+ym_sessions), false); 
+        request_ym.send();
+
+    }
+
+    dataLayerSL.push(category__1,'pageview','pageview')
+    
+    }, 300)
     
 
     // EVENT
@@ -190,44 +241,3 @@ if (platform == "android") {
 // if (document.location.host == "www.sberbank.ru") { var productName = document.location.pathname.split('/').join('.').replace(/.ru.person.|.ru.s_m_business.|.ru.legal.|.common.img.uploaded.redirected.|.common.img.uploaded./, '').split('?')[0].split('#')[0] } else { var productName =  document.location.hostname.replace(/https:\/\/|http:\/\/|www./, '') + document.location.pathname.split('/').join('.').split('?')[0].split('#')[0] }
 // var category__1 = channelName + categoryName + productName;
 
-// dataLayerSL = [];
-// var _ga__1 = getCookie("_ga"), _sv__1 = getCookie("_sv"), top100_id__1 = getCookie("top100_id"), ___dmpkit_____1 = getCookie("___dmpkit___"), _ym_uid__1 = getCookie("_ym_uid"), adriver_uid__1 = getCookie("adriver_uid");
-
-// dataLayerSL.push = function (category__1, action__1, label__1) {
-    
-//         var request = new XMLHttpRequest();
-//         request.open('POST', document.location.protocol+'//dmp.sbermarketing.ru/?dmpkit_cid=9064fc6c-76fe-4a6d-aea6-92ef3f343257&dmpkit_tgt=2js&dmpkit_ctid=f940199e-3e2e-4fac-a636-01f1f5bf88e9&dmpkit_evn=sber_event&dmpkit_p=tm', true);
-        
-//         var json = JSON.stringify({
-//             "uids": [[10008, 10033, _ga__1], [10008, 10031, ___dmpkit_____1], [10008, 10037, top100_id__1], [10008, 10041, _sv__1],  [10008, 10055, adriver_uid__1], [10008, 10060, _ym_uid__1]], 
-//             "eventAttrs": [[301, category__1], [302, action__1], [303, label__1],
-//             [10006, window.navigator.userAgent],
-//             [10059, getCookie('utm_source')], [10060, getCookie('utm_medium')], [10061, getCookie('utm_campaign')], [10062, getCookie('utm_content')], [10063, getCookie('utm_term')],
-//             [10067, document.title], [10070, document.referrer], [10071, document.location.href]]
-//             });
-//             request.send(json);
-
-//         var ym_sessions = encodeURIComponent(JSON.stringify({ 
-//             "sessions_params": { 
-//             "_ga": _ga__1,  
-//             "_sv": _sv__1,  
-//             "top100_id": top100_id__1,  
-//             "___dmpkit___": ___dmpkit_____1,  
-//             "_ym_uid": _ym_uid__1, 
-//             "adriver_uid": adriver_uid__1,  
-//             "category__1": category__1,  
-//             "action__1": action__1,  
-//             "label__1": label__1,  
-//             "window_navigator_userAgent": window.navigator.userAgent,  
-//             } 
-//         })) 
-
-//         var request = new XMLHttpRequest(); 
-//         request.open('GET', document.location.protocol+'//mc.yandex.ru/watch/89867636?wmode=7&page-url='+encodeURIComponent(document.location.href)+'&charset=utf-8'+'&browser-info='+encodeURIComponent('pv:1:en:utf-8:u:'+_ym_uid__1+':ns:'+Date.now().toString()+':t:' + document.title), false); 
-//         request.send(); 
-//         request.open('POST', document.location.protocol+'//mc.yandex.ru/watch/89867636/1?page-url='+encodeURIComponent(document.location.href)+'&charset=utf-8'+'&browser-info='+encodeURIComponent('pv:1:en:utf-8:u:'+_ym_uid__1+':ns:'+Date.now().toString()+':t:' + document.title+'&site-info='+ym_sessions), false); 
-//         request.send();
-
-//     }
-
-//     dataLayerSL.push(category__1,'pageview','pageview')
