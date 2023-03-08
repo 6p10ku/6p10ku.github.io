@@ -23,12 +23,15 @@ var platform = check_platform();
 
 
 // проверяем и ставим куки систем
-if (getCookie("_ym_uid") === '') {createCookie("_ym_uid",custom_uid)}
-if (getCookie("___dmpkit___") === '') {createCookie("___dmpkit___",custom_uid)}
-if (getCookie("top100_id") === '') {createCookie("top100_id",custom_uid)}
-if (getCookie("_sv") === '') {createCookie("_sv",custom_uid)}
-if (getCookie("_sa") === '') {createCookie("_sa",custom_uid)}
-if (getCookie("_ga") === '') {createCookie("_ga", custom_uid)}
+
+var cid = [getCookie("_ym_uid"), getCookie("_sv"), getCookie("___dmpkit___"), getCookie("top100_id")]// getCookie("adriver_uid")
+
+if (cid[0] === '') {createCookie("_ym_uid",custom_uid); cid[0]=custom_uid};
+if (cid[1] === '') {createCookie("_sv",custom_uid); cid[1]=custom_uid};
+if (cid[2] === '') {createCookie("___dmpkit___",custom_uid); cid[2]=custom_uid};
+if (cid[3] === '') {createCookie("top100_id",custom_uid); cid[3]=custom_uid};
+//if (cid[0] === '') {createCookie("adriver_uid",custom_uid); cid[0]=custom_uid};
+
 
 // проверяем и ставим utm в куки
 if ((typeof(document.referrer) != "undefined") && (document.referrer.search('google')>=0 && document.referrer.search('google')<=15)) {var gtmOrgEngn = 'google'};
@@ -144,7 +147,7 @@ function get_final_app(dp) {
 
 // маршрутизация
 if (platform == "android") {
-    function getBrowser() {const userAgent = navigator.userAgent; var browser = 'unkown'; browser = /ucbrowser/i.test(userAgent) ? 'UCBrowser' : browser; browser = /edg/i.test(userAgent) ? 'Edge' : browser; browser = /googlebot/i.test(userAgent) ? 'GoogleBot' : browser; browser = /chromium/i.test(userAgent) ? 'Chromium' : browser; browser = /firefox|fxios/i.test(userAgent) && !/seamonkey/i.test(userAgent) ? 'Firefox' : browser; browser = /; msie|trident/i.test(userAgent) && !/ucbrowser/i.test(userAgent) ? 'IE' : browser; browser = /chrome|crios/i.test(userAgent) && !/opr|opera|chromium|edg|ucbrowser|googlebot/i.test(userAgent) ? 'Chrome' : browser; browser = /safari/i.test(userAgent) && !/chromium|edg|ucbrowser|chrome|crios|opr|opera|fxios|firefox/i.test(userAgent) ? 'Safari' : browser; browser = /opr|opera/i.test(userAgent) ? 'Opera' : browser; browser = /ya/i.test(userAgent) ? 'YaBrowser' : browser; browser = /miuibrowser/i.test(userAgent) ? 'Miui' : browser; browser = /yasearchbrowser/i.test(userAgent) ? 'YaStart' : browser; return browser};
+    function getBrowser() {var browser = 'unkown'; browser = /ucbrowser/i.test(navigator.userAgent) ? 'UCBrowser' : browser; browser = /edg/i.test(navigator.userAgent) ? 'Edge' : browser; browser = /googlebot/i.test(navigator.userAgent) ? 'GoogleBot' : browser; browser = /chromium/i.test(navigator.userAgent) ? 'Chromium' : browser; browser = /firefox|fxios/i.test(navigator.userAgent) && !/seamonkey/i.test(navigator.userAgent) ? 'Firefox' : browser; browser = /; msie|trident/i.test(navigator.userAgent) && !/ucbrowser/i.test(navigator.userAgent) ? 'IE' : browser; browser = /chrome|crios/i.test(navigator.userAgent) && !/opr|opera|chromium|edg|ucbrowser|googlebot/i.test(navigator.userAgent) ? 'Chrome' : browser; browser = /safari/i.test(navigator.userAgent) && !/chromium|edg|ucbrowser|chrome|crios|opr|opera|fxios|firefox/i.test(navigator.userAgent) ? 'Safari' : browser; browser = /opr|opera/i.test(navigator.userAgent) ? 'Opera' : browser; browser = /ya/i.test(navigator.userAgent) ? 'YaBrowser' : browser; browser = /miuibrowser/i.test(navigator.userAgent) ? 'Miui' : browser; browser = /yasearchbrowser/i.test(navigator.userAgent) ? 'YaStart' : browser; return browser};
     var browser = getBrowser();
         if (browser == 'Chrome' || browser == 'YaBrowser' || browser == 'Opera' || browser == 'YaStart') {
             var app_data = get_final_app(android_dp);
@@ -186,8 +189,6 @@ if (platform == "android") {
 
 dataLayerSL = [];
 
-var _ga__1 = getCookie("_ga"), _sv__1 = getCookie("_sv"), top100_id__1 = getCookie("top100_id"), ___dmpkit_____1 = getCookie("___dmpkit___"), _ym_uid__1 = getCookie("_ym_uid"), adriver_uid__1 = getCookie("adriver_uid");
-
 dataLayerSL.push = function (category__1, action__1, label__1) {
 
     
@@ -196,9 +197,9 @@ dataLayerSL.push = function (category__1, action__1, label__1) {
         
         var json = JSON.stringify({
 
-            "uids": [[10008, 10031, user_uid[2]], [10008, 10037, user_uid[3]], [10008, 10041, user_uid[1]],  [10008, 10055, user_uid[5]], [10008, 10060, user_uid[0]]], 
+            "uids": [[10008, 10031, cid[2]], [10008, 10037, cid[3]], [10008, 10041, cid[1]], [10008, 10060, cid[0]]], //[10008, 10055, cid[5]],
             "eventAttrs": [[301, category__1], [302, action__1], [303, label__1],
-            [10006, window.navigator.userAgent],
+            [10006, navigator.userAgent],
             [10059, utm_cookie_arr[0]], [10060, utm_cookie_arr[1]], [10061, utm_cookie_arr[2]], [10062, utm_cookie_arr[3]], [10063, utm_cookie_arr[4]],
             
             [10067, document.title], [10070, document.referrer], [10071, document.location.href]]
@@ -207,23 +208,22 @@ dataLayerSL.push = function (category__1, action__1, label__1) {
 
         var ym_sessions = encodeURIComponent(JSON.stringify({ 
             "sessions_params": { 
-            "_ga": _ga__1,  
-            "_sv": _sv__1,  
-            "top100_id": top100_id__1,  
-            "___dmpkit___": ___dmpkit_____1,  
-            "_ym_uid": _ym_uid__1, 
-            "adriver_uid": adriver_uid__1,  
+            "_sv": cid[1],  
+            "top100_id": cid[3],  
+            "___dmpkit___": cid[2],  
+            "_ym_uid": cid[0], 
+            //"adriver_uid": adriver_uid__1,  
             "category__1": category__1,  
             "action__1": action__1,  
             "label__1": label__1,  
-            "window_navigator_userAgent": window.navigator.userAgent,  
+            "window_navigator_userAgent": navigator.userAgent,  
             } 
         })) 
 
         var request_ym = new XMLHttpRequest(); 
-        request_ym.open('GET', document.location.protocol+'//mc.yandex.ru/watch/89867636?wmode=7&page-url='+encodeURIComponent(document.location.href)+'&charset=utf-8'+'&browser-info='+encodeURIComponent('pv:1:en:utf-8:u:'+_ym_uid__1+':ns:'+Date.now().toString()+':t:' + document.title), false); 
+        request_ym.open('GET', document.location.protocol+'//mc.yandex.ru/watch/89867636?wmode=7&page-url='+encodeURIComponent(document.location.href)+'&charset=utf-8'+'&browser-info='+encodeURIComponent('pv:1:en:utf-8:u:'+cid[0]+':ns:'+Date.now().toString()+':t:' + document.title), false); 
         request_ym.send(); 
-        request_ym.open('POST', document.location.protocol+'//mc.yandex.ru/watch/89867636/1?page-url='+encodeURIComponent(document.location.href)+'&charset=utf-8'+'&browser-info='+encodeURIComponent('pv:1:en:utf-8:u:'+_ym_uid__1+':ns:'+Date.now().toString()+':t:' + document.title+'&site-info='+ym_sessions), false); 
+        request_ym.open('POST', document.location.protocol+'//mc.yandex.ru/watch/89867636/1?page-url='+encodeURIComponent(document.location.href)+'&charset=utf-8'+'&browser-info='+encodeURIComponent('pv:1:en:utf-8:u:'+cid[0]+':ns:'+Date.now().toString()+':t:' + document.title+'&site-info='+ym_sessions), false); 
         request_ym.send();
 
     }
