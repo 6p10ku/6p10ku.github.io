@@ -288,7 +288,7 @@ if (platform == 'android') {
 
         var web_data = get_final_web(web_link_ios);
         var param_for_pad = get_final_app(ios_apps_dp[0]).split(ios_apps_dp[0])[1];
-        var fios = '/common/img/uploaded/files/sms/smartlink_code/redirect_pad?SL_DLTR=' + encodeURIComponent(ios_apps_dp[1] + param_for_pad) + '&SL_WLTR=' + encodeURIComponent(web_data);
+        var fios = '/x/redirect_pad.html?SL_DLTR=' + encodeURIComponent(ios_apps_dp[1] + param_for_pad) + '&SL_WLTR=' + encodeURIComponent(web_data);
         
         dataLayerSL.push('ios', ios_apps_dp[0]);
 
