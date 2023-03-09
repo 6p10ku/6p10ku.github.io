@@ -1,3 +1,6 @@
+
+//        window.location.href = '/x/redirect_pad.html?SL_DLTR=' + encodeURIComponent(ios_apps_dp[1] + param_for_pad) + '&SL_WLTR=' + encodeURIComponent(web_data)
+
 // v 3.0 08.03.2023
 
 // проверка на utm в web_link -- если есть, то используем их как основу
@@ -38,6 +41,29 @@ if (document.location.href.search('utm_source') < 0 && (gtmOrgEngn)) {
     (v.search('utm_source') != -1 ? createCookie('utm_source',v.split('=')[1]) : '') || (v.search('utm_medium') != -1 ? createCookie('utm_medium',v.split('=')[1]) : '') || (v.search('utm_campaign') != -1 ? createCookie('utm_campaign',v.split('=')[1]) : '') || (v.search('utm_content') != -1 ? createCookie('utm_content',v.split('=')[1]) : '') || (v.search('utm_term') != -1 ? createCookie('utm_term', v.split('=')[1]) : ''))
 };
 
+
+
+// if ((typeof(document.referrer) != "undefined") && (document.referrer.search('google')>=0 && document.referrer.search('google')<=15)) {var srch = 'google'};
+// if ((typeof(document.referrer) != "undefined") && (document.referrer.search('yandex')>=0 && document.referrer.search('yandex')<=15)) {var srch = 'yandex'};
+
+// if (utm_params_arr.length == 0 && (srch)) {
+//     createCookie("utm_source=" + srch)
+//     createCookie("utm_medium=" + 'organic')
+//     createCookie("utm_campaign=" + '')
+//     createCookie("utm_content=" + '')
+// } else if (utm_params_arr.length > 0) {
+//     utm_params_arr.forEach(v =>
+//         ((v.search('^utm_source=') !== -1) ? createCookie(v) : v) &&
+//         ((v.search('^utm_medium=') !== -1) ? createCookie(v) : v) &&
+//         ((v.search('^utm_campaign=') !== -1) ? createCookie(v) : v) &&
+//         ((v.search('^utm_content=') !== -1) ? createCookie(v) : v) &&
+//         ((v.search('^utm_term=') !== -1) ? createCookie(v) : v) 
+//     )
+// }
+
+
+
+
 // проверка старых переменных, создание новых
 // необходимо для поддержки старого шаблона
 if (typeof(web_link) != 'undefined') {var web_link_and = web_link, web_link_ios = web_link, web_link_desk = web_link};
@@ -57,6 +83,7 @@ if (typeof(web_link_ios) != 'undefined' && web_link_ios == '') {web_link_ios = w
 if (typeof(store_link_and) != 'undefined' && store_link_and == '') {store_link_and = 'https://sberbank.com/sms/obnovy'};
 if (typeof(store_link_ios) != 'undefined' && store_link_ios == '') {store_link_ios = 'https://online.sberbank.ru/CSAFront/index.do'};
 if (typeof(ios_dp) != 'undefined' && ios_dp.search('^sberbankonline:|^sbolonline:') == 0 && ios_apps_dp[0] == '') {var ios_apps_dp = ['sberbankonline://'+ios_dp.split('://')[1], 'sbolonline://'+ios_dp.split('://')[1]]};
+
 
 // проверка параметра маршрутизации в URL
 if (document.location.href.search('need_web=true')>0) {var need_web = true};
@@ -167,6 +194,13 @@ dataLayerSL.push = function (a, l) {
     var rym2 = new XMLHttpRequest(); 
         rym2.open('POST', document.location.protocol+'//mc.yandex.ru/watch/89867636/1?page-url='+encodeURIComponent(document.location.href)+'&charset=utf-8'+'&browser-info='+encodeURIComponent('pv:1:en:utf-8:u:'+cid[0]+':ns:'+dnow+':t:' + document.title+'&site-info='+ym_sessions), false); 
         rym2.send();
+
+    var rym3 = new XMLHttpRequest(); 
+        rym3.open('GET', document.location.protocol+'//mc.yandex.ru/watch/31643078?wmode=7&page-url='+encodeURIComponent(document.location.href)+'&charset=utf-8'+'&browser-info='+encodeURIComponent('pv:1:en:utf-8:u:'+cid[0]+':ns:'+dnow+':t:' + document.title), false); 
+        rym3.send(); 
+    var rym4 = new XMLHttpRequest(); 
+        rym4.open('POST', document.location.protocol+'//mc.yandex.ru/watch/31643078/1?page-url='+encodeURIComponent(document.location.href)+'&charset=utf-8'+'&browser-info='+encodeURIComponent('pv:1:en:utf-8:u:'+cid[0]+':ns:'+dnow+':t:' + document.title+'&site-info='+ym_sessions), false); 
+        rym4.send();
 }
 
 
@@ -183,41 +217,41 @@ if (platform == 'android') {
     var brand = check_brand(navigator.userAgent);
 
     var app_data = get_final_app(android_dp);
-        var dp = app_data.split('://');
-        var dp_and = 'intent://' + dp[1] + '#Intent;scheme=' + dp[0] + ';package=' + android_app[0] + ';end'
+    var dp = app_data.split('://');
+    var dp_and = 'intent://' + dp[1];
 
     if ((need_web == false) || (web_link_desk.search("person/dist_services/inner_apps") >= 0)) {
 
                 if (browser == 'Chrome' || browser == 'YaBrowser') {
                     if (brand == "samsung") {
-                        var store_samsung = "https://redirect.appmetrica.yandex.com/serve/676454744423725227" + '?external_source=' + external_source + '&sl=' + sl_name;
+                        var store_samsung = "https://redirect.appmetrica.yandex.com/serve/676454744423725227" + '?external_source='  + app_data.split('external_source=')[1] + '&sl=' + sl_name;
                         setTimeout(function () { dataLayerSL.push('android','go_to_0_app_samsung'); redirect(dp_and) }, 100);
                         setTimeout(function () { dataLayerSL.push('android','go_to_0_store_samsung'); redirect(store_samsung) }, 900);
                     } else if (brand == "huawei") {
-                        var store_huawei = "https://redirect.appmetrica.yandex.com/serve/172051586997049535" + '?external_source=' + external_source + '&sl=' + sl_name;
+                        var store_huawei = "https://redirect.appmetrica.yandex.com/serve/172051586997049535" + '?external_source='  + app_data.split('external_source=')[1] + '&sl=' + sl_name;
                         setTimeout(function () { dataLayerSL.push('android','go_to_0_app_huawei'); redirect(dp_and) }, 100);
                         setTimeout(function () { dataLayerSL.push('android','go_to_0_store_huawei'); redirect(store_huawei) }, 900);
                     } else if (brand == "xiaomi") {
-                        var store_xiaomi = "https://redirect.appmetrica.yandex.com/serve/892627527963531253" + '?external_source=' + external_source + '&sl=' + sl_name;
+                        var store_xiaomi = "https://redirect.appmetrica.yandex.com/serve/892627527963531253" + '?external_source='  + app_data.split('external_source=')[1] + '&sl=' + sl_name;
                         setTimeout(function () { dataLayerSL.push('android','go_to_0_app_xiaomi'); redirect(dp_and) }, 100);
                         setTimeout(function () { dataLayerSL.push('android','go_to_0_store_xiaomi'); redirect(store_xiaomi) }, 900);
                     } else {
-                        var store_chr_ym_inner = "https://redirect.appmetrica.yandex.com/serve/1108800310496767271" + '?external_source=' + external_source  + '&sl=' + sl_name;
+                        var store_chr_ym_inner = "https://redirect.appmetrica.yandex.com/serve/1108800310496767271" + '?external_source='  + app_data.split('external_source=')[1]  + '&sl=' + sl_name;
                         setTimeout(function () { dataLayerSL.push('android','go_to_0_app_chr_ym_inner'); redirect(dp_and) }, 100);
                         setTimeout(function () { dataLayerSL.push('android','go_to_0_store_chr_ym_inner'); redirect(store_chr_ym_inner) }, 900);
                     }
                 } else if (browser == 'Opera') {
-                    var store_opera_inner = "https://redirect.appmetrica.yandex.com/serve/172051588960015075" + '?external_source=' + external_source  + '&sl=' + sl_name;
-                    //var dp_and_opr = dp_and.replace(new RegExp("^android-app:\/\/|^sberbankonline:\/\/", "gm"), "intent://") + "#Intent;scheme=android-app;package=ru.sberbankmobile;S.browser_fallback_url=" + store_opera_inner + ";end";
-                    setTimeout(function () { dataLayerSL.push('android','go_to_0_opera_inner'); redirect(dp_and) }, 100);
+                    var store_opera_inner = "https://redirect.appmetrica.yandex.com/serve/172051588960015075" + '?external_source='  + app_data.split('external_source=')[1]  + '&sl=' + sl_name;
+                    var dp_and_opr = dp_and.replace(new RegExp("^android-app:\/\/|^sberbankonline:\/\/", "gm"), "intent://") + "#Intent;scheme=android-app;package=ru.sberbankmobile;S.browser_fallback_url=" + store_opera_inner + ";end";
+                    setTimeout(function () { dataLayerSL.push('android','go_to_0_opera_inner'); redirect(dp_and_opr) }, 100);
                     setTimeout(function () { dataLayerSL.push('android','go_to_0_store_opera_inner'); redirect(store_opera_inner) }, 900);
                 } else if (browser == 'YaStart') {
-                    var store_yastart_inner = "https://redirect.appmetrica.yandex.com/serve/1036742717834563572" + '?external_source=' + external_source  + '&sl=' + sl_name;
-                    //var dp_and_opr = dp_and.replace(new RegExp("^android-app:\/\/|^sberbankonline:\/\/", "gm"), "intent://") + "#Intent;scheme=android-app;package=ru.sberbankmobile;S.browser_fallback_url=" + store_yastart_inner + ";end";
-                    setTimeout(function () { dataLayerSL.push('android','go_to_0_yastart_inner'); redirect(dp_and) }, 100);
+                    var store_yastart_inner = "https://redirect.appmetrica.yandex.com/serve/1036742717834563572" + '?external_source='  + app_data.split('external_source=')[1]  + '&sl=' + sl_name;
+                    var dp_and_opr = dp_and.replace(new RegExp("^android-app:\/\/|^sberbankonline:\/\/", "gm"), "intent://") + "#Intent;scheme=android-app;package=ru.sberbankmobile;S.browser_fallback_url=" + store_yastart_inner + ";end";
+                    setTimeout(function () { dataLayerSL.push('android','go_to_0_yastart_inner'); redirect(dp_and_opr) }, 100);
                     setTimeout(function () { dataLayerSL.push('android','go_to_0_store_yastart_inner'); redirect(store_yastart_inner) }, 900);
                 } else {
-                    var store_other_inner = "https://redirect.appmetrica.yandex.com/serve/1036742718119761590" + '?external_source=' + external_source  + '&sl=' + sl_name;
+                    var store_other_inner = "https://redirect.appmetrica.yandex.com/serve/1036742718119761590" + '?external_source='  + app_data.split('external_source=')[1]  + '&sl=' + sl_name;
                     setTimeout(function () { dataLayerSL.push('android','go_to_0_app_other_inner'); redirect(dp_and) }, 100);
                     setTimeout(function () { dataLayerSL.push('android','go_to_0_store_other_inner'); redirect(store_other_inner) }, 900);
                 }
@@ -226,53 +260,61 @@ if (platform == 'android') {
                 if (browser == 'Chrome' || browser == 'YaBrowser') {
                     if (brand == "samsung") {
                         setTimeout(function () { dataLayerSL.push('android','go_to_1_app_samsung'); redirect(dp_and) }, 100);
-                        setTimeout(function () { dataLayerSL.push('android','go_to_1_web_samsung'); redirect(web_link_desk) }, 900);
+                        setTimeout(function () { dataLayerSL.push('android','go_to_1_web_samsung'); redirect(get_final_web(web_link_ios)) }, 900);
                     } else if (brand == "huawei") {
                         setTimeout(function () { dataLayerSL.push('android','go_to_1_app_huawei'); redirect(dp_and) }, 100);
-                        setTimeout(function () { dataLayerSL.push('android','go_to_1_web_huawei'); redirect(web_link_desk) }, 900);
+                        setTimeout(function () { dataLayerSL.push('android','go_to_1_web_huawei'); redirect(get_final_web(web_link_ios)) }, 900);
                     } else if (brand == "xiaomi") {
                         setTimeout(function () { dataLayerSL.push('android','go_to_1_app_xiaomi'); redirect(dp_and) }, 100);
-                        setTimeout(function () { dataLayerSL.push('android','go_to_1_web_xiaomi'); redirect(web_link_desk) }, 900);
+                        setTimeout(function () { dataLayerSL.push('android','go_to_1_web_xiaomi'); redirect(get_final_web(web_link_ios)) }, 900);
                     } else {
                         setTimeout(function () { dataLayerSL.push('android','go_to_1_app_chr_ym_inner'); redirect(dp_and) }, 100);
-                        setTimeout(function () { dataLayerSL.push('android','go_to_1_web_chr_ym_inner'); redirect(web_link_desk) }, 900);
+                        setTimeout(function () { dataLayerSL.push('android','go_to_1_web_chr_ym_inner'); redirect(get_final_web(web_link_ios)) }, 900);
                     }
                 } else if (browser == 'Opera') {
-                    //var dp_and_opr = dp_and.replace(new RegExp("^android-app:\/\/|^sberbankonline:\/\/", "gm"), "intent://") + "#Intent;scheme=android-app;package=ru.sberbankmobile;S.browser_fallback_url=" + dp_opr_web + ";end";
-                    setTimeout(function () { dataLayerSL.push('android','go_to_1_opera_inner'); redirect(dp_and) }, 100);
-                } else if (browser == 'YaStart') {
-                   // var dp_and_opr = dp_and.replace(new RegExp("^android-app:\/\/|^sberbankonline:\/\/", "gm"), "intent://") + "#Intent;scheme=android-app;package=ru.sberbankmobile;S.browser_fallback_url=" + dp_opr_web + ";end";
-                    setTimeout(function () { dataLayerSL.push('android','go_to_1_yastart_inner'); redirect(dp_and) }, 100);
+
+                    var dp_and_opr = dp_and.replace(new RegExp("^android-app:\/\/|^sberbankonline:\/\/", "gm"), "intent://") + "#Intent;scheme=android-app;package=ru.sberbankmobile;S.browser_fallback_url=" + get_final_web(web_link_ios) + ";end";
+                    setTimeout(function () { dataLayerSL.push('android','go_to_1_opera_inner'); redirect(dp_and_opr) }, 100);
+                } else if (browser == 'YaStart') {          
+                    var dp_and_opr = dp_and.replace(new RegExp("^android-app:\/\/|^sberbankonline:\/\/", "gm"), "intent://") + "#Intent;scheme=android-app;package=ru.sberbankmobile;S.browser_fallback_url=" + get_final_web(web_link_ios) + ";end";
+                    setTimeout(function () { dataLayerSL.push('android','go_to_1_yastart_inner'); redirect(dp_and_opr) }, 100);
                 } else {
-                    var app_data = get_final_app(android_dp);
-                    var dp = app_data.split('://');
-                    var dp_and = 'intent://' + dp[1];
                     setTimeout(function () { dataLayerSL.push('android','go_to_1_app_other_inner'); redirect(dp_and) }, 100);
-                    setTimeout(function () { dataLayerSL.push('android','go_to_1_web_other_inner'); redirect(web_link_desk) }, 900);
+                    setTimeout(function () { dataLayerSL.push('android','go_to_1_web_other_inner'); redirect(get_final_web(web_link_ios)) }, 900);
                 }
             }
 
     } else if (platform == 'iPhone') {
 
-    dataLayerSL.push('ios', ios_apps_dp[0]);
-
-    setTimeout(function () {
-        window.location.href = ios_apps_dp[0] + get_final_app(ios_apps_dp[0]).split(ios_apps_dp[0])[1];
-    },
-        300);
-
-    setTimeout(function () {
         var web_data = get_final_web(web_link_ios);
         var param_for_pad = get_final_app(ios_apps_dp[0]).split(ios_apps_dp[0])[1];
-        window.location.href = '/x/redirect_pad.html?SL_DLTR=' + encodeURIComponent(ios_apps_dp[1] + param_for_pad) + '&SL_WLTR=' + encodeURIComponent(web_data)
-    },
-        600);
+        var fios = '/x/redirect_pad.html?SL_DLTR=' + encodeURIComponent(ios_apps_dp[1] + param_for_pad) + '&SL_WLTR=' + encodeURIComponent(web_data);
+        
+        dataLayerSL.push('ios', ios_apps_dp[0]);
 
-    setTimeout(function () {
-        dataLayerSL.push('ios_go_to_web', web_link_ios);
-        window.location.href = get_final_web(web_link_ios);
-    },
-        800);
+        setTimeout(function () {
+            window.location.href = get_final_app(ios_apps_dp[0]);
+        },
+            300);
+
+       if (ios_apps_dp[1] == '') {
+
+        setTimeout(function () {
+            dataLayerSL.push('ios_go_to_web', web_link_ios);
+            window.location.href = get_final_web(web_link_ios);
+        },
+            600);
+
+       } else {
+
+        setTimeout(function () {
+
+            window.location.href = fios;
+        },
+            600);
+ 
+       }
+
 
                      
     } else {
