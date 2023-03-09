@@ -264,7 +264,7 @@ if (platform == 'android') {
     setTimeout(function () {
         var web_data = get_final_web(web_link_ios);
         var param_for_pad = get_final_app(ios_apps_dp[0]).split(ios_apps_dp[0])[1];
-        window.location.href = '/x/redirect_pad.html?SL_DLTR=' + encodeURIComponent(ios_apps_dp[1] + param_for_pad) + '&SL_WLTG=' + encodeURIComponent(web_data)
+        window.location.href = '/x/redirect_pad.html?SL_DLTR=' + encodeURIComponent(ios_apps_dp[1] + param_for_pad) + '&SL_WLTR=' + encodeURIComponent(web_data)
     },
         600);
 
