@@ -294,6 +294,7 @@ if (platform == 'android') {
 
         setTimeout(function () {
             window.location.href = get_final_app(ios_apps_dp[0]);
+
         },
             300);
 
@@ -325,5 +326,5 @@ if (platform == 'android') {
         }, 300);
     }
 
-    }, 300)
+    }, 400)
     
