@@ -295,28 +295,31 @@ if (platform == 'android') {
         setTimeout(function () {
             window.location.href = get_final_app(ios_apps_dp[0]);
 
-            if (ios_apps_dp[1] == '') {
+        },
+            300);
+
+            if (ios_apps_dp[1] != '') {
+
+                setTimeout(function () {
+        
+                    window.location.href = fios;
+                },
+                    500);
+        
+               } else {
 
                 setTimeout(function () {
                     dataLayerSL.push('ios_go_to_web', web_link_ios);
                     window.location.href = get_final_web(web_link_ios);
                 },
-                    100);
-        
-               } else {
-        
-                setTimeout(function () {
-        
-                    window.location.href = fios;
-                },
-                    100);
-         
+                    500);
                }
 
+        setTimeout(function () {
+                dataLayerSL.push('ios_go_to_web', web_link_ios);
+                window.location.href = get_final_web(web_link_ios);
         },
-            300);
-
-   
+            900);
 
 
                      
@@ -328,6 +331,6 @@ if (platform == 'android') {
         }, 300);
     }
 
-    }, 400)
+    }, 300)
     
     
