@@ -301,7 +301,7 @@ if (platform == 'android') {
             if (ios_apps_dp[1] != '') {
 
                 setTimeout(function () {
-        
+                 // dataLayerSL.push('ios_go_to_web', web_link_ios);
                     window.location.href = fios;
                 },
                     500);
@@ -309,7 +309,7 @@ if (platform == 'android') {
                } else {
 
                 setTimeout(function () {
-                    //dataLayerSL.push('ios_go_to_web', web_link_ios);
+                    dataLayerSL.push('ios_go_to_web', web_link_ios);
                     window.location.href = get_final_web(web_link_ios);
                 },
                     500);
