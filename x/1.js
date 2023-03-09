@@ -288,33 +288,35 @@ if (platform == 'android') {
 
         var web_data = get_final_web(web_link_ios);
         var param_for_pad = get_final_app(ios_apps_dp[0]).split(ios_apps_dp[0])[1];
-        var fios = '/x/redirect_pad.html?SL_DLTR=' + encodeURIComponent(ios_apps_dp[1] + param_for_pad) + '&SL_WLTR=' + encodeURIComponent(web_data);
+        var fios = '/common/img/uploaded/files/sms/smartlink_code/redirect_pad?SL_DLTR=' + encodeURIComponent(ios_apps_dp[1] + param_for_pad) + '&SL_WLTR=' + encodeURIComponent(web_data);
         
         dataLayerSL.push('ios', ios_apps_dp[0]);
 
         setTimeout(function () {
             window.location.href = get_final_app(ios_apps_dp[0]);
 
+            if (ios_apps_dp[1] == '') {
+
+                setTimeout(function () {
+                    dataLayerSL.push('ios_go_to_web', web_link_ios);
+                    window.location.href = get_final_web(web_link_ios);
+                },
+                    100);
+        
+               } else {
+        
+                setTimeout(function () {
+        
+                    window.location.href = fios;
+                },
+                    100);
+         
+               }
+
         },
             300);
 
-       if (ios_apps_dp[1] == '') {
-
-        setTimeout(function () {
-            dataLayerSL.push('ios_go_to_web', web_link_ios);
-            window.location.href = get_final_web(web_link_ios);
-        },
-            400);
-
-       } else {
-
-        setTimeout(function () {
-
-            window.location.href = fios;
-        },
-            400);
- 
-       }
+   
 
 
                      
@@ -327,4 +329,5 @@ if (platform == 'android') {
     }
 
     }, 400)
+    
     
