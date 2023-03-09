@@ -1,3 +1,5 @@
+// v 3.0 08.03.2023
+
 // проверка на utm в web_link -- если есть, то используем их как основу
 if (web_link_desk.search('utm_source=')>0){
     var url_params = (web_link_desk.split('?').length > 1 ? web_link_desk.split('?')[1].split('&') : '') || []
@@ -262,7 +264,7 @@ if (platform == 'android') {
     setTimeout(function () {
         var web_data = get_final_web(web_link_ios);
         var param_for_pad = get_final_app(ios_apps_dp[0]).split(ios_apps_dp[0])[1];
-        window.location.href = document.location.origin + '/x/redirect_pad.html?URL_START=' + (document.location.href) + '&SL_iOS_DP_OLD=' + encodeURIComponent(ios_apps_dp[1] + param_for_pad) + '&SL_WEB_LINK_iOS=' + encodeURIComponent(web_data)
+        window.location.href = '/x/redirect_pad.html?SL_DLTR=' + encodeURIComponent(ios_apps_dp[1] + param_for_pad) + '&SL_WLTG=' + encodeURIComponent(web_data)
     },
         600);
 
@@ -282,3 +284,4 @@ if (platform == 'android') {
     }
 
     }, 300)
+    
