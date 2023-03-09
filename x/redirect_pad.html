@@ -1,17 +1,15 @@
-<!doctype html>
-<html lang='en'>
+<!DOCTYPE html>
+<html>
 <head>
-<meta charset='UTF-8'>
-<style type='text/css'>body {font-size: 20px; font-family: Arial;} .smart_img p{margin: 0;position: absolute;top: 50%;left: 50%;margin-right: -50%;transform: translate(-50%, -50%)}p {display: block;align-items: center;text-align: center;}p img { width: 50%;}@media screen and (max-width: 1000px) {p img { width: 70%;}}</style>
-</head>
-<body>  
 <script>
-setTimeout(function(){
-    window.location.href = decodeURIComponent(document.location.href.split('&SL_iOS_DP_OLD=')[1].split('&SL_WEB_LINK_iOS')[0]);
-        setTimeout(function(){
-            window.location.href = decodeURIComponent(document.location.href).split('&SL_WEB_LINK_iOS=')[1];
-        },500);
-},150);
-</script>
+    setTimeout(function () {
+      window.location.href = decodeURIComponent(document.location.href.split('&SL_iOS_DP_OLD=')[1].split('&SL_WEB_LINK_iOS')[0]);}, 
+      200);
+    setTimeout(function () {
+      window.location.href = decodeURIComponent(document.location.href).split('&SL_WEB_LINK_iOS=')[1];}, 
+      600);
+  </script>
+</head>
+<body>
 </body>
 </html>
