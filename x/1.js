@@ -303,7 +303,7 @@ if (platform == 'android') {
             dataLayerSL.push('ios_go_to_web', web_link_ios);
             window.location.href = get_final_web(web_link_ios);
         },
-            600);
+            400);
 
        } else {
 
@@ -311,7 +311,7 @@ if (platform == 'android') {
 
             window.location.href = fios;
         },
-            600);
+            400);
  
        }
 
