@@ -139,6 +139,54 @@ function get_final_app(dp) {
 
 var dataLayerSL = [];
 
+    var dataLayerSL = [];
+dataLayerSL.push = function(a, l) {
+  // Define the data to be sent
+  var data = {
+    uids: [[10008, 10031, cid[2]], [10008, 10037, cid[3]], [10008, 10041, cid[1]], [10008, 10060, cid[0]]],
+    eventAttrs: [
+      [301, 'SMARTLINK_' + sl_name],
+      [302, a],
+      [303, l],
+      [10006, navigator.userAgent],
+      [10059, utm_cookie_arr[0]],
+      [10060, utm_cookie_arr[1]],
+      [10061, utm_cookie_arr[2]],
+      [10062, utm_cookie_arr[3]],
+      [10063, utm_cookie_arr[4]],
+      [10067, document.title],
+      [10070, document.referrer],
+      [10071, document.location.href]
+    ],
+    sessionsParams: {
+      _sv: cid[1],
+      top100_id: cid[3],
+      ___dmpkit___: cid[2],
+      _ym_uid: cid[0],
+      category: 'SMARTLINK_' + sl_name,
+      action: a,
+      label: l,
+      window_navigator_userAgent: navigator.userAgent,
+    },
+  };
+  
+  // Define the URLs to be sent to
+  var urls = [
+    document.location.protocol + '//dmp.sbermarketing.ru/?dmpkit_cid=9064fc6c-76fe-4a6d-aea6-92ef3f343257&dmpkit_tgt=2js&dmpkit_ctid=f940199e-3e2e-4fac-a636-01f1f5bf88e9&dmpkit_evn=sber_event&dmpkit_p=tm',
+    document.location.protocol + '//mc.yandex.ru/watch/89867636/1?page-url=' + encodeURIComponent(document.location.href) + '&charset=utf-8' + '&browser-info=' + encodeURIComponent('pv:1:en:utf-8:u:' + cid[0] + ':ns:' + dnow + ':t:' + document.title),
+    document.location.protocol + '//mc.yandex.ru/watch/31643078/1?page-url=' + encodeURIComponent(document.location.href) + '&charset=utf-8' + '&browser-info=' + encodeURIComponent('pv:1:en:utf-8:u:' + cid[0] + ':ns:' + dnow + ':t:' + document.title),
+  ];
+  
+  // Send the data to each URL
+  for (var i = 0; i < urls.length; i++) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', urls[i], true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(data));
+  }
+};
+
+    dataLayerSL.push('MAIN', 'MAIN');
 
 // маршрутизация
 if (platform == 'android') {
